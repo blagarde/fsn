@@ -8,6 +8,7 @@
   manual               load data/manual/*.csv
   build                init + livechart + janaf + manual (+ endf unless --no-endf)
   check                compare doc claims with the database -> reports/claims_check.{md,csv}
+  docs [--check]       regenerate doc indexes, material database facts and claims page; validate links
   status               row counts, last ingest runs, sources by status
   sql "<query>"        run a read-only query
 """
@@ -76,6 +77,22 @@ def cmd_check(con, a):
     print("report: reports/claims_check.md")
 
 
+def cmd_docs(con, a):
+    from . import docs
+
+    have_db = con.execute("SELECT COUNT(*) FROM nuclide").fetchone()[0] > 0
+    changed = docs.generate(con if have_db else None, check=a.check)
+    errors = docs.validate()
+    for e in errors:
+        print(f"  ERROR {e}")
+    verb = "would change" if a.check else "updated"
+    print(f"{verb}: {len(changed)} file(s)" + "".join(f"\n  {c}" for c in changed))
+    if not have_db:
+        print("  (no database: material facts left as they are)")
+    if errors or (a.check and changed):
+        sys.exit(1)
+
+
 def cmd_status(con, a):
     for tbl in ("source", "artifact", "nuclide", "species", "thermo", "xs_avg", "property"):
         print(f"{tbl:10s} {con.execute(f'SELECT COUNT(*) FROM {tbl}').fetchone()[0]}")
@@ -104,6 +121,8 @@ def main(argv=None):
     sub = p.add_subparsers(dest="cmd", required=True)
     for name in ("init", "livechart", "janaf", "manual", "check", "status"):
         sub.add_parser(name)
+    d = sub.add_parser("docs")
+    d.add_argument("--check", action="store_true", help="report what would change and fail if anything would")
     e = sub.add_parser("endf")
     e.add_argument("--only", nargs="*", help="nuclides (Al-27) or elements (W) to process")
     e.add_argument("--all", action="store_true", help="every ground-state evaluation in the library, not just config targets")
