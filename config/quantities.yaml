@@ -1,0 +1,27 @@
+# Controlled vocabulary for hand-entered properties: quantity -> SI unit stored in value_si.
+quantities:
+  density: kilogram / meter ** 3
+  thermal_conductivity: watt / meter / kelvin
+  specific_heat: joule / kilogram / kelvin
+  dynamic_viscosity: pascal * second
+  surface_tension: newton / meter
+  linear_expansion_coefficient: 1 / kelvin
+  volumetric_expansion_coefficient: 1 / kelvin
+  melting_point: kelvin
+  boiling_point: kelvin
+  solidus: kelvin
+  liquidus: kelvin
+  latent_heat_fusion: joule / kilogram
+  latent_heat_vaporization: joule / kilogram
+  vapor_pressure: pascal
+  youngs_modulus: pascal
+  poisson_ratio: dimensionless
+  yield_strength: pascal
+  ultimate_tensile_strength: pascal
+  creep_rupture_stress_1e5h: pascal
+  fracture_toughness: pascal * meter ** 0.5
+  emissivity: dimensionless
+  solubility_mass_fraction: dimensionless
+  corrosion_rate: meter / second
+  swelling_per_dpa: 1
+  dbtt: kelvin

@@ -1,0 +1,3 @@
+# Copy this file to <topic>.csv and fill one row per published value. Lines starting with # are ignored.
+# quantity must be in config/quantities.yaml; source_id in config/sources.yaml; locator = page/table/eq or DOI.
+material,quantity,value,unc,unc_kind,unit,T_K,P_Pa,phase,conditions,source_id,locator,method,entered_by,notes

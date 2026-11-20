@@ -1,0 +1,79 @@
+# Figures stated from memory in the HT-FBR Master Plan doc, to be checked against the database.
+# kind: half_life | abundance | xs_element | xi | dfG_per_O2 | melting_point | boiling_point | vapor_pressure | cp_mass
+# Values are as written in the doc. tol is the relative tolerance for "confirmed" (default 0.10).
+claims:
+  # Activation and decay (Aluminium coolant, Liquid fuel, Master plan tabs)
+  - {kind: half_life, nuclide: Al-28, value: 2.2, unit: min, where: "Aluminium coolant / Neutronics"}
+  - {kind: half_life, nuclide: Na-24, value: 15, unit: h, where: "Aluminium coolant / Neutronics"}
+  - {kind: half_life, nuclide: Mg-27, value: 9.5, unit: min, where: "Aluminium coolant (Mg-27 from (n,p))"}
+  - {kind: half_life, nuclide: Al-26, value: 7.2e5, unit: year, where: "reasoning on (n,2n)"}
+  - {kind: half_life, nuclide: Pb-209, value: 3, unit: h, where: "Liquid fuel / carrier table"}
+  - {kind: half_life, nuclide: Si-31, value: 2.6, unit: h, where: "Liquid fuel / carrier table"}
+  - {kind: half_life, nuclide: Cu-64, value: 13, unit: h, where: "Liquid fuel / carrier table"}
+  - {kind: half_life, nuclide: Cu-66, value: 5, unit: min, where: "Liquid fuel / carrier table"}
+  - {kind: half_life, nuclide: F-20, value: 11, unit: s, where: "Liquid fuel / carrier table"}
+  - {kind: half_life, nuclide: Sn-113, value: 115, unit: day, where: "Liquid fuel / carrier table (named only)"}
+  - {kind: half_life, nuclide: Sn-123, value: 129, unit: day, where: "Liquid fuel / carrier table (named only)"}
+  - {kind: half_life, nuclide: Po-210, value: 138, unit: day, where: "trace Po-210 from Bi"}
+  - {kind: half_life, nuclide: Fe-59, value: 45, unit: day, where: "iron activation"}
+  - {kind: half_life, nuclide: Mn-54, value: 312, unit: day, where: "iron activation"}
+  - {kind: half_life, nuclide: Co-60, value: 5.27, unit: year, where: "iron activation"}
+  - {kind: half_life, nuclide: Cr-51, value: 27.7, unit: day, where: "Cr activation (comment thread)"}
+  - {kind: abundance, nuclide: Ca-44, value: 2.0, where: "Liquid fuel / carrier table (Ca-45 from 2% Ca-44)"}
+  # Neutronics (Aluminium coolant / properties table)
+  - {kind: xs_element, element: Al, mt: 102, weighting: thermal_2200, value: 0.23, where: "Aluminium coolant / properties"}
+  - {kind: xs_element, element: Na, mt: 102, weighting: thermal_2200, value: 0.53, where: "Aluminium coolant / properties"}
+  - {kind: xs_element, element: Pb, mt: 102, weighting: thermal_2200, value: 0.17, where: "Aluminium coolant / properties"}
+  - {kind: xs_element, element: Sn, mt: 102, weighting: thermal_2200, value: 0.63, where: "Aluminium coolant / properties"}
+  - {kind: xi, element: Al, value: 0.072, tol: 0.03, where: "Aluminium coolant / properties"}
+  - {kind: xi, element: Na, value: 0.085, tol: 0.03, where: "Aluminium coolant / properties"}
+  - {kind: xi, element: Pb, value: 0.0096, tol: 0.03, where: "Aluminium coolant / properties"}
+  - {kind: xi, element: Sn, value: 0.017, tol: 0.03, where: "Aluminium coolant / properties"}
+  # Oxide stability chart (magnitude of dfG at 298 K, kJ per mol O2)
+  - {kind: dfG_per_O2, formula: Y2O3, phase: cr, T_K: 298.15, value: 1211, tol: 0.02, where: "Aluminium coolant / oxide chart"}
+  - {kind: dfG_per_O2, formula: CaO, phase: cr, T_K: 298.15, value: 1207, tol: 0.02, where: "Aluminium coolant / oxide chart"}
+  - {kind: dfG_per_O2, formula: ThO2, phase: cr, T_K: 298.15, value: 1169, tol: 0.02, where: "Aluminium coolant / oxide chart"}
+  - {kind: dfG_per_O2, formula: BeO, phase: cr, T_K: 298.15, value: 1160, tol: 0.02, where: "Aluminium coolant / oxide chart"}
+  - {kind: dfG_per_O2, formula: MgO, phase: cr, T_K: 298.15, value: 1139, tol: 0.02, where: "Aluminium coolant / oxide chart"}
+  - {kind: dfG_per_O2, formula: HfO2, phase: cr, T_K: 298.15, value: 1088, tol: 0.02, where: "Aluminium coolant / oxide chart"}
+  - {kind: dfG_per_O2, formula: Al2O3, phase: cr, T_K: 298.15, value: 1055, tol: 0.02, where: "Aluminium coolant / oxide chart (threshold)"}
+  - {kind: dfG_per_O2, formula: ZrO2, phase: cr, T_K: 298.15, value: 1043, tol: 0.02, where: "Aluminium coolant / oxide chart"}
+  - {kind: dfG_per_O2, formula: UO2, phase: cr, T_K: 298.15, value: 1032, tol: 0.02, where: "Aluminium coolant / oxide chart"}
+  - {kind: dfG_per_O2, formula: TiO2, phase: cr, T_K: 298.15, value: 889, tol: 0.02, where: "Aluminium coolant / oxide chart"}
+  - {kind: dfG_per_O2, formula: SiO2, phase: cr, T_K: 298.15, value: 856, tol: 0.02, where: "Aluminium coolant / oxide chart"}
+  # Phase changes (deg C as written in the doc)
+  - {kind: melting_point, formula: Al, value: 660, unit: degC, tol: 0.01, where: "Aluminium coolant / properties"}
+  - {kind: boiling_point, formula: Al, value: 2470, unit: degC, tol: 0.01, where: "Aluminium coolant / properties"}
+  - {kind: melting_point, formula: Na, value: 98, unit: degC, tol: 0.01, where: "Aluminium coolant / properties"}
+  - {kind: boiling_point, formula: Na, value: 883, unit: degC, tol: 0.01, where: "Aluminium coolant / properties"}
+  - {kind: melting_point, formula: Pb, value: 327, unit: degC, tol: 0.01, where: "Aluminium coolant / properties"}
+  - {kind: boiling_point, formula: Pb, value: 1749, unit: degC, tol: 0.01, where: "Aluminium coolant / properties"}
+  - {kind: melting_point, formula: Sn, value: 232, unit: degC, tol: 0.01, where: "Aluminium coolant / properties"}
+  - {kind: boiling_point, formula: Sn, value: 2602, unit: degC, tol: 0.01, where: "Aluminium coolant / properties"}
+  - {kind: melting_point, formula: Ca, value: 842, unit: degC, tol: 0.01, where: "Liquid fuel / carrier table"}
+  - {kind: boiling_point, formula: Ca, value: 1484, unit: degC, tol: 0.01, where: "Liquid fuel / carrier table"}
+  - {kind: melting_point, formula: Li, value: 181, unit: degC, tol: 0.01, where: "Master plan / exclusion rules"}
+  - {kind: boiling_point, formula: Li, value: 1342, unit: degC, tol: 0.01, where: "Master plan / exclusion rules"}
+  - {kind: melting_point, formula: Mg, value: 650, unit: degC, tol: 0.01, where: "Liquid fuel reasoning"}
+  - {kind: boiling_point, formula: Mg, value: 1091, unit: degC, tol: 0.01, where: "Liquid fuel reasoning"}
+  - {kind: melting_point, formula: Cu, value: 1085, unit: degC, tol: 0.01, where: "Liquid fuel / carrier table"}
+  - {kind: boiling_point, formula: Cu, value: 2562, unit: degC, tol: 0.01, where: "Liquid fuel / carrier table"}
+  - {kind: melting_point, formula: Si, value: 1414, unit: degC, tol: 0.01, where: "Liquid fuel / carrier table"}
+  - {kind: boiling_point, formula: Si, value: 3265, unit: degC, tol: 0.01, where: "Liquid fuel / carrier table"}
+  - {kind: melting_point, formula: CaF2, value: 1418, unit: degC, tol: 0.01, where: "Liquid fuel / carrier table"}
+  - {kind: boiling_point, formula: CaF2, value: 2533, unit: degC, tol: 0.01, where: "Liquid fuel / carrier table"}
+  - {kind: boiling_point, formula: LiF, value: 1676, unit: degC, tol: 0.01, where: "Liquid fuel / fuel table"}
+  - {kind: boiling_point, formula: NaCl, value: 1465, unit: degC, tol: 0.01, where: "Liquid fuel / fuel table"}
+  - {kind: melting_point, formula: W, value: 3422, unit: degC, tol: 0.01, where: "Liquid fuel / tungsten boundary"}
+  - {kind: melting_point, formula: Al2O3, value: 2072, unit: degC, tol: 0.01, where: "Aluminium coolant / boundary table"}
+  # Vapour pressures (bar), all estimated from boiling points in the doc
+  - {kind: vapor_pressure, formula: Al, T_C: 1500, value: 0.001, tol: 0.5, where: "Aluminium coolant / properties"}
+  - {kind: vapor_pressure, formula: Al, T_C: 2000, value: 0.07, tol: 0.5, where: "Aluminium coolant / properties"}
+  - {kind: vapor_pressure, formula: Sn, T_C: 1500, value: 0.0005, tol: 0.5, where: "Aluminium coolant / properties"}
+  - {kind: vapor_pressure, formula: Sn, T_C: 2000, value: 0.04, tol: 0.5, where: "Aluminium coolant / properties"}
+  - {kind: vapor_pressure, formula: Pb, T_C: 1500, value: 0.2, tol: 0.5, where: "Aluminium coolant / properties"}
+  - {kind: vapor_pressure, formula: Pb, T_C: 2000, value: 3, tol: 0.5, where: "Liquid fuel / carrier table"}
+  - {kind: vapor_pressure, formula: Ca, T_C: 2000, value: 11, tol: 0.5, where: "Liquid fuel / carrier table"}
+  - {kind: vapor_pressure, formula: CaF2, T_C: 2000, value: 0.03, tol: 0.5, where: "Liquid fuel / carrier table"}
+  # Specific heat of liquid Al (kJ/kg K)
+  - {kind: cp_mass, formula: Al, phase: "cr,l", T_C: 1000, value: 1.18, tol: 0.03, where: "Aluminium coolant / properties"}

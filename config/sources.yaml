@@ -1,0 +1,204 @@
+# Registry of data sources. Tiers:
+#   A  evaluated or primary reference data (nuclear data libraries, NIST SRDs)
+#   B  compiled handbooks and recommended-value reviews
+#   C  single peer-reviewed papers, computed databases (DFT, CALPHAD assessments)
+# status: implemented (automatic ingester exists), manual (values entered from the
+# document via data/manual/*.csv), planned, blocked (not reachable or needs an account).
+# Bibliographic details marked "verify" were written from memory and must be checked
+# against the document when it is acquired.
+
+sources:
+  - source_id: iaea_livechart
+    name: IAEA LiveChart of Nuclides (ground states)
+    publisher: IAEA Nuclear Data Section
+    url: https://nds.iaea.org/relnsd/v1/data?fields=ground_states&nuclides=all
+    tier: A
+    kind: nuclear-structure
+    access: api
+    status: implemented
+    license: IAEA terms of use, free for research
+    citation: IAEA Nuclear Data Section, LiveChart of Nuclides API, data evaluated in ENSDF; masses from the Atomic Mass Evaluation.
+    notes: Abundances, half-lives, decay modes, spins, masses. Each row carries its ENSDF evaluation cut-off date.
+
+  - source_id: endfb80
+    name: ENDF/B-VIII.0 neutron sublibrary
+    publisher: CSEWG / NNDC, Brookhaven National Laboratory
+    url: https://www.nndc.bnl.gov/endf-b8.0/zips/ENDF-B-VIII.0_neutrons.zip
+    version: VIII.0
+    tier: A
+    kind: nuclear-reaction
+    access: download
+    status: implemented
+    license: Public
+    citation: D.A. Brown et al., "ENDF/B-VIII.0 - The 8th Major Release of the Nuclear Reaction Data Library", Nuclear Data Sheets 148 (2018) 1-142.
+    notes: Single evaluations extracted from the archive with HTTP range requests; resonances reconstructed and Doppler-broadened with NJOY2016.
+
+  - source_id: nist_janaf
+    name: NIST-JANAF Thermochemical Tables
+    publisher: NIST
+    url: https://janaf.nist.gov/
+    version: 4th edition
+    tier: A
+    kind: thermochemistry
+    access: download
+    status: implemented
+    license: Public (US Government work)
+    citation: M.W. Chase Jr., NIST-JANAF Thermochemical Tables, 4th ed., J. Phys. Chem. Ref. Data Monograph 9 (1998).
+    notes: Cp, S, H, Gibbs function, enthalpy and Gibbs energy of formation, 0-6000 K. Coverage is light elements and their compounds; few actinides, no Y/Th oxides.
+
+  - source_id: nist_webbook
+    name: NIST Chemistry WebBook (SRD 69)
+    publisher: NIST
+    url: https://webbook.nist.gov/chemistry/
+    tier: A
+    kind: thermochemistry
+    access: download
+    status: planned
+    license: Public (US Government work)
+    citation: P.J. Linstrom and W.G. Mallard (eds.), NIST Chemistry WebBook, NIST Standard Reference Database Number 69.
+    notes: Phase-change data and Antoine vapour-pressure fits for elements and compounds.
+
+  - source_id: sgte_unary
+    name: SGTE data for pure elements (unary database)
+    tier: A
+    kind: thermochemistry
+    access: manual
+    status: planned
+    citation: A.T. Dinsdale, "SGTE data for pure elements", CALPHAD 15 (1991) 317-425.
+    notes: Gibbs energy functions of every element in solid and liquid states, including those JANAF lacks (Sn, U, Th, Y, Pu). Needed for liquid-metal thermodynamics and as the CALPHAD reference.
+
+  - source_id: konings2014_actinide_oxides
+    name: Thermodynamic properties of the f-elements and their compounds, part 2 (lanthanide and actinide oxides)
+    tier: B
+    kind: thermochemistry
+    access: manual
+    status: manual
+    citation: R.J.M. Konings et al., J. Phys. Chem. Ref. Data 43 (2014) 013101. (verify)
+    notes: Recommended values for UO2, ThO2, PuO2 and lanthanide oxides; fills JANAF gaps.
+
+  - source_id: nea_tdb_uranium
+    name: OECD/NEA Chemical Thermodynamics of Uranium (TDB update)
+    publisher: OECD Nuclear Energy Agency
+    tier: A
+    kind: thermochemistry
+    access: manual
+    status: manual
+    citation: R. Guillaumont et al., Update on the Chemical Thermodynamics of Uranium, Neptunium, Plutonium, Americium and Technetium, Elsevier (2003). (verify)
+    notes: Internationally reviewed formation data for U, Np, Pu, Am compounds.
+
+  - source_id: jeff33
+    name: JEFF-3.3 evaluated nuclear data library
+    publisher: OECD Nuclear Energy Agency
+    url: https://www.oecd-nea.org/dbdata/jeff/jeff33/
+    version: "3.3"
+    tier: A
+    kind: nuclear-reaction
+    access: download
+    status: blocked
+    citation: A.J.M. Plompen et al., "The joint evaluated fission and fusion nuclear data library, JEFF-3.3", Eur. Phys. J. A 56 (2020) 181.
+    notes: Host not in the environment allowlist. Needed for library-to-library spread.
+
+  - source_id: jendl5
+    name: JENDL-5
+    publisher: Japan Atomic Energy Agency
+    url: https://wwwndc.jaea.go.jp/jendl/j5/j5.html
+    version: "5"
+    tier: A
+    kind: nuclear-reaction
+    access: download
+    status: blocked
+    citation: O. Iwamoto et al., "Japanese evaluated nuclear data library version 5 - JENDL-5", J. Nucl. Sci. Technol. 60 (2023) 1-60. (verify)
+    notes: Host not in the environment allowlist.
+
+  - source_id: iaea_endf_mirror
+    name: IAEA NDS evaluated library mirror
+    publisher: IAEA Nuclear Data Section
+    url: https://www-nds.iaea.org/public/download-endf/
+    tier: A
+    kind: nuclear-reaction
+    access: download
+    status: blocked
+    notes: Reachable, but downloads sit behind a Cloudflare browser challenge that automated clients cannot pass. NNDC is used instead.
+
+  - source_id: mughabghab2018
+    name: Atlas of Neutron Resonances, 6th edition
+    publisher: Elsevier
+    tier: A
+    kind: nuclear-reaction
+    access: licensed
+    status: manual
+    citation: S.F. Mughabghab, Atlas of Neutron Resonances, 6th ed., Elsevier (2018).
+    notes: Recommended thermal cross sections and resonance integrals; independent check on library values.
+
+  - source_id: nea_lbe_2015
+    name: Handbook on Lead-bismuth Eutectic Alloy and Lead Properties (2015 edition)
+    publisher: OECD Nuclear Energy Agency
+    tier: B
+    kind: thermophysical
+    access: manual
+    status: manual
+    citation: OECD/NEA, Handbook on Lead-bismuth Eutectic Alloy and Lead Properties, Materials Compatibility, Thermal-hydraulics and Technologies, 2015 edition, NEA No. 7268. (verify)
+    notes: Recommended correlations for liquid Pb and LBE, corrosion and oxygen control.
+
+  - source_id: iaea_thph_2008
+    name: Thermophysical Properties of Materials for Nuclear Engineering
+    publisher: IAEA
+    tier: B
+    kind: thermophysical
+    access: manual
+    status: manual
+    citation: IAEA, Thermophysical Properties of Materials for Nuclear Engineering - A Tutorial and Collection of Data, IAEA-THPH (2008). (verify)
+    notes: Fuels (U, Pu, oxides, carbides, nitrides), liquid metals, structural materials.
+
+  - source_id: assael2006_al_fe
+    name: Reference data for density and viscosity of liquid aluminium and liquid iron
+    tier: B
+    kind: thermophysical
+    access: manual
+    status: manual
+    citation: M.J. Assael et al., J. Phys. Chem. Ref. Data 35 (2006) 285. (verify)
+    notes: Recommended correlations for liquid Al density and viscosity.
+
+  - source_id: nea_taf_id
+    name: Thermodynamics of Advanced Fuels International Database (TAF-ID)
+    publisher: OECD Nuclear Energy Agency
+    tier: B
+    kind: phase-diagram
+    access: licensed
+    status: blocked
+    notes: CALPHAD database for U-Pu-O-C-N-Zr and fission products; restricted to member organisations.
+
+  - source_id: ornl_mstdb_tp
+    name: Molten Salt Thermal Properties Database (MSTDB-TP)
+    publisher: Oak Ridge National Laboratory
+    url: https://mstdb.ornl.gov/
+    tier: B
+    kind: thermophysical
+    access: licensed
+    status: blocked
+    notes: Requires registration; host not in the allowlist. Needed for chloride and fluoride fuel salts.
+
+  - source_id: materials_project
+    name: Materials Project
+    url: https://materialsproject.org
+    tier: C
+    kind: materials
+    access: api
+    status: blocked
+    notes: DFT formation energies and structures; needs an API key and host access. Use only where no measured data exist.
+
+  - source_id: asme_bpvc_iii5
+    name: ASME BPVC Section III Division 5 (high-temperature reactors)
+    tier: B
+    kind: materials
+    access: licensed
+    status: manual
+    notes: Allowable stresses and creep data for Alloy 617, 316H, Grade 91 and others.
+
+  - source_id: literature
+    name: Peer-reviewed literature (one paper per entry)
+    tier: C
+    kind: thermophysical
+    access: manual
+    status: manual
+    notes: Every manual entry must give a DOI or full reference in its locator.

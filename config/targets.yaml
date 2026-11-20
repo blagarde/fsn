@@ -1,0 +1,136 @@
+# What to ingest. Edit freely; ingesters skip what the source does not have and log it.
+
+# ENDF/B-VIII.0 evaluations to process (element symbol: mass numbers). Grouped by role.
+endf_nuclides:
+  coolants:
+    Na: [23]
+    Al: [27]
+    Pb: [204, 206, 207, 208]
+    Bi: [209]
+    Sn: [112, 114, 115, 116, 117, 118, 119, 120, 122, 124]
+    Li: [6, 7]
+    Ca: [40, 42, 43, 44, 46, 48]
+    Mg: [24, 25, 26]
+    Cu: [63, 65]
+    Si: [28, 29, 30]
+    F: [19]
+    Cl: [35, 37]
+    He: [4]
+  walls_and_structures:
+    W: [180, 182, 183, 184, 186]
+    Ta: [181]
+    Mo: [92, 94, 95, 96, 97, 98, 100]
+    Nb: [93]
+    Zr: [90, 91, 92, 94, 96]
+    Ti: [46, 47, 48, 49, 50]
+    Fe: [54, 56, 57, 58]
+    Cr: [50, 52, 53, 54]
+    Ni: [58, 60, 61, 62, 64]
+    Y: [89]
+    B: [10, 11]
+    N: [14, 15]
+    O: [16, 17]
+    C: [12, 13]
+    Be: [9]
+    Hf: [174, 176, 177, 178, 179, 180]
+  fuels:
+    Th: [232]
+    U: [233, 235, 238]
+    Pu: [239, 240, 241]
+
+# Reactions (ENDF MT numbers) to average.
+endf_reactions:
+  1: total
+  2: elastic
+  16: (n,2n)
+  18: fission
+  102: capture
+  103: (n,p)
+  105: (n,t)
+  107: (n,alpha)
+  101: absorption (non-fission, sum of MT 102-117)
+
+endf_temperature_K: 293.6
+
+# NIST-JANAF: element index pages to scan, and species to fetch (formula, phase).
+janaf_elements: [Al, B, Be, C, Ca, Cl, Cr, Cu, F, Fe, Hf, K, Li, Mg, Mo, N, Na, Nb, Ni, O, Pb, Si, Sn, Ta, Th, Ti, U, W, Y, Zr]
+janaf_species:
+  # oxides (boundary screening vs Al2O3)
+  - [Al2O3, cr]
+  - [Al2O3, l]
+  - [CaO, cr]
+  - [MgO, cr]
+  - [BeO, cr]
+  - [SiO2, cr]
+  - [TiO2, cr]
+  - [ZrO2, cr]
+  - [HfO2, cr]
+  - [Y2O3, cr]
+  - [ThO2, cr]
+  - [UO2, cr]
+  - [B2O3, cr]
+  - [Li2O, cr]
+  - [Al2O1, g]
+  # nitrides, carbides, borides
+  - [Al1N1, cr]
+  - [Si3N4, cr]
+  - [Ti1N1, cr]
+  - [Zr1N1, cr]
+  - [B1N1, cr]
+  - [Al4C3, cr]
+  - [Si1C1, cr]
+  - [Ti1C1, cr]
+  - [Zr1C1, cr]
+  - [Ti1B2, cr]
+  - [Zr1B2, cr]
+  - [B4C1, cr]
+  # halides (salts, slags)
+  - [Ca1F2, cr]
+  - [Ca1F2, l]
+  - [Li1F1, cr]
+  - [Na1F1, cr]
+  - [Na1Cl1, cr]
+  - [Mg1F2, cr]
+  - [Al1F3, cr]
+  - [Be1F2, cr]
+  # elements, condensed and gas (vapour pressures, references)
+  - [Al1, cr,l]
+  - [Al1, g]
+  - [Pb1, cr,l]
+  - [Pb1, g]
+  - [Sn1, cr,l]
+  - [Sn1, g]
+  - [Ca1, cr,l]
+  - [Ca1, g]
+  - [Na1, cr,l]
+  - [Na1, g]
+  - [Li1, cr,l]
+  - [Li1, g]
+  - [Mg1, cr,l]
+  - [Mg1, g]
+  - [W1, cr,l]
+  - [Mo1, cr,l]
+  - [Cu1, cr,l]
+  - [Cu1, g]
+  - [Si1, cr,l]
+  - [Si1, g]
+  - [Ca1F2, cr,l]
+  - [Ca1F2, g]
+  - [Li1F1, cr,l]
+  - [Li1F1, g]
+  - [Na1Cl1, cr,l]
+  - [Na1Cl1, g]
+  - [Al2O3, cr,l]
+  # vapour oligomers (dimers/trimers change total vapour pressure and boiling point)
+  - [Al2, g]
+  - [Na2, g]
+  - [Li2, g]
+  - [Pb2, g]
+  - [Cu2, g]
+  - [Si2, g]
+  - [Si3, g]
+  - [Li2F2, g]
+  - [Li3F3, g]
+  - [Na2Cl2, g]
+  - [N2, ref]
+  - [O2, ref]

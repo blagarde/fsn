@@ -1,0 +1,75 @@
+# Claims check
+
+Generated 2026-11-20T13:15:33+00:00. 54 confirmed, 7 differ, 8 not checkable yet.
+
+| Status | Item | Doc value | Database value | Unit | Diff % | Basis | Where in doc |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| DIFFERS | boiling_point: Al | 2470.0 | 2518.0 | degC | -1.9 | JANAF cr,l table: fugacity = 1 bar row | Aluminium coolant / properties |
+| DIFFERS | boiling_point: Na | 883.0 | 897.4 | degC | -1.6 | JANAF cr,l table: fugacity = 1 bar row | Aluminium coolant / properties |
+| DIFFERS | boiling_point: Ca | 1484.0 | 1501.0 | degC | -1.1 | JANAF cr,l table: fugacity = 1 bar row | Liquid fuel / carrier table |
+| DIFFERS | boiling_point: Si | 3265.0 | 3231.0 | degC | 1.0 | JANAF cr,l table: fugacity = 1 bar row | Liquid fuel / carrier table |
+| DIFFERS | boiling_point: LiF | 1676.0 | 1717.0 | degC | -2.4 | JANAF: T where total p (monomer+dimer+trimer) = 1 bar | Liquid fuel / fuel table |
+| DIFFERS | boiling_point: NaCl | 1465.0 | 1487.0 | degC | -1.5 | JANAF: T where total p (monomer+dimer) = 1 bar | Liquid fuel / fuel table |
+| DIFFERS | vapor_pressure: Al at 1500 degC | 0.001 | 0.0005931 | bar | 68.6 | JANAF dfG, monomer+dimer | Aluminium coolant / properties |
+| NOT CHECKED | dfG_per_O2: Y2O3 at 298.15 K | 1211.0 |  | kJ/mol O2 |  | species not in NIST-JANAF | Aluminium coolant / oxide chart |
+| NOT CHECKED | dfG_per_O2: ThO2 at 298.15 K | 1169.0 |  | kJ/mol O2 |  | species not in NIST-JANAF | Aluminium coolant / oxide chart |
+| NOT CHECKED | dfG_per_O2: HfO2 at 298.15 K | 1088.0 |  | kJ/mol O2 |  | species not in NIST-JANAF | Aluminium coolant / oxide chart |
+| NOT CHECKED | dfG_per_O2: UO2 at 298.15 K | 1032.0 |  | kJ/mol O2 |  | species not in NIST-JANAF | Aluminium coolant / oxide chart |
+| NOT CHECKED | melting_point: Sn | 232.0 |  | degC |  | missing cr,l table | Aluminium coolant / properties |
+| NOT CHECKED | boiling_point: Sn | 2602.0 |  | degC |  | missing gas or cr,l table | Aluminium coolant / properties |
+| NOT CHECKED | vapor_pressure: Sn at 1500 degC | 0.0005 |  | bar |  | missing gas or cr,l table | Aluminium coolant / properties |
+| NOT CHECKED | vapor_pressure: Sn at 2000 degC | 0.04 |  | bar |  | missing gas or cr,l table | Aluminium coolant / properties |
+| CONFIRMED | half_life: Al-28 | 2.2 | 2.245 | min | -2.0 | IAEA LiveChart (2.245 m) | Aluminium coolant / Neutronics |
+| CONFIRMED | half_life: Na-24 | 15.0 | 14.96 | h | 0.3 | IAEA LiveChart (14.956 h) | Aluminium coolant / Neutronics |
+| CONFIRMED | half_life: Mg-27 | 9.5 | 9.458 | min | 0.4 | IAEA LiveChart (9.458 m) | Aluminium coolant (Mg-27 from (n,p)) |
+| CONFIRMED | half_life: Al-26 | 720000.0 | 717000.0 | year | 0.4 | IAEA LiveChart (7.17E+5 Y) | reasoning on (n,2n) |
+| CONFIRMED | half_life: Pb-209 | 3.0 | 3.234 | h | -7.2 | IAEA LiveChart (3.234 h) | Liquid fuel / carrier table |
+| CONFIRMED | half_life: Si-31 | 2.6 | 2.621 | h | -0.8 | IAEA LiveChart (157.24 m) | Liquid fuel / carrier table |
+| CONFIRMED | half_life: Cu-64 | 13.0 | 12.7 | h | 2.4 | IAEA LiveChart (12.7006 h) | Liquid fuel / carrier table |
+| CONFIRMED | half_life: Cu-66 | 5.0 | 5.12 | min | -2.3 | IAEA LiveChart (5.120 m) | Liquid fuel / carrier table |
+| CONFIRMED | half_life: F-20 | 11.0 | 11.07 | s | -0.6 | IAEA LiveChart (11.07 s) | Liquid fuel / carrier table |
+| CONFIRMED | half_life: Sn-113 | 115.0 | 115.1 | day | -0.1 | IAEA LiveChart (115.09 d) | Liquid fuel / carrier table (named only) |
+| CONFIRMED | half_life: Sn-123 | 129.0 | 129.2 | day | -0.2 | IAEA LiveChart (129.2 d) | Liquid fuel / carrier table (named only) |
+| CONFIRMED | half_life: Po-210 | 138.0 | 138.4 | day | -0.3 | IAEA LiveChart (138.376 d) | trace Po-210 from Bi |
+| CONFIRMED | half_life: Fe-59 | 45.0 | 44.49 | day | 1.1 | IAEA LiveChart (44.490 d) | iron activation |
+| CONFIRMED | half_life: Mn-54 | 312.0 | 312.2 | day | -0.1 | IAEA LiveChart (312.20 d) | iron activation |
+| CONFIRMED | half_life: Co-60 | 5.27 | 5.271 | year | -0.0 | IAEA LiveChart (1925.28 d) | iron activation |
+| CONFIRMED | half_life: Cr-51 | 27.7 | 27.7 | day | -0.0 | IAEA LiveChart (27.704 d) | Cr activation (comment thread) |
+| CONFIRMED | abundance: Ca-44 | 2.0 | 2.086 | % | -4.1 | IAEA LiveChart | Liquid fuel / carrier table (Ca-45 from 2% Ca-44) |
+| CONFIRMED | xs_element: Al | 0.23 | 0.2335 | b | -1.5 | ENDF/B-VIII.0, abundance-weighted isotopes, thermal_2200 | Aluminium coolant / properties |
+| CONFIRMED | xs_element: Na | 0.53 | 0.5282 | b | 0.3 | ENDF/B-VIII.0, abundance-weighted isotopes, thermal_2200 | Aluminium coolant / properties |
+| CONFIRMED | xs_element: Pb | 0.17 | 0.1739 | b | -2.2 | ENDF/B-VIII.0, abundance-weighted isotopes, thermal_2200 | Aluminium coolant / properties |
+| CONFIRMED | xs_element: Sn | 0.63 | 0.6071 | b | 3.8 | ENDF/B-VIII.0, abundance-weighted isotopes, thermal_2200 | Aluminium coolant / properties |
+| CONFIRMED | xi: Al | 0.072 | 0.07233 |  | -0.5 | 1 + a ln a/(1-a), a = ((A-1)/(A+1))^2, mean A = 26.982 from LiveChart masses (free-atom, elastic only) | Aluminium coolant / properties |
+| CONFIRMED | xi: Na | 0.085 | 0.08453 |  | 0.6 | 1 + a ln a/(1-a), a = ((A-1)/(A+1))^2, mean A = 22.990 from LiveChart masses (free-atom, elastic only) | Aluminium coolant / properties |
+| CONFIRMED | xi: Pb | 0.0096 | 0.009621 |  | -0.2 | 1 + a ln a/(1-a), a = ((A-1)/(A+1))^2, mean A = 207.217 from LiveChart masses (free-atom, elastic only) | Aluminium coolant / properties |
+| CONFIRMED | xi: Sn | 0.017 | 0.01675 |  | 1.5 | 1 + a ln a/(1-a), a = ((A-1)/(A+1))^2, mean A = 118.710 from LiveChart masses (free-atom, elastic only) | Aluminium coolant / properties |
+| CONFIRMED | dfG_per_O2: CaO at 298.15 K | 1207.0 | 1207.0 | kJ/mol O2 | -0.0 | NIST-JANAF dfG at 298.15 K / (n_O/2) | Aluminium coolant / oxide chart |
+| CONFIRMED | dfG_per_O2: BeO at 298.15 K | 1160.0 | 1158.0 | kJ/mol O2 | 0.2 | NIST-JANAF dfG at 298.15 K / (n_O/2) | Aluminium coolant / oxide chart |
+| CONFIRMED | dfG_per_O2: MgO at 298.15 K | 1139.0 | 1138.0 | kJ/mol O2 | 0.1 | NIST-JANAF dfG at 298.15 K / (n_O/2) | Aluminium coolant / oxide chart |
+| CONFIRMED | dfG_per_O2: Al2O3 at 298.15 K | 1055.0 | 1055.0 | kJ/mol O2 | 0.0 | NIST-JANAF dfG at 298.15 K / (n_O/2) | Aluminium coolant / oxide chart (threshold) |
+| CONFIRMED | dfG_per_O2: ZrO2 at 298.15 K | 1043.0 | 1040.0 | kJ/mol O2 | 0.3 | NIST-JANAF dfG at 298.15 K / (n_O/2) | Aluminium coolant / oxide chart |
+| CONFIRMED | dfG_per_O2: TiO2 at 298.15 K | 889.0 | 883.3 | kJ/mol O2 | 0.6 | NIST-JANAF dfG at 298.15 K / (n_O/2) | Aluminium coolant / oxide chart |
+| CONFIRMED | dfG_per_O2: SiO2 at 298.15 K | 856.0 | 853.6 | kJ/mol O2 | 0.3 | NIST-JANAF dfG at 298.15 K / (n_O/2) | Aluminium coolant / oxide chart |
+| CONFIRMED | melting_point: Al | 660.0 | 660.3 | degC | -0.0 | JANAF cr,l table: crystal <--> liquid row | Aluminium coolant / properties |
+| CONFIRMED | melting_point: Na | 98.0 | 97.83 | degC | 0.2 | JANAF cr,l table: crystal <--> liquid row | Aluminium coolant / properties |
+| CONFIRMED | melting_point: Pb | 327.0 | 327.5 | degC | -0.1 | JANAF cr,l table: crystal <--> liquid row | Aluminium coolant / properties |
+| CONFIRMED | boiling_point: Pb | 1749.0 | 1746.0 | degC | 0.2 | JANAF cr,l table: fugacity = 1 bar row | Aluminium coolant / properties |
+| CONFIRMED | melting_point: Ca | 842.0 | 841.9 | degC | 0.0 | JANAF cr,l table: crystal <--> liquid row | Liquid fuel / carrier table |
+| CONFIRMED | melting_point: Li | 181.0 | 180.5 | degC | 0.3 | JANAF cr,l table: crystal <--> liquid row | Master plan / exclusion rules |
+| CONFIRMED | boiling_point: Li | 1342.0 | 1347.0 | degC | -0.4 | JANAF cr,l table: fugacity = 1 bar row | Master plan / exclusion rules |
+| CONFIRMED | melting_point: Mg | 650.0 | 649.9 | degC | 0.0 | JANAF cr,l table: crystal <--> liquid row | Liquid fuel reasoning |
+| CONFIRMED | boiling_point: Mg | 1091.0 | 1093.0 | degC | -0.2 | JANAF cr,l table: fugacity = 1 bar row | Liquid fuel reasoning |
+| CONFIRMED | melting_point: Cu | 1085.0 | 1085.0 | degC | 0.0 | JANAF cr,l table: crystal <--> liquid row | Liquid fuel / carrier table |
+| CONFIRMED | boiling_point: Cu | 2562.0 | 2570.0 | degC | -0.3 | JANAF cr,l table: fugacity = 1 bar row | Liquid fuel / carrier table |
+| CONFIRMED | melting_point: Si | 1414.0 | 1412.0 | degC | 0.2 | JANAF cr,l table: crystal <--> liquid row | Liquid fuel / carrier table |
+| CONFIRMED | melting_point: CaF2 | 1418.0 | 1418.0 | degC | 0.0 | JANAF cr,l table: crystal <--> liquid row | Liquid fuel / carrier table |
+| CONFIRMED | boiling_point: CaF2 | 2533.0 | 2531.0 | degC | 0.1 | JANAF: T where total p (monomer) = 1 bar | Liquid fuel / carrier table |
+| CONFIRMED | melting_point: W | 3422.0 | 3407.0 | degC | 0.4 | JANAF cr,l table: crystal <--> liquid row | Liquid fuel / tungsten boundary |
+| CONFIRMED | melting_point: Al2O3 | 2072.0 | 2054.0 | degC | 0.9 | JANAF cr,l table: crystal <--> liquid row | Aluminium coolant / boundary table |
+| CONFIRMED | vapor_pressure: Al at 2000 degC | 0.07 | 0.05444 | bar | 28.6 | JANAF dfG, monomer+dimer | Aluminium coolant / properties |
+| CONFIRMED | vapor_pressure: Pb at 1500 degC | 0.2 | 0.2298 | bar | -12.9 | JANAF dfG, monomer+dimer | Aluminium coolant / properties |
+| CONFIRMED | vapor_pressure: Pb at 2000 degC | 3.0 | 3.263 | bar | -8.1 | EXTRAPOLATED above Tb=2019 K: Clausius-Clapeyron, constant dHvap=177.6 kJ/mol from JANAF | Liquid fuel / carrier table |
+| CONFIRMED | vapor_pressure: Ca at 2000 degC | 11.0 | 9.215 | bar | 19.4 | EXTRAPOLATED above Tb=1774 K: Clausius-Clapeyron, constant dHvap=149.0 kJ/mol from JANAF | Liquid fuel / carrier table |
+| CONFIRMED | vapor_pressure: CaF2 at 2000 degC | 0.03 | 0.04029 | bar | -25.5 | JANAF dfG, monomer | Liquid fuel / carrier table |
+| CONFIRMED | cp_mass: Al at 1000 degC | 1.18 | 1.177 | kJ/(kg K) | 0.3 | NIST-JANAF Cp / molar mass from LiveChart | Aluminium coolant / properties |
