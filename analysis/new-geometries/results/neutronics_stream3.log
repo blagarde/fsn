@@ -1,1 +1,8 @@
 L7_tube_Pb L7, Pb in Mo panels
+  void: k 1.1687 worth 1311 +- 74 pcm
+L7_tube_He L7, He (7 MPa) in Mo panels
+  L7_tube_He bracket: Pu 0.1200 k 1.2860+-0.0014 CR 1.002 E50 237 keV (171 s)
+  L7_tube_He bracket: Pu 0.1700 k 1.5430+-0.0017 CR 0.666 E50 260 keV (149 s)
+  L7_tube_He final: Pu 0.0935 k 1.1202+-0.0006 CR 1.326 E50 215 keV (593 s)
+  L7_tube_He final: Pu 0.0983 k 1.1528+-0.0006 CR 1.255 E50 215 keV (595 s)
+S9_UN_Al S9: (U,Pu)N 14 mm plates in 0.5 mm W, vacuum gap, AlN/Al panels

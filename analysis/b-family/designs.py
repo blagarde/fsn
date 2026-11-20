@@ -9,10 +9,12 @@ DESIGNS = {
         T_rep=1500.0, coolant_index=2,
         assumptions="fuel (U,Pu)N 40% at 13.0 g/cm3 (N-15 99.9%); Nb-1Zr cladding 15% at 8.57; "
                     "Li 40% at 0.45 g/cm3 (Li-7 99.99%); gap/plenum void 5%",
-        build=lambda x, n15=ENRICH["N15"], li7=ENRICH["Li7"]: [
-            (fuel_nitride(x, n15=n15), 0.40), (nb1zr(), 0.15), (lithium(li7), 0.40), (void(), 0.05)],
+        build=lambda x, n15=ENRICH["N15"], li7=ENRICH["Li7"], clad="Nb", cf=0.15: [
+            (fuel_nitride(x, n15=n15), 0.40), (nb1zr() if clad == "Nb" else molybdenum(), cf),
+            (lithium(li7), 0.40), (void(), 0.05 + 0.15 - cf)],
         variants={"natural N": dict(n15=NAT["N15"]), "Li-7 99.9%": dict(li7=0.999),
-                  "natural Li": dict(li7=NAT["Li7"])},
+                  "natural Li": dict(li7=NAT["Li7"]), "Mo cladding": dict(clad="Mo"),
+                  "Nb-1Zr halved (7.5%)": dict(cf=0.075)},
     ),
     "B2": dict(
         title="Pb-cooled (U,Pu)N pins, SiC/SiC cladding",

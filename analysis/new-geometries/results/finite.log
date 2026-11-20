@@ -1,1 +1,6 @@
   L7_tube_Al: Pu 0.087 k_eff 0.9878+-0.0006 BR 1.748 CR_core 1.566 (175 s)
+  L7_tube_Al: Pu 0.102 k_eff 1.0830+-0.0007 BR 1.468 CR_core 1.311 (175 s)
+L7_tube_Al {"pu_critical": 0.088542747838267, "BR_at_critical": 1.711968143117465, "CR_core_at_critical": 1.5331098102341907, "note": "clean critical (k_eff 1.00), homogenised core + 40 cm depleted-U blanket of the same cell structure, vacuum outside"}
+  A2_ref: Pu 0.077 k_eff 0.9712+-0.0007 BR 1.993 CR_core 1.693 (171 s)
+  A2_ref: Pu 0.091 k_eff 1.0652+-0.0006 BR 1.678 CR_core 1.420 (179 s)
+A2_ref {"pu_critical": 0.0813949545960157, "BR_at_critical": 1.8965065877892968, "CR_core_at_critical": 1.6094003742648368, "note": "clean critical (k_eff 1.00), homogenised core + 40 cm depleted-U blanket of the same cell structure, vacuum outside"}

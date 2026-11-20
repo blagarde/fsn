@@ -1,5 +1,20 @@
 {
  "case": "B4",
+ "title": "NaCl-(U,Pu)Cl3 circulating fuel salt (core region all salt)",
+ "assumptions": "core = 100% salt, 60 NaCl - 40 (U,Pu)Cl3 mol%, 3.3 g/cm3 (approx.); Cl-37 99%",
+ "T_rep_K": 1200.0,
+ "stats": {
+  "particles": 20000,
+  "batches": 60,
+  "inactive": 20,
+  "threads": 1
+ },
+ "scan_stats": {
+  "particles": 10000,
+  "batches": 40,
+  "inactive": 15,
+  "threads": 1
+ },
  "scan": [
   {
    "pu_frac": 0.1,
@@ -23,11 +38,66 @@
    "note": "recovered from run log (20000x60 stats) after worker restart"
   }
  ],
+ "fit_coef_quadratic": [
+  -9.460937500000036,
+  7.752812500000017,
+  0.38012812499999893
+ ],
+ "pu_frac_at_k1.15": 0.1156,
+ "at_target": {
+  "label": "B4 x*=0.1156",
+  "T_K": 1200.0,
+  "k_inf": 1.1544259813623112,
+  "k_inf_sd": 0.0007103586332308459,
+  "conversion_ratio": 1.3231777798587325,
+  "median_energy_eV": 134229.51771117194,
+  "flux_fraction": {
+   "<1keV": 0.007445431955129306,
+   "1-100keV": 0.43052338962613607,
+   ">100keV": 0.5802775046646479
+  },
+  "parasitic_absorption_share": {
+   "Pu242": 0.007497142619941436,
+   "Cl37": 0.0072807993975586805,
+   "Na23": 0.0037175058699979065,
+   "Cl35": 0.001730029158525246
+  },
+  "parasitic_total_share": 0.020225477046023267,
+  "tritium_per_fission": 1.7157582498052158e-07,
+  "tritium_li7_per_fission": 0.0,
+  "np_per_fission": {
+   "Cl35": 0.0028005089193285666,
+   "Cl37": 0.0002403245904758709,
+   "Na23": 0.0006461379453737531
+  },
+  "na_per_fission": {
+   "Cl35": 0.00028559346077901895,
+   "Cl37": 0.0005112453426744453,
+   "Na23": 0.00030695675315562857
+  },
+  "capture_per_fission": {
+   "Cl35": 0.001273010644837448,
+   "Cl37": 0.017585567411416723,
+   "Na23": 0.00841583160655166,
+   "Pu238": 0.007203368568598117,
+   "Pu239": 0.15919165221308104,
+   "Pu240": 0.06934974924892505,
+   "Pu241": 0.022427273136713655,
+   "Pu242": 0.011911374168872993,
+   "U235": 0.006021191644555148,
+   "U238": 1.212035472556542
+  },
+  "temperature_note": "",
+  "particles": 20000,
+  "batches": 60,
+  "inactive": 20
+ },
  "temperature": {
   "dk_pcm_1200_to_2100": -555,
   "sd_pcm": 71,
   "pcm_per_K": -0.6166666666666667,
   "doppler_constant_pcm": -991.751862554751,
   "note": "recovered from run log"
- }
+ },
+ "variants": {}
 }

@@ -15,6 +15,25 @@ th = json.loads((HERE / "thermal.json").read_text())
 nu = json.loads((HERE / "neutronics.json").read_text())
 fi = json.loads((HERE / "finite.json").read_text()) if (HERE / "finite.json").exists() else {}
 
+def refit(n):
+    """Pu and CR at k_inf = 1.15 from the best final run and a partner >= 0.015 away in Pu (as neutronics.py)."""
+    runs = n.get("runs", [])
+    fins = [r for r in runs if r["stats"]["particles"] == 20000]
+    if not fins:
+        return n
+    fin = min(fins, key=lambda r: abs(r["k_inf"] - 1.15))
+    far = [r for r in runs if r is not fin and abs(r["pu_frac"] - fin["pu_frac"]) >= 0.015] or [r for r in runs if r is not fin]
+    o = min(far, key=lambda r: abs(r["k_inf"] - 1.15))
+    sl = (fin["k_inf"] - o["k_inf"]) / (fin["pu_frac"] - o["pu_frac"])
+    pu = fin["pu_frac"] + (1.15 - fin["k_inf"]) / sl
+    cs = (fin["conversion_ratio"] - o["conversion_ratio"]) / (fin["pu_frac"] - o["pu_frac"])
+    n = dict(n)
+    n["pu_at_1.15"], n["cr_at_1.15"] = pu, fin["conversion_ratio"] + cs * (pu - fin["pu_frac"])
+    return n
+
+
+nu = {k: (refit(v) if isinstance(v, dict) and "runs" in v else v) for k, v in nu.items()}
+
 HM_FRAC = {"UPu": 1.0, "UN": 238.0 / 252.0}   # heavy-metal mass fraction (approx.)
 
 

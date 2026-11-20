@@ -28,7 +28,7 @@ from infinite import screen  # noqa: E402
 RUNS = HERE / "results" / "runs"
 RUNS.mkdir(parents=True, exist_ok=True)
 T = 2100.0
-KW = dict(particles=20000, batches=60, inactive=20, threads=1)
+KW = dict(particles=10000, batches=45, inactive=15, threads=1)  # first 7 runs used 20,000 x 60 (20 inactive); reduced for CPU contention
 K_TARGET = 1.15
 
 # ----------------------------------------------------------------- assumptions (approx.)

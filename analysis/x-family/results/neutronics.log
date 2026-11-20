@@ -1,2 +1,11 @@
 fuel alone
   fuel_x0.05: k=1.0209+-0.0007 CR=2.434 Emed=237 keV (145.2 s)
+  fuel_x0.06: k=1.1215+-0.0007 CR=2.015 Emed=237 keV (212.1 s)
+  fuel_at_xstar: k=1.1485+-0.0008 CR=1.922 Emed=237 keV (205.8 s)
+  fuel_at_xstar_1200K: k=1.1504+-0.0006 CR=1.913 Emed=237 keV (219.7 s)
+X1
+  X1_x0.07: k=1.0106+-0.0006 CR=1.803 Emed=215 keV (505.9 s)
+  X1_x0.08: k=1.0894+-0.0007 CR=1.563 Emed=215 keV (494.3 s)
+fuel alone
+X1
+  X1_x0.10: k=1.2288+-0.0012 CR=1.222 Emed=237 keV (186.2 s)

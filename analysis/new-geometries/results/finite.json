@@ -12,7 +12,55 @@
     "R_cm": 133.79942977417403,
     "H_cm": 267.59885954834806,
     "wall_s": 174.70907354354858
+   },
+   {
+    "pu_frac": 0.1018,
+    "k_eff": 1.083046214403712,
+    "k_sd": 0.0006907960474969147,
+    "BR_total": 1.4676615372598767,
+    "CR_core": 1.3107333780598533,
+    "blanket_share_of_fertile_capture": 0.1101096651904353,
+    "core_volume_m3": 15.050213334854249,
+    "R_cm": 133.79942977417403,
+    "H_cm": 267.59885954834806,
+    "wall_s": 174.59368538856506
    }
-  ]
+  ],
+  "pu_critical": 0.088542747838267,
+  "BR_at_critical": 1.711968143117465,
+  "CR_core_at_critical": 1.5331098102341907,
+  "note": "clean critical (k_eff 1.00), homogenised core + 40 cm depleted-U blanket of the same cell structure, vacuum outside"
+ },
+ "A2_ref": {
+  "runs": [
+   {
+    "pu_frac": 0.0772,
+    "k_eff": 0.9712027374813204,
+    "k_sd": 0.0006920700648759505,
+    "BR_total": 1.992801261737574,
+    "CR_core": 1.693204469432919,
+    "blanket_share_of_fertile_capture": 0.156257579453424,
+    "core_volume_m3": 3.3,
+    "R_cm": 80.68225425138186,
+    "H_cm": 161.36450850276373,
+    "wall_s": 170.87435269355774
+   },
+   {
+    "pu_frac": 0.0909,
+    "k_eff": 1.065249642513528,
+    "k_sd": 0.0006376904145697782,
+    "BR_total": 1.6783194234014953,
+    "CR_core": 1.4195147124822272,
+    "blanket_share_of_fertile_capture": 0.1592842376389019,
+    "core_volume_m3": 3.3,
+    "R_cm": 80.68225425138186,
+    "H_cm": 161.36450850276373,
+    "wall_s": 178.7583568096161
+   }
+  ],
+  "pu_critical": 0.0813949545960157,
+  "BR_at_critical": 1.8965065877892968,
+  "CR_core_at_critical": 1.6094003742648368,
+  "note": "clean critical (k_eff 1.00), homogenised core + 40 cm depleted-U blanket of the same cell structure, vacuum outside"
  }
 }

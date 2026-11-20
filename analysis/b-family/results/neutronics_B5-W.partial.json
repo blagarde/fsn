@@ -1,0 +1,38 @@
+{
+ "case": "B5-W",
+ "title": "Pb-cooled UN-W cermet block (natural W)",
+ "assumptions": "cermet 60% (UN 60 vol% at 13.5 g/cm3 + W 40 vol% at 19.3); Pb 35% at 10.0; void 5%",
+ "T_rep_K": 1500.0,
+ "stats": {
+  "particles": 20000,
+  "batches": 60,
+  "inactive": 20,
+  "threads": 1
+ },
+ "scan_stats": {
+  "particles": 10000,
+  "batches": 40,
+  "inactive": 15,
+  "threads": 1
+ },
+ "scan": [
+  {
+   "pu_frac": 0.12,
+   "k_inf": 0.8362494837959241,
+   "sd": 0.0008696612805795968,
+   "CR": 1.2298233765653526
+  },
+  {
+   "pu_frac": 0.18,
+   "k_inf": 1.0872112825400442,
+   "sd": 0.0011851372705377846,
+   "CR": 0.7735333266603103
+  },
+  {
+   "pu_frac": 0.24,
+   "k_inf": 1.2968925374535938,
+   "sd": 0.0012261958530197946,
+   "CR": 0.5437837697304372
+  }
+ ]
+}

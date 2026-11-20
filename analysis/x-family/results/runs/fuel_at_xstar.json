@@ -1,0 +1,17 @@
+{
+ "label": "fuel_at_xstar",
+ "T_K": 2100.0,
+ "k_inf": 1.1484613133864512,
+ "k_inf_sd": 0.0007882871733740238,
+ "conversion_ratio": 1.921790844921529,
+ "median_energy_eV": 236520.41354776858,
+ "parasitic_absorption_share": {
+  "Pu242": 0.005114869747338612
+ },
+ "temperature_note": "",
+ "nuclides": 7,
+ "fractions": {
+  "UPu x=0.063": 1.0
+ },
+ "wall_s": 205.8
+}

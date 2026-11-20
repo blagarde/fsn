@@ -1,0 +1,17 @@
+{
+ "label": "fuel_at_xstar_1200K",
+ "T_K": 1200.0,
+ "k_inf": 1.150381590764233,
+ "k_inf_sd": 0.0006481507583216355,
+ "conversion_ratio": 1.9132778650149038,
+ "median_energy_eV": 236520.41354776858,
+ "parasitic_absorption_share": {
+  "Pu242": 0.00512821955638515
+ },
+ "temperature_note": "",
+ "nuclides": 7,
+ "fractions": {
+  "UPu x=0.063": 1.0
+ },
+ "wall_s": 219.7
+}
