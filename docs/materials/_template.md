@@ -19,8 +19,10 @@ One paragraph: why this material is in the study and the current view.
 
 ## Compatibility
 
-| Partner | Verdict | Basis |
-| --- | --- | --- |
+Checked with the [chemistry rules](../framework/materials-selection.md#s4-chemistry-rules); evidence levels E1–E5.
+
+| Partner | Rule | Verdict | Evidence | Basis |
+| --- | --- | --- | --- | --- |
 
 ## Neutronics and activation
 

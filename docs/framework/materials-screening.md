@@ -1,5 +1,7 @@
 # Materials screening method
 
+This page covers the downstream half of selection: hard gates, scoring, compatibility stacks and robustness. How candidates are generated and checked chemically against their partners (all material classes, element pre-screen, chemistry rules R1–R10) is in the [materials selection method](materials-selection.md).
+
 Materials pass through five stages. What gets selected is a **compatible stack** (fuel + cladding + coolant + structure + working fluid) for each design branch, not a single best material: at high temperature the interfaces fail before the bulk materials do. Material pages live in [materials/](../materials/README.md); their facts come from the [property database](../data/database.md) where possible.
 
 | Stage | What happens |

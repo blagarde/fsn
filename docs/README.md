@@ -20,7 +20,7 @@ The project explores many reactor designs built from many materials. The documen
 | Folder | Contains | Page type |
 | --- | --- | --- |
 | [project/](project/) | [Brief](project/brief.md) (mission, targets, premises, work packages), [state of the art and efficiency limits](project/state-of-the-art.md), [roadmap](project/roadmap.md) (phases, gates, next steps) | Narrative, changes rarely |
-| [framework/](framework/) | [Design taxonomy](framework/taxonomy.md) (10 axes, designation codes, exclusion rules), [materials screening method](framework/materials-screening.md) | Method, changes rarely |
+| [framework/](framework/) | [Design taxonomy](framework/taxonomy.md) (10 axes, designation codes, exclusion rules), [materials selection method](framework/materials-selection.md) (candidate generation across all material classes, chemistry rules), [materials screening](framework/materials-screening.md) (gates, scoring, stacks) | Method, changes rarely |
 | [designs/](designs/README.md) | One page per candidate design, indexed by ID, status and key parameters | Record, one per design |
 | [materials/](materials/README.md) | One page per material: role, properties (generated from the database where possible), compatibility, designs using it | Record, one per material |
 | [studies/](studies/README.md) | Cross-cutting analyses that compare options or explore a theme (industrial heat, ~2,000 °C liquid fuel, aluminium coolant) | Narrative |

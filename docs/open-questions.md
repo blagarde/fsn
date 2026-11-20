@@ -12,6 +12,7 @@ Numbered so design and material pages can point at them. Close a question by rec
 | Q-002 | Is reprocessing in scope? Doubling time depends on out-of-core inventory and cycle time as much as on BR. | decision | all breeders | open |
 | Q-003 | Is a cold-vessel layout (hot core inside a vessel kept ≤ 550 °C) acceptable? It widens structural options. | decision | B1–B6 | open |
 | Q-004 | Confirm targets, taxonomy axes and starting screening weights (gate G0). | decision | [roadmap](project/roadmap.md) | open |
+| Q-005 | Approve the [materials selection method](framework/materials-selection.md) (steps S1–S6, element pre-screen thresholds, chemistry rules R1–R10, ±40 kJ margin) | decision | all material choices | open |
 
 ## Screening
 
@@ -29,7 +30,7 @@ Numbered so design and material pages can point at them. Close a question by rec
 | Q-020 | Mutual solubility of U–Pu with Pb, Ca, CaF2 and W at 1,500–2,100 °C (CALPHAD, then crucible tests) | calc → test | [X1](designs/X1.md), [X2](designs/X2.md), [X3](designs/X3.md), [A2](designs/A2.md) | open |
 | Q-021 | Thermal-gradient mass transfer of W in liquid U–Pu | test | [X1](designs/X1.md), [A2](designs/A2.md) | open |
 | Q-022 | Fuel carry-over and emulsion stability in direct-contact columns | calc → test | [X2](designs/X2.md), [X3](designs/X3.md) | open |
-| Q-023 | Reactivity worth of carrier volume fraction and Ca vapour voids | calc | [X2](designs/X2.md), [X3](designs/X3.md) | open |
+| Q-023 | Reactivity worth of carrier volume fraction and Ca vapour voids, including calcium's fast absorption (~147 mb fission-spectrum average, mostly MeV-range Ca-40(n,p) and (n,α); needs the real core spectrum, Q-011) | calc | [X2](designs/X2.md), [X3](designs/X3.md) | open |
 | Q-024 | Fission-product partitioning between fuel, carrier and cover gas; off-gas decay heat; Pu vapour transport | calc | X1–X3, A2 | open |
 | Q-025 | Freeze, drain and restart of a U–Pu pool; volume change on freezing | calc | X1–X3, A2, [D-0003](decisions/D-0003-no-cr-fe-in-liquid-fuel.md) | open |
 

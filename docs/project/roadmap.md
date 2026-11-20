@@ -24,6 +24,7 @@ Current phase: **Phase 1, data and broad screening** (property database started 
 - [ ] Run k∞ / BR / phase-window screening for branches [B1–B6](../designs/README.md)
 - [ ] Average cross sections over real fast-core spectra (OpenMC) instead of the U-235 fission spectrum
 - [ ] Choose anchor heat-use cases ([Q-001](../open-questions.md))
+- [ ] Approve the [materials selection method](../framework/materials-selection.md) ([Q-005](../open-questions.md)), then build its tooling: element pre-screen report, compatibility register, R1 exchange-reaction calculator
 
 ## Change log
 

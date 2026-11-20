@@ -30,8 +30,8 @@ Criteria: (1) little mutual solubility with liquid U–Pu if in direct contact, 
 | Carrier | Melt / boil (°C) | Vapour pressure at 2,000 °C | Density at 2,000 °C (approx., g/cm³) | Activation | Contact with liquid U | Contact with W | Verdict |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [Pb](../materials/lead.md) | 327 / ~1,750 | ~3.3 bar *(db, extrapolated)* | ~8.7 | Clean | UPb, UPb3: likely dissolves U | Excellent | Best behind a W wall |
-| [Ca](../materials/calcium.md) | 842 / ~1,500 *(db: 1,501)* | ~9 bar *(db, extrapolated)* | ~1.2 | Near-clean | Immiscible | Good | Boiling direct-contact candidate |
-| [CaF2](../materials/calcium-fluoride.md) | ~1,420 / ~2,530 | ~0.04 bar *(db)* | ~2.4 | Clean | Immiscible (slag separation) | Good | **Strongest direct-contact candidate** |
+| [Ca](../materials/calcium.md) | 842 / ~1,500 *(db: 1,501)* | ~9 bar *(db, extrapolated)* | ~1.2 | Near-clean, but high fast absorption (~147 mb, db) | Immiscible | Good | Boiling direct-contact candidate; absorption penalty to quantify |
+| [CaF2](../materials/calcium-fluoride.md) | ~1,420 / ~2,530 | ~0.04 bar *(db)* | ~2.4 | Clean activation; Ca absorbs strongly (db) | Immiscible (slag separation) | Good | **Strongest direct-contact candidate**, if carrier fraction stays small |
 | Sn | 232 / 2,602 | ~0.04 bar *(approx.; Sn not in JANAF)* | ~6.0 | Moderate | USn3 | Fair | Behind a wall only |
 | Cu | 1,085 / ~2,560 | low | ~7.0 | Short-lived | UCu5 | Good | Behind a wall only |
 | [Al](../materials/aluminium.md) | 660 / ~2,500 *(db: 2,518; handbooks 2,470)* | ~0.05 bar *(db)* | ~2.1 | Clean | UAl2–UAl4 | Attacks W | Needs a non-metal wall ([aluminium coolant](aluminium-coolant.md)) |

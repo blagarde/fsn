@@ -38,7 +38,7 @@ Proposed as a boiling direct-contact carrier in [X3](../designs/X3.md): essentia
 
 ## Neutronics and activation
 
-Near-clean activation: Ca-41 (long-lived, weak) and Ca-45 from Ca-44.
+Near-clean activation: Ca-41 (long-lived, weak) and Ca-45 from Ca-44. **But calcium absorbs fast neutrons strongly in a fission spectrum** (database facts above): Ca-40(n,p) (~110 mb) and Ca-40(n,α) (~40 mb) switch on at MeV energies, held back below that by the Coulomb barrier, so the real penalty depends on how hard the core spectrum is. The earlier claim that calcium is a low-absorption carrier was wrong; the penalty depends on carrier volume fraction and core spectrum ([Q-023](../open-questions.md)).
 
 ## Open issues
 

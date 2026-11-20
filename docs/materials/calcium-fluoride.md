@@ -35,7 +35,7 @@ The strongest direct-contact carrier candidate ([X2](../designs/X2.md)): a salt,
 
 ## Neutronics and activation
 
-Clean activation: F-20 (11 s); Ca as above. Fluorine moderates mildly.
+Clean activation: F-20 (11 s). Fluorine moderates mildly. Calcium's fast absorption is high (~147 mb fission-spectrum average, see [calcium](calcium.md)), so the carrier volume fraction in the core must be kept small ([Q-023](../open-questions.md)).
 
 ## Open issues
 
