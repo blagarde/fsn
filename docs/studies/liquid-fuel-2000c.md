@@ -41,6 +41,8 @@ Melting a product metal (steel, Al, Si) inside the core is ruled out: iron activ
 
 ## Coupling options
 
+![Direct-contact heat removal: light carrier droplets rise through the liquid U–Pu fuel pool, separate on top and carry heat to an external exchanger](../assets/figures/liquid-fuel-direct-contact.svg)
+
 | Architecture | Boundary in the core | Main advantage | Main physics risk |
 | --- | --- | --- | --- |
 | [X1](../designs/X1.md) Pb behind W tubes | W or W–Re tube wall | Pb–W compatibility; small pressure difference | W creep and embrittlement; U–W mass transfer |

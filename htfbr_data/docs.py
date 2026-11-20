@@ -216,7 +216,7 @@ def generate(con: sqlite3.Connection | None = None, check: bool = False) -> list
 
 # ---------- validation ----------
 
-_LINK = re.compile(r"(?<!!)\[[^\]]*\]\(([^)\s]+)\)")
+_LINK = re.compile(r"!?\[[^\]]*\]\(([^)\s]+)\)")  # links and images
 
 
 def _slug(heading: str) -> str:
@@ -279,4 +279,16 @@ def validate() -> list[str]:
                 continue
             if anchor and dest.suffix == ".md" and anchor not in _anchors(dest):
                 errors.append(f"{md.relative_to(ROOT)}: missing anchor #{anchor} in {path_part or md.name}")
+
+    # every figure has an editable source and is used by at least one page
+    figures, sources = DOCS / "assets" / "figures", ROOT / "tools" / "figures" / "src"
+    used = "".join(md.read_text() for md in DOCS.rglob("*.md"))
+    for svg in sorted(figures.glob("*.svg")):
+        if not (sources / f"{svg.stem}.jsx").exists():
+            errors.append(f"docs/assets/figures/{svg.name}: no source tools/figures/src/{svg.stem}.jsx")
+        if svg.name not in used:
+            errors.append(f"docs/assets/figures/{svg.name}: not used by any page")
+    for src in sorted(sources.glob("*.jsx")):
+        if not (figures / f"{src.stem}.svg").exists():
+            errors.append(f"tools/figures/src/{src.name}: not rendered (run npm run render in tools/figures)")
     return errors

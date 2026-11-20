@@ -1,6 +1,6 @@
 # Study: direct industrial heat
 
-Heat delivered straight to a process avoids the Carnot loss: ~85–90% of core heat can reach the user, versus ~50% as electricity. Raising the delivery temperature from ~750 °C to ~1,100 °C opens hydrogen production, ethylene cracking, direct reduction of iron and calcination, all of which burn fossil fuel today. The chart of process temperatures against delivery temperature is in the Claude Doc (tab *Industrial heat*).
+Heat delivered straight to a process avoids the Carnot loss: ~85–90% of core heat can reach the user, versus ~50% as electricity. Raising the delivery temperature from ~750 °C to ~1,100 °C opens hydrogen production, ethylene cracking, direct reduction of iron and calcination, all of which burn fossil fuel today.
 
 Related: [brief](../project/brief.md) · [taxonomy axis 9 (PH-x codes)](../framework/taxonomy.md) · [liquid fuel at ~2,000 °C](liquid-fuel-2000c.md) (reaches melting processes) · [Q-001](../open-questions.md)
 
@@ -16,6 +16,8 @@ In heat mode the measure is delivered exergy: Ex = Q_user (1 − T0/T_user). Wit
 | Reactor-to-plant separation at < 2% heat loss | ≥ 0.5 km | ≥ 2 km |
 | Heat / electricity split | Fixed at design | Adjustable in operation (cogeneration) |
 | Response to total loss of industrial load | Passive, self-limiting core response | Same, with no reactor trip needed |
+
+![Industrial process temperature ranges against the 750 °C baseline and 1,100 °C stretch delivery temperatures](../assets/figures/process-heat-temps.svg)
 
 Process temperature bands *(approx.)*: below ~550 °C (district heat, pulp, methanol, refining, ammonia) existing reactors suffice; 700–1,200 °C (steam electrolysis, methane reforming, ethylene cracking, sulfur–iodine hydrogen, H2 direct reduction of iron, calcination, gasification) is the HT-FBR niche; 1,400–1,700 °C (cement clinkering, glass, steel melting) needs another source or [~2,000 °C fuel](liquid-fuel-2000c.md).
 

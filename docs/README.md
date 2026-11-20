@@ -36,6 +36,7 @@ The project explores many reactor designs built from many materials. The documen
 - **Status values.** Designs: `seed` (named only), `exploring` (being analysed), `analysed` (feasibility assessed), `parked`, `rejected`. Materials: `candidate`, `shortlisted`, `excluded`.
 - **Numbers.** A figure is either from the database (tagged with its source in generated blocks), from a cited document, or marked *(approx.)*. Unsourced values are being replaced; [data/claims-check.md](data/claims-check.md) shows which have been verified.
 - **Generated blocks.** Text between `<!-- BEGIN GENERATED ... -->` and `<!-- END GENERATED -->` is rewritten by `htfbr-data docs`. Edit outside those markers.
+- **Figures.** SVGs in [assets/figures/](assets/figures/) are rendered from editable sources in `tools/figures/src/` (`cd tools/figures && npm install && npm run render`). Edit the source, never the SVG; data charts keep their values in the source with a note on where each comes from.
 - **Templates.** [designs/_template.md](designs/_template.md), [materials/_template.md](materials/_template.md), [decisions/_template.md](decisions/_template.md).
 
 ## How to add things

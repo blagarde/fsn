@@ -2,7 +2,7 @@
 
 Today's power reactors turn 31–41% of their heat into electricity. Outlet temperature sets that figure, and materials cap the temperature; fission itself does not. Three ceilings matter for this project: ~96% of fission energy can be recovered as heat, the Carnot limit at the outlet temperature caps conversion, and η − 1 caps breeding.
 
-Figures are *(approx.)* literature values unless tagged with a database source. The efficiency-versus-temperature chart is in the Claude Doc (Master plan, section 2.2).
+Figures are *(approx.)* literature values unless tagged with a database source.
 
 ## Where fission energy goes
 
@@ -23,6 +23,8 @@ Net recoverable heat is ~193–200 MeV per fission (Pu-239: ~207 MeV released), 
 ```
 η_Carnot = 1 − Tc/Th        η_CA (Curzon–Ahlborn, max power) = 1 − √(Tc/Th)
 ```
+
+![Net efficiency vs core outlet temperature for built and designed plants, with Carnot and Curzon–Ahlborn limits and the project target band](../assets/figures/efficiency-vs-outlet.svg)
 
 Built plants reach 57–69% of their Carnot limit and sit near the Curzon–Ahlborn curve. At 850–1,200 °C that curve gives 48–55%, so a 50% target needs a high-temperature Brayton cycle, a combined cycle, or both. At ~2,000 °C (see [liquid fuel](../studies/liquid-fuel-2000c.md)) Carnot is 87% and Curzon–Ahlborn 64%.
 

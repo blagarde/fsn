@@ -10,6 +10,8 @@ Materials pass through five stages. What gets selected is a **compatible stack**
 | 3 Compatibility stacks | Fuel, cladding, coolant, structure, working fluid checked pair by pair; one failed pair rejects the stack |
 | 4 Pareto front and robustness | Non-dominated stacks kept; ranking tested against weight changes and property uncertainty |
 
+![Materials screening pipeline: five stages, with the property database feeding scoring and compatibility, and a data-gap loop](../assets/figures/materials-screening-pipeline.svg)
+
 When a missing property blocks a decision, it is filled by calculation or targeted measurement and fed back to the database. Nothing is ranked on a guessed value without an uncertainty attached.
 
 ## Components and what they must survive

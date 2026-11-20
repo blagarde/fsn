@@ -2,7 +2,7 @@
 
 Thermally, aluminium is the best liquid-metal coolant in this study: liquid from 660 °C to ~2,500 °C at near-atmospheric pressure, ~5× less pumping power than sodium and ~20× less than lead, barely absorbing neutrons, with activation that decays within minutes to days. The price is chemistry: molten aluminium dissolves every structural metal and reduces most ceramics. Boundaries must come from a short list: aluminium's own compounds ([Al2O3](../materials/alumina.md), [AlN](../materials/aluminium-nitride.md)), oxides more stable than Al2O3 ([Y2O3](../materials/yttria.md), [ThO2](../materials/thoria.md), CaO), and diborides made with boron-11 ([ZrB2](../materials/zirconium-diboride.md), TiB2).
 
-Material facts: [aluminium](../materials/aluminium.md). Designs: [A1](../designs/A1.md), [A2](../designs/A2.md) (analysed), [A3](../designs/A3.md). The oxide-stability chart is in the Claude Doc (tab *Aluminium coolant*).
+Material facts: [aluminium](../materials/aluminium.md). Designs: [A1](../designs/A1.md), [A2](../designs/A2.md) (analysed), [A3](../designs/A3.md).
 
 ## Properties against other liquid-metal coolants
 
@@ -39,6 +39,8 @@ Pumping power scales as μ^0.2 / (ρ² cp^2.8) in turbulent flow. Aluminium is a
 3. **Reduction**: any oxide or nitride less stable than aluminium's own is reduced (thermite chemistry).
 
 Oxide stability at 25 °C, kJ per mol O2 (magnitude of ΔfG°), *(db, NIST-JANAF)* unless noted: Al2O3 1,055 (threshold); more stable: CaO 1,207, BeO 1,158 (excluded, moderator), MgO 1,138 (excluded, Mg boils off at high temperature); less stable (reduced by Al): ZrO2 1,040, TiO2 883, SiO2 854. Not in JANAF, values *(approx.)*: Y2O3 ~1,211, ThO2 ~1,169, HfO2 ~1,088 (excluded, absorber), UO2 ~1,032. High-temperature comparison from JANAF is a next step.
+
+![Oxide stability against Al2O3: oxides to the right of the Al2O3 line cannot be reduced by molten aluminium](../assets/figures/oxide-stability-vs-al.svg)
 
 ## Boundary candidates
 

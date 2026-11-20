@@ -1,0 +1,8 @@
+{
+  "name": "fsn-figures",
+  "private": true,
+  "type": "module",
+  "description": "Renders docs figures (JSX sources in src/) to static SVG in docs/assets/figures/",
+  "scripts": { "render": "node render.mjs" },
+  "dependencies": { "esbuild": "0.24.2", "react": "18.3.1", "react-dom": "18.3.1" }
+}
