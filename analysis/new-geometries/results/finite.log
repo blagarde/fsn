@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "/home/user/htfbr-data/analysis/new-geometries/finite.py", line 112, in <module>
+    d["runs"].append(run(case, p)); RES.write_text(json.dumps(data, indent=1))
+                     ^^^^^^^^^^^^
+  File "/home/user/htfbr-data/analysis/new-geometries/finite.py", line 79, in run
+    sp_path = model.run(threads=1, output=False)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/mamba/envs/nuc/lib/python3.12/site-packages/openmc/model/model.py", line 964, in run
+    openmc.run(particles, threads, geometry_debug, restart_file,
+  File "/opt/mamba/envs/nuc/lib/python3.12/site-packages/openmc/executor.py", line 315, in run
+    _run(args, output, cwd)
+  File "/opt/mamba/envs/nuc/lib/python3.12/site-packages/openmc/executor.py", line 97, in _run
+    p = subprocess.Popen(args, cwd=cwd, stdout=subprocess.PIPE,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/mamba/envs/nuc/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/mamba/envs/nuc/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'openmc'

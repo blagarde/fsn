@@ -74,6 +74,22 @@ def main():
             md.append(f"| {lab} | {w['pcm']:+.0f} | {w['sd_pcm']:.0f} | {w['dCR']:+.3f} | "
                       f"{'' if pe is None else f'{pe*100:+.2f} pts'} |")
         md.append("")
+    md.append("## B-10 first-order estimates (not transport results)\n")
+    md.append("| Case | B-10 fraction of boron | spectrum-avg sigma_abs B-10 (b) | dA/A | drho (pcm) | k_inf transport (B-11 only) | k_inf corrected |")
+    md.append("| --- | --- | --- | --- | --- | --- | --- |")
+    b10 = {}
+    for k, r in sorted(db.items()):
+        if "b10" in r:
+            b = r["b10"]
+            b10[k] = b
+            md.append(f"| {k} | {b['b10_fraction']:.4f} | {b.get('sigma_abs_B10_spectrum_avg_b', float('nan')):.2f} | "
+                      f"{b.get('dA_over_A', 0):.4f} | {b['drho_pcm']:+.0f} | {r['k_inf_transport_B11only']:.4f} | {r['k_inf']:.4f} |")
+    out["b10"] = b10
+    md.append("")
+    # one-group leakage estimate of the density (expansion) coefficient of a homogeneous liquid core at
+    # k_eff = 1: d ln k / d ln rho = 2 (1 - k_eff / k_inf), M^2 ~ rho^-2 (calc, approx.)
+    out["density_coefficient_one_group"] = {"k_inf": 1.15, "dlnk_dlnrho": 2 * (1 - 1 / 1.15),
+                                            "pcm_per_pct_density": 1e3 * 2 * (1 - 1 / 1.15)}
     md.append("## Scans\n")
     for d, c in crit.items():
         md.append(f"- {d}: " + "; ".join(f"Pu {p:.3f}: k {k:.4f}" for p, k in c["scan"]) +

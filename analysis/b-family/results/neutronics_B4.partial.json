@@ -1,0 +1,33 @@
+{
+ "case": "B4",
+ "scan": [
+  {
+   "pu_frac": 0.1,
+   "k_inf": 1.0608,
+   "sd": 0.0007,
+   "CR": 1.544,
+   "note": "recovered from run log (20000x60 stats) after worker restart"
+  },
+  {
+   "pu_frac": 0.18,
+   "k_inf": 1.4691,
+   "sd": 0.0009,
+   "CR": 0.8,
+   "note": "recovered from run log (20000x60 stats) after worker restart"
+  },
+  {
+   "pu_frac": 0.26,
+   "k_inf": 1.7563,
+   "sd": 0.0008,
+   "CR": 0.504,
+   "note": "recovered from run log (20000x60 stats) after worker restart"
+  }
+ ],
+ "temperature": {
+  "dk_pcm_1200_to_2100": -555,
+  "sd_pcm": 71,
+  "pcm_per_K": -0.6166666666666667,
+  "doppler_constant_pcm": -991.751862554751,
+  "note": "recovered from run log"
+ }
+}

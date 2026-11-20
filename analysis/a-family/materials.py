@@ -95,7 +95,8 @@ def zrb2(b11: float = 0.999, density: float = DENSITY["ZrB2"]) -> openmc.Materia
     m = openmc.Material(name=f"ZrB2 B11={b11}")
     m.add_element("Zr", 1.0)
     m.add_nuclide("B11", 2 * b11)
-    m.add_nuclide("B10", 2 * (1 - b11))
+    if b11 < 1.0:  # B-10 is not in the project library: transport uses b11=1.0, B-10 added by perturbation
+        m.add_nuclide("B10", 2 * (1 - b11))
     m.set_density("g/cm3", density)
     return m
 

@@ -108,7 +108,9 @@ def do_case(case, data):
         runs.append(run(case, round(p, 4), FINAL, f"{case} final")); save(data, case)
     fin = min((r for r in runs if r["stats"] == FINAL), key=lambda r: abs(r["k_inf"] - TARGET))
     # Pu fraction and CR at exactly k = 1.15: linear interpolation with the nearest other point
-    other = min((r for r in runs if r is not fin), key=lambda r: abs(r["k_inf"] - TARGET))
+    # slope partner: nearest-to-target run at least 0.015 away in Pu (closer pairs amplify statistical noise)
+    far = [r for r in runs if r is not fin and abs(r["pu_frac"] - fin["pu_frac"]) >= 0.015] or [r for r in runs if r is not fin]
+    other = min(far, key=lambda r: abs(r["k_inf"] - TARGET))
     slope = (fin["k_inf"] - other["k_inf"]) / (fin["pu_frac"] - other["pu_frac"])
     pu_t = fin["pu_frac"] + (TARGET - fin["k_inf"]) / slope
     cr_slope = (fin["conversion_ratio"] - other["conversion_ratio"]) / (fin["pu_frac"] - other["pu_frac"])

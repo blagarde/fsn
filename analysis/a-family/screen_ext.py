@@ -115,5 +115,7 @@ def b10_correction(res: dict, b10_fraction: float) -> dict:
     dA = n10 * float(np.dot(b10_group_xs(), np.array(res["flux"])))
     P, A = res["total_nu_fission"], res["total_absorption"]
     k_c = res["k_inf"] * A / (A + dA)
-    return {"b10_fraction": b10_fraction, "dA_over_A": dA / A, "drho_pcm": -1e5 * dA / P,
+    phi = np.array(res["flux"])
+    sig_avg = float(np.dot(b10_group_xs(), phi) / phi.sum())
+    return {"b10_fraction": b10_fraction, "sigma_abs_B10_spectrum_avg_b": sig_avg, "dA_over_A": dA / A, "drho_pcm": -1e5 * dA / P,
             "k_corrected": k_c, "B10_share_of_absorption": dA / (A + dA)}

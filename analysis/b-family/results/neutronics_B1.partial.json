@@ -1,0 +1,38 @@
+{
+ "case": "B1",
+ "scan": [
+  {
+   "pu_frac": 0.12,
+   "k_inf": 1.0036,
+   "sd": 0.0005,
+   "CR": 1.269,
+   "note": "recovered from run log (20000x60 stats) after worker restart"
+  },
+  {
+   "pu_frac": 0.18,
+   "k_inf": 1.2761,
+   "sd": 0.0008,
+   "CR": 0.798,
+   "note": "recovered from run log (20000x60 stats) after worker restart"
+  },
+  {
+   "pu_frac": 0.24,
+   "k_inf": 1.4963,
+   "sd": 0.0006,
+   "CR": 0.561,
+   "note": "recovered from run log (20000x60 stats) after worker restart"
+  }
+ ],
+ "void": {
+  "worth_pcm": 8712,
+  "worth_sd_pcm": 59,
+  "note": "recovered from run log; k values not logged"
+ },
+ "temperature": {
+  "dk_pcm_1200_to_2100": -149,
+  "sd_pcm": 67,
+  "pcm_per_K": -0.16555555555555557,
+  "doppler_constant_pcm": -266.25410364082506,
+  "note": "recovered from run log"
+ }
+}
