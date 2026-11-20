@@ -1,0 +1,8 @@
+{
+ "case": "HEU-MET-FAST-001 (Godiva)",
+ "benchmark_keff": 1.0,
+ "calc_keff": 1.0002108085590258,
+ "sd": 0.0005273129551394777,
+ "diff_pcm": 21.08085590257769,
+ "library_T_used_K": 1200
+}

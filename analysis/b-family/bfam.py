@@ -149,7 +149,10 @@ def cermet(pu_frac: float, matrix: openmc.Material, un_vol: float = 0.60, un_den
 
 
 # ---- extended screen ------------------------------------------------------------------------
-EXTRA_SCORES = ["H3-production", "(n,p)", "(n,a)"]
+EXTRA_SCORES = ["(n,t)", "(n,p)", "(n,a)"]
+# Li-7(n,n'alpha)t is stored in ENDF/B-VIII.0 as inelastic levels above the breakup threshold (MT 52-82),
+# and the library carries no H3 product data, so tritium = Li-6 (n,t) + Li-7 (n,n2)...(n,n32).
+LI7_T_SCORES = [f"(n,n{i})" for i in range(2, 33)]
 
 
 def screen_plus(components, T: float, particles: int = 20000, batches: int = 60, inactive: int = 20,
@@ -174,10 +177,17 @@ def screen_plus(components, T: float, particles: int = 20000, batches: int = 60,
     t_flux = openmc.Tally(name="spectrum")
     t_flux.filters = [openmc.EnergyFilter(edges)]
     t_flux.scores = ["flux"]
+    tallies = [t_rates, t_flux]
+    if "Li7" in nuclides:
+        t_li = openmc.Tally(name="li7t")
+        t_li.nuclides = ["Li7"]
+        t_li.scores = LI7_T_SCORES
+        tallies.append(t_li)
     settings = infinite._settings(T, particles, batches, inactive)
     settings.seed = seed
-    model = openmc.Model(geom, openmc.Materials([mix]), settings, tallies=openmc.Tallies([t_rates, t_flux]))
+    model = openmc.Model(geom, openmc.Materials([mix]), settings, tallies=openmc.Tallies(tallies))
     model.materials.cross_sections = str(infinite.XS)
+    li7_t = 0.0
     with tempfile.TemporaryDirectory() as tmp:
         cwd = os.getcwd()
         os.chdir(tmp)
@@ -190,6 +200,8 @@ def screen_plus(components, T: float, particles: int = 20000, batches: int = 60,
                 smap = dict(zip(scores, rates.scores))  # OpenMC may normalise score names
                 per = {n: {s: float(rates.get_values(nuclides=[n], scores=[smap[s]]).ravel()[0]) for s in scores}
                        for n in nuclides}
+                if "Li7" in nuclides:
+                    li7_t = float(sp.get_tally(name="li7t").mean.sum())
         finally:
             os.chdir(cwd)
     FIS, FER = infinite.FISSILE, infinite.FERTILE
@@ -212,7 +224,8 @@ def screen_plus(components, T: float, particles: int = 20000, batches: int = 60,
         "flux_fraction": {"<1keV": band(0, 1e3), "1-100keV": band(1e3, 1e5), ">100keV": band(1e5, 2e7)},
         "parasitic_absorption_share": dict(sorted(parasitic.items(), key=lambda kv: -kv[1])[:10]),
         "parasitic_total_share": float(sum(parasitic.values())),
-        "tritium_per_fission": sum(v["H3-production"] for v in per.values()) / fis,
+        "tritium_per_fission": (sum(v["(n,t)"] for v in per.values()) + li7_t) / fis,
+        "tritium_li7_per_fission": li7_t / fis,
         "np_per_fission": {n: v["(n,p)"] / fis for n, v in per.items() if v["(n,p)"] / fis > 1e-4},
         "na_per_fission": {n: v["(n,a)"] / fis for n, v in per.items() if v["(n,a)"] / fis > 1e-4},
         "capture_per_fission": {n: v["(n,gamma)"] / fis for n, v in per.items() if v["(n,gamma)"] / fis > 1e-3},

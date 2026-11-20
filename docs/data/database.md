@@ -45,6 +45,16 @@ The needed systems (`calphad_systems_needed`) are compared with what is loaded i
 
 Element melting points from SGTE are stored in `property` (source `sgte_unary`, method `calculated`) and used by the claims check where JANAF has no data.
 
+## OpenMC transport library and validation
+
+`tools/openmc_library/build.py` processes the cached ENDF/B-VIII.0 evaluations listed under `openmc_library` in `config/targets.yaml` with NJOY2016 (unresolved-resonance probability tables for actinides) at 1,200 and 2,100 K into `data/openmc/` (not committed; rebuild from the cache). `analysis/common/infinite.py` is the shared infinite-medium screening tool used by the Phase 1 family analyses.
+
+| Validation case | Benchmark k_eff | Calculated | Difference | Script |
+| --- | --- | --- | --- | --- |
+| Godiva, bare HEU metal sphere (ICSBEP HEU-MET-FAST-001) | 1.0000 | 1.0002 ± 0.0005 | +21 pcm | `analysis/validation/godiva.py` |
+
+The benchmark atom densities and radius were entered from memory of the ICSBEP specification; the 21 pcm agreement makes an error unlikely, but they should be checked against the handbook. More benchmarks (a plutonium sphere such as Jezebel, and a fast spectrum with intermediate-mass coolant) should follow before neutronics results are used beyond ranking.
+
 ## Design rules
 
 - Raw files are cached under `data/raw/<source_id>/` and never edited. Re-fetches with new content create new artifacts.
