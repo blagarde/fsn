@@ -1376,6 +1376,14 @@
    "dk_vs_W_pcm": -15234.36169342815,
    "pu_to_recover": 0.025089964574010668,
    "density_g_cm3": 20.8
+  },
+  "Mo": {
+   "k_inf": 1.2107367838631233,
+   "k_inf_sd": 0.0006649189832358307,
+   "conversion_ratio": 1.316312656595598,
+   "dk_vs_W_pcm": 4180.3202799462815,
+   "pu_to_recover": -0.008503028680360977,
+   "density_g_cm3": 10.0
   }
  },
  "L5_film_Al": {
@@ -1431,6 +1439,40 @@
     "nuclides": 16,
     "pu_frac": 0.22,
     "wall_s": 163.50623774528503,
+    "stats": {
+     "particles": 10000,
+     "batches": 40,
+     "inactive": 15,
+     "threads": 1
+    }
+   }
+  ]
+ },
+ "S9_UN_Al": {
+  "desc": "S9: (U,Pu)N 14 mm plates in 0.5 mm W, vacuum gap, AlN/Al panels",
+  "T_K": 2100,
+  "runs": [
+   {
+    "label": "S9_UN_Al bracket",
+    "T_K": 2100,
+    "k_inf": 1.1934161747495176,
+    "k_inf_sd": 0.0013168257056647252,
+    "conversion_ratio": 1.269116076557306,
+    "median_energy_eV": 147520.19000634993,
+    "parasitic_absorption_share": {
+     "W183": 0.015231325454316458,
+     "W182": 0.014278925994901626,
+     "W184": 0.013952002183092217,
+     "W186": 0.009561383038028705,
+     "Pu242": 0.007419191303589328,
+     "Al27": 0.0026024256624948322,
+     "W180": 0.00013183321842150924,
+     "N15": 7.001178069284176e-05
+    },
+    "temperature_note": "",
+    "nuclides": 16,
+    "pu_frac": 0.12,
+    "wall_s": 165.7921495437622,
     "stats": {
      "particles": 10000,
      "batches": 40,

@@ -6,3 +6,4 @@ L7_tube_He L7, He (7 MPa) in Mo panels
   L7_tube_He final: Pu 0.0935 k 1.1202+-0.0006 CR 1.326 E50 215 keV (593 s)
   L7_tube_He final: Pu 0.0983 k 1.1528+-0.0006 CR 1.255 E50 215 keV (595 s)
 S9_UN_Al S9: (U,Pu)N 14 mm plates in 0.5 mm W, vacuum gap, AlN/Al panels
+  S9_UN_Al bracket: Pu 0.1200 k 1.1934+-0.0013 CR 1.269 E50 148 keV (166 s)

@@ -60,7 +60,7 @@ What this says:
 | A2 reference (67% fuel) | 9.1% | 1.45 | +3,700 ± 60 | 8.1%, 1.90 (3.3 m³) |
 | L7 tubes, Al/AlN (R1) | 10.2% | 1.32 | +3,000 ± 80 | 8.9%, 1.71 (15.1 m³) |
 | L7 tubes, Pb/Mo (R2) | 10.0% | 1.24 | +1,300 ± 70 (Pb) | — |
-<!-- L7TABLE -->
+| L7 tubes, He/Mo (R3) | 9.8% | 1.26 | none (gas) | — |
 | L7 plates, 20 mm (62.5% fuel) | 8.5% | 1.55 | +2,500 ± 60 | — |
 
 *(calc: neutronics.py, finite.py. Finite model: homogenised cylinder H = D at the thermal size, 40 cm blanket of the same cell with depleted U, vacuum outside, clean fuel; the breeding ratio is fertile captures over fissile absorptions in core and blanket, an upper-bound proxy.)*
@@ -74,7 +74,11 @@ Yes. The radiative core breeds about as well as A2 per unit of fuel fraction. It
 | Container | Melting point *(db)* | Fast absorption *(db)* | k∞ change in R1 at fixed Pu *(calc)* | Fuel-side verdict |
 | --- | --- | --- | --- | --- |
 | W (reference) | 3,422 °C | 54.9 mb | — | No U–W compounds known; solubility at 2,000 °C unknown (E5) |
-<!-- CANS -->
+| Ta | 3,017 °C | 111.5 mb | −6,600 pcm; +1.2 points of Pu to recover k∞ 1.15 | LAMPRE analogue (molten Pu alloy in Ta, far below 2,000 °C, E2); unknown at temperature (E5) |
+| Re | 3,185 °C | 138.8 mb | −15,200 pcm; +2.5 points of Pu | U–Re intermetallics likely (E5) |
+| Mo | 2,623 °C | 33.2 mb | +4,200 pcm; −0.9 points of Pu | Unknown (E5); at 2,000 °C only ~600 K below melting, so creep |
+
+*(calc, neutronics.py `--swaps`: 1 mm can of each metal at the W-case Pu fraction of 10.2%, 20,000 × 60. Conversion ratio at fixed Pu: W 1.32, Ta 1.25, Re 1.18, Mo 1.32.)*
 
 Tungsten stays the reference. Tantalum is the fallback. LAMPRE kept molten plutonium alloy in tantalum, but far below 2,000 °C, so it is only an analogue. Rhenium belongs only in W–Re alloys for ductility, never on the wetted face. The emissivity coating faces only gap gas, so its chemistry is decoupled from both fluids. The candidates are textured or dendritic tungsten (no new material) and ZrC (low absorption, but carbon diffuses into W; conditional, E5).
 
@@ -95,7 +99,7 @@ Radiation at the same temperatures is 0.71 MW/m² (coated) or 0.30 MW/m² (bare)
 | --- | --- | --- | --- | --- | --- |
 | **Al (R1)** | AlN, N-15 | 0.77 MW/m² | Receiver surface ≤ ~1,550 °C under 1 bar N2 (R4) | AlN/Al compatible (own nitride, E3) | Pu 10.2%, CR 1.32 |
 | Pb (R2) | Mo, coated on the gap side | 0.76 MW/m² (if the coating gives ε ~0.8) | 1,400 °C at 0.8 bar, 1,500 °C at 1.3 bar, 1,700 °C at 3.3 bar for a 300 K boiling margin *(db)* | Mo/Pb: low solubility (E5 at this temperature); no ceramics | Pu 10.0%, CR 1.24 |
-| He, 7 MPa (R3) | Mo tubes | 0.67 MW/m² (He film) | Mo creep: 14 MPa hoop in a 4 mm bore, 1 mm wall | Inert; impurity control (R5) | <!-- HE --> |
+| He, 7 MPa (R3) | Mo tubes | 0.67 MW/m² (He film) | Mo creep: 14 MPa hoop in a 4 mm bore, 1 mm wall | Inert; impurity control (R5) | Pu 9.8%, CR 1.26 |
 
 Aluminium carries the most heat per kilogram (~1,700 kg/s against ~14,300 for Pb and ~385 for He) and gives the best conversion ratio. AlN is also a naturally good absorber, so R1 is the reference. R2 avoids ceramics altogether and runs below Pb's boiling margin. R3 goes straight to a Brayton cycle with no liquid coolant.
 
@@ -159,7 +163,7 @@ A printed (U,Pu)N–Mo cermet (70/30 vol%) gyroid lattice, solid fraction 0.60, 
 
 (U,Pu)N pins (8 mm, 0.5 mm Mo clad, 13 mm square pitch) with Al2O3 particles falling through the channels at packing 0.58: fuel 29.7%, Mo 7.9%, Al2O3 36.2% *(calc)*.
 
-- **Neutronics.** Pu 17.6%, CR 0.93, median energy ~100 keV *(calc)*. Al2O3 softens the spectrum, and no breeding in the core is possible at this fuel fraction.
+- **Neutronics.** Pu 17.6%, CR 0.93, median energy ~100 keV *(calc)*. Al2O3 softens the spectrum, and no breeding in the core is possible at this fuel fraction. Draining the particles (flow stops, channels empty) is worth **+18,800 ± 70 pcm** in the infinite medium, because removing a moderating carrier hardens the spectrum sharply. Even after leakage, that is disqualifying without a large shutdown margin.
 - **Thermal.** Wall-to-dense-granular-flow coefficients of ~300–1,000 W/m²K (approx., falling-particle receiver literature, to be sourced) give 0.09–0.3 MW/m² at a 300 K film drop, hence a 20–66 m³ core. Particle flow is ~1,600 kg/s at 500 K rise (JANAF Cp) and ~0.08 m/s in the channels: slow, so abrasion is mild.
 - **Chemistry.** Mo/Al2O3 is compatible (Al2O3 far more stable than Mo oxides; E5 here, Mo oxides are not in the database). Particles leave the core with Na-24 activation from Al(n,α) (15 h, db).
 - **Verdict.** Park. It breeds poorly and is large. Its niche (no pressure, ceramic heat carrier to ~1,000–1,200 °C) is better served outside the core, as heat storage.
