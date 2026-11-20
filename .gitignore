@@ -7,3 +7,4 @@ reports/*.log
 tools/figures/node_modules/
 data/calphad/incoming/*
 !data/calphad/incoming/README.md
+data/openmc/
