@@ -49,7 +49,7 @@ def a1(pu, T=1600.0, clad="ZrB2", b11=0.999, n15_fuel=0.999, n15_aln=0.999, cool
     f = A1_FRACTIONS[clad]
     comps = [(M.upu_nitride(pu, n15=n15_fuel), f["fuel"])]
     if clad == "ZrB2":
-        comps.append((M.zrb2(b11), f["ZrB2"]))
+        comps.append((M.zrb2(1.0), f["ZrB2"]))  # B-10 added by perturbation (screen_ext)
     else:
         comps += [(M.tungsten(), f["W"]), (M.aln(n15_aln), f["AlN"])]
     comps.append((M.void_filler(), f["gap"]))
@@ -62,7 +62,7 @@ def a2(pu, T=2100.0, wall="W/AlN", b11=0.999, n15_aln=0.999, coolant="Al", void=
     f = A2_FRACTIONS[wall]
     comps = [(M.upu_liquid(pu), f["fuel"])]
     if wall == "ZrB2":
-        comps.append((M.zrb2(b11), f["ZrB2"]))
+        comps.append((M.zrb2(1.0), f["ZrB2"]))  # B-10 added by perturbation (screen_ext)
     else:
         comps += [(M.tungsten(), f["W"]), (M.aln(n15_aln), f["AlN"])]
     cool = {"Al": lambda: M.aluminium(M.DENSITY["Al_2100K"]), "Na": M.sodium, "Pb": M.lead}[coolant]()
@@ -73,7 +73,7 @@ def a2(pu, T=2100.0, wall="W/AlN", b11=0.999, n15_aln=0.999, coolant="Al", void=
 def a3(pu, x_hm, T=2100.0, structure=0.0, b11=0.999):
     comps = [(M.al_u_pu_solution(x_hm, pu), 1.0 - structure)]
     if structure:
-        comps.append((M.zrb2(b11), structure))
+        comps.append((M.zrb2(1.0), structure))  # B-10 added by perturbation
     return comps, T
 
 
@@ -84,10 +84,24 @@ def case_spec(design: str, **kw) -> dict:
     return {"design": design, "kw": kw}
 
 
+def _has_zrb2(spec: dict) -> bool:
+    kw = spec["kw"]
+    return (spec["design"] == "A1" and kw.get("clad", "ZrB2") == "ZrB2") or \
+           (spec["design"] == "A2" and kw.get("wall") == "ZrB2") or \
+           (spec["design"] == "A3" and kw.get("structure", 0.0) > 0)
+
+
 def run_case(name: str, spec: dict) -> tuple[str, dict]:
-    from infinite import screen
+    """Transport with screen_ext.screen_spec (same model as infinite.screen, plus spectrum). B-10 is not in
+    the library: ZrB2 boron is transported as B-11 and B-10 added by first-order perturbation."""
+    from screen_ext import screen_spec, b10_correction
     comps, T = BUILDERS[spec["design"]](**spec["kw"])
-    res = screen(comps, T, label=name, **STATS)
+    res = screen_spec(comps, T, label=name, **STATS)
+    if _has_zrb2(spec):
+        corr = b10_correction(res, 1.0 - spec["kw"].get("b11", 0.999))
+        res["b10"] = corr
+        res["k_inf_transport_B11only"] = res["k_inf"]
+        res["k_inf"] = corr["k_corrected"]
     res["spec"] = spec
     return name, res
 

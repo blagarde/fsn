@@ -50,8 +50,9 @@ def run_case(case: str, scan=None, log=print) -> dict:
     out["at_target"] = base
     log(f"{case} x*={xstar} k={base['k_inf']:.4f} CR={base['conversion_ratio']:.3f} Emed={base['median_energy_eV']:.3g} eV")
     # coolant void worth: coolant to zero density, other volumes fixed (as infinite.void_worth)
+    light = d.get("light", False)  # light cases: scan + target point + variants only
     ci = d["coolant_index"]
-    if ci is not None:
+    if ci is not None and not light:
         comps = d["build"](xstar)
         frac = comps[ci][1]
         comps = [c for i, c in enumerate(comps) if i != ci] + [(void(), frac)]
@@ -62,18 +63,21 @@ def run_case(case: str, scan=None, log=print) -> dict:
         log(f"{case} void worth {w:+.0f} +- {sd:.0f} pcm")
     # temperature effect 1200 vs 2100 K (whole homogenised medium, so Doppler plus coolant data broadening)
     temps = {}
-    for Tt in (1200.0, 2100.0):
+    for Tt in ((1200.0, 2100.0) if not light else ()):
         if abs(Tt - T) < 1e-6:
             temps[Tt] = (base["k_inf"], base["k_inf_sd"])
         else:
             r = screen_plus(d["build"](xstar), Tt, label=f"{case} T={Tt}", **STAT)
             temps[Tt] = (r["k_inf"], r["k_inf_sd"])
-    w, sd = worth_pcm(temps[1200.0][0], temps[1200.0][1], temps[2100.0][0], temps[2100.0][1])
-    out["temperature"] = {"k_1200": temps[1200.0][0], "sd_1200": temps[1200.0][1], "k_2100": temps[2100.0][0],
+    if light:
+        temps = None
+    else:
+      w, sd = worth_pcm(temps[1200.0][0], temps[1200.0][1], temps[2100.0][0], temps[2100.0][1])
+      out["temperature"] = {"k_1200": temps[1200.0][0], "sd_1200": temps[1200.0][1], "k_2100": temps[2100.0][0],
                           "sd_2100": temps[2100.0][1], "dk_pcm_1200_to_2100": w, "sd_pcm": sd,
                           "pcm_per_K": w / 900.0,
                           "doppler_constant_pcm": w / np.log(2100 / 1200)}
-    log(f"{case} 1200->2100 K: {w:+.0f} +- {sd:.0f} pcm")
+      log(f"{case} 1200->2100 K: {w:+.0f} +- {sd:.0f} pcm")
     out["variants"] = {}
     for name, kw in d["variants"].items():
         r = screen_plus(d["build"](xstar, **kw), T, label=f"{case} {name}", **STAT)

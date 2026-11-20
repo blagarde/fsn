@@ -1,0 +1,17 @@
+{
+ "label": "fuel_x0.08",
+ "T_K": 2100.0,
+ "k_inf": 1.2990673071313585,
+ "k_inf_sd": 0.0008790630043273983,
+ "conversion_ratio": 1.482154582232125,
+ "median_energy_eV": 236520.41354776858,
+ "parasitic_absorption_share": {
+  "Pu242": 0.006172472121123946
+ },
+ "temperature_note": "",
+ "nuclides": 7,
+ "fractions": {
+  "UPu x=0.080": 1.0
+ },
+ "wall_s": 68.4
+}

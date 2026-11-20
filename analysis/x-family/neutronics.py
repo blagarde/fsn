@@ -124,10 +124,13 @@ def worth(a, b):
 def solve_x(points):
     """Pu fraction where k_inf = K_TARGET, from a linear fit k(x) over the given (x, run) points."""
     xs = np.array([x for x, _ in points]); ks = np.array([r["k_inf"] for _, r in points])
-    a, b = np.polyfit(xs, ks, 1)
+    # fit only the two points bracketing (or nearest to) the target: k(x) is curved over wide ranges
+    order = np.argsort(np.abs(ks - K_TARGET))[:2]
+    xs2, ks2 = xs[order], ks[order]
+    a, b = np.polyfit(xs2, ks2, 1)
     x_star = (K_TARGET - b) / a
-    crs = np.array([r["conversion_ratio"] for _, r in points])
-    ca, cb = np.polyfit(xs, crs, 1)
+    crs = np.array([r["conversion_ratio"] for _, r in points])[order]
+    ca, cb = np.polyfit(xs2, crs, 1)
     return {"x_pu": round(float(x_star), 4), "dk_dx": round(float(a), 3),
             "cr_at_x": round(float(ca * x_star + cb), 3),
             "points": [{"x": x, "k": r["k_inf"], "sd": r["k_inf_sd"], "cr": r["conversion_ratio"]} for x, r in points]}
@@ -146,7 +149,7 @@ def main():
 
     # ---------------- fuel alone
     print("fuel alone")
-    pts = [(x, run(f"fuel_x{x:.2f}", [(fuel(x), 1.0)])) for x in (0.08, 0.10, 0.12, 0.15)]
+    pts = [(x, run(f"fuel_x{x:.2f}", [(fuel(x), 1.0)])) for x in (0.05, 0.06, 0.08, 0.10)]
     out["fuel_only"] = solve_x(pts)
     xf = out["fuel_only"]["x_pu"]
     out["fuel_only"]["at_x"] = summary(run("fuel_at_xstar", [(fuel(xf), 1.0)]))
@@ -158,7 +161,7 @@ def main():
     fF, fPb, fW = x1ref["frac_fuel"], x1ref["frac_Pb"], x1ref["frac_W"]
     X1 = {"fractions": {"fuel": fF, "Pb": fPb, "W": fW}}
     comps = lambda x, pb=fPb, w=fW, wmat=None: [(fuel(x), fF), (lead(), pb), (wmat or tungsten(), w)]
-    pts = [(x, run(f"X1_x{x:.2f}", comps(x))) for x in (0.12, 0.15, 0.18)]
+    pts = [(x, run(f"X1_x{x:.2f}", comps(x))) for x in (0.07, 0.08, 0.10)]
     X1["pu_search"] = solve_x(pts)
     x1 = X1["pu_search"]["x_pu"]
     base = run("X1_ref", comps(x1))
@@ -195,7 +198,7 @@ def main():
     X2["sweep_at_fuel_only_x"] = {"x_pu": xf, "rows": sw,
                                   "dk_per_0.1_vol": round(float(np.polyfit([0] + [s["holdup"] for s in sw], [out["fuel_only"]["at_x"]["k_inf"]] + [s["k"] for s in sw], 1)[0] * 0.1), 4)}
     aref = 0.20
-    pts = [(x, run(f"X2_a{aref:.2f}_x{x:.2f}", [(fuel(x), 1 - aref), (caf2(), aref)])) for x in (0.10, 0.12, 0.15)]
+    pts = [(x, run(f"X2_a{aref:.2f}_x{x:.2f}", [(fuel(x), 1 - aref), (caf2(), aref)])) for x in (0.06, 0.07, 0.08)]
     X2["pu_search_holdup_0.20"] = solve_x(pts)
     x2 = X2["pu_search_holdup_0.20"]["x_pu"]
     base = run("X2_ref", [(fuel(x2), 1 - aref), (caf2(), aref)])
@@ -207,9 +210,9 @@ def main():
     c44 = run("X2_Ca44", [(fuel(x2), 1 - aref), (caf2(ca44=True), aref)])
     X2["Ca44_99pct_worth"] = worth(base, c44)
     # holdup 0.30 Pu search point (for inventory comparisons)
-    pts30 = [(x, run(f"X2_a0.30_x{x:.2f}", [(fuel(x), 0.70), (caf2(), 0.30)])) for x in (0.12, 0.15)]
+    pts30 = [(x, run(f"X2_a0.30_x{x:.2f}", [(fuel(x), 0.70), (caf2(), 0.30)])) for x in (0.07, 0.08)]
     X2["pu_search_holdup_0.30"] = solve_x(pts30)
-    pts10 = [(x, run(f"X2_a0.10_x{x:.2f}", [(fuel(x), 0.90), (caf2(), 0.10)])) for x in (0.10, 0.12)]
+    pts10 = [(x, run(f"X2_a0.10_x{x:.2f}", [(fuel(x), 0.90), (caf2(), 0.10)])) for x in (0.06, 0.07)]
     X2["pu_search_holdup_0.10"] = solve_x(pts10)
     out["X2"] = X2
 
@@ -227,7 +230,7 @@ def main():
                                   "dk_per_0.1_vol_liquid_Ca": round(float(np.polyfit([0] + [s["Ca_liquid"] for s in sw], [k_novap["k_inf"]] + [s["k"] for s in sw], 1)[0] * 0.1), 4)}
     cref = 0.05
     comps3 = lambda x, rho_l=RHO["Ca_l"]: [(fuel(x), 1 - cref - av), (calcium(rho_l, "Ca liquid"), cref), (calcium(RHO["Ca_v"], "Ca vapour"), av)]
-    pts = [(x, run(f"X3_x{x:.2f}", comps3(x))) for x in (0.10, 0.12)]
+    pts = [(x, run(f"X3_x{x:.2f}", comps3(x))) for x in (0.06, 0.07)]
     X3["pu_search"] = solve_x(pts)
     x3 = X3["pu_search"]["x_pu"]
     base = run("X3_ref", comps3(x3))

@@ -34,7 +34,7 @@ DESIGNS = {
     ),
     "B3-N": dict(
         title="He-cooled (U,Pu)N, SiC/SiC cladding and structure",
-        T_rep=1500.0, coolant_index=2,
+        light=True, T_rep=1500.0, coolant_index=2,
         assumptions="fuel (U,Pu)N 30% at 13.0 g/cm3 (N-15 99.9%); SiC/SiC 15% at 2.9; He 55% at 7 MPa, 1,400 K",
         build=lambda x, n15=ENRICH["N15"]: [(fuel_nitride(x, n15=n15), 0.30), (sic(), 0.15), (helium(), 0.55)],
         variants={"natural N": dict(n15=NAT["N15"])},
@@ -48,7 +48,7 @@ DESIGNS = {
     ),
     "B4-natCl": dict(
         title="NaCl-(U,Pu)Cl3 fuel salt with natural chlorine",
-        T_rep=1200.0, coolant_index=None,
+        light=True, T_rep=1200.0, coolant_index=None,
         assumptions="as B4 with natural Cl (24.2% Cl-37)",
         build=lambda x: [(fuel_chloride(x, cl37=NAT["Cl37"]), 1.0)],
         variants={},
@@ -62,19 +62,19 @@ DESIGNS = {
     ),
     "B5-W184": dict(
         title="Pb-cooled UN-W cermet, W-184 enriched to 95% (approx.)",
-        T_rep=1500.0, coolant_index=1, assumptions="as B5-W, W 95% W-184",
+        light=True, T_rep=1500.0, coolant_index=1, assumptions="as B5-W, W 95% W-184",
         build=lambda x: [(cermet(x, tungsten(w_enriched("W184"), name="W184")), 0.60), (lead(), 0.35), (void(), 0.05)],
         variants={},
     ),
     "B5-W186": dict(
         title="Pb-cooled UN-W cermet, W-186 enriched to 95% (approx.)",
-        T_rep=1500.0, coolant_index=1, assumptions="as B5-W, W 95% W-186",
+        light=True, T_rep=1500.0, coolant_index=1, assumptions="as B5-W, W 95% W-186",
         build=lambda x: [(cermet(x, tungsten(w_enriched("W186"), name="W186")), 0.60), (lead(), 0.35), (void(), 0.05)],
         variants={},
     ),
     "B5-Mo": dict(
         title="Pb-cooled UN-Mo cermet block (natural Mo)",
-        T_rep=1500.0, coolant_index=1,
+        light=True, T_rep=1500.0, coolant_index=1,
         assumptions="cermet 60% (UN 60 vol% at 13.5 + Mo 40 vol% at 10.2); Pb 35% at 10.0; void 5%",
         build=lambda x: [(cermet(x, molybdenum()), 0.60), (lead(), 0.35), (void(), 0.05)],
         variants={},
