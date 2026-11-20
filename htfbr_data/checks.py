@@ -65,6 +65,11 @@ def evaluate(con: sqlite3.Connection, c: dict) -> tuple[float | None, str, str]:
     if k in ("melting_point", "boiling_point"):
         fn = thermo.melting_point_K if k == "melting_point" else thermo.boiling_point_K
         T, basis = fn(con, c["formula"])
+        if T is None and k == "melting_point":
+            r = con.execute("SELECT value_si FROM property WHERE material=? AND quantity='melting_point' AND source_id='sgte_unary' "
+                            "ORDER BY property_id DESC LIMIT 1", (c["formula"],)).fetchone()
+            if r:
+                T, basis = r[0], "SGTE unary (G_liquid = G_solid, pycalphad)"
         return (None if T is None else T - 273.15), "degC", basis
     if k == "vapor_pressure":
         p, basis = thermo.vapor_pressure_bar(con, c["formula"], c["T_C"] + 273.15)

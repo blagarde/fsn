@@ -41,7 +41,7 @@ CONFIRMED,melting_point,Na,98.0,97.83,degC,0.2,1.0,"JANAF cr,l table: crystal <-
 DIFFERS,boiling_point,Na,883.0,897.4,degC,-1.6,1.0,"JANAF cr,l table: fugacity = 1 bar row",Aluminium coolant / properties
 CONFIRMED,melting_point,Pb,327.0,327.5,degC,-0.1,1.0,"JANAF cr,l table: crystal <--> liquid row",Aluminium coolant / properties
 CONFIRMED,boiling_point,Pb,1749.0,1746.0,degC,0.2,1.0,"JANAF cr,l table: fugacity = 1 bar row",Aluminium coolant / properties
-NOT CHECKED,melting_point,Sn,232.0,,degC,,1.0,"missing cr,l table",Aluminium coolant / properties
+CONFIRMED,melting_point,Sn,232.0,231.9,degC,0.0,1.0,"SGTE unary (G_liquid = G_solid, pycalphad)",Aluminium coolant / properties
 NOT CHECKED,boiling_point,Sn,2602.0,,degC,,1.0,"missing gas or cr,l table",Aluminium coolant / properties
 CONFIRMED,melting_point,Ca,842.0,841.9,degC,0.0,1.0,"JANAF cr,l table: crystal <--> liquid row",Liquid fuel / carrier table
 DIFFERS,boiling_point,Ca,1484.0,1501.0,degC,-1.1,1.0,"JANAF cr,l table: fugacity = 1 bar row",Liquid fuel / carrier table

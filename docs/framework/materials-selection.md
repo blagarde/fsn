@@ -179,7 +179,7 @@ Some conditions are given as approximate ranges; they will be pinned to sourced 
 | Calibration cases (P6) | `config/calibration_cases.yaml`; automated tests once the rules are coded | Cases listed; tests to build |
 | Rejection log and near-miss report (P6) | Generated on every screening run | To build |
 | R1 exchange-reaction calculator | `htfbr_data` (JANAF ΔfG° at temperature, per mole of reactant) | To build: JANAF data already loaded |
-| Phase diagrams and alloy stability (R3, R10) | pycalphad with open databases; licensed databases where needed | To set up |
+| Phase diagrams and alloy stability (R3, R10) | pycalphad with open databases ([coverage](../data/calphad-coverage.md): 14 of 38 needed systems; actinides missing) | Data collection built; calculations to build |
 | Liquid-metal screen (R2) | Miedema estimator plus literature solubility entries | To build |
 | Salt properties (R9) | ORNL MSTDB-TP/TC (registration needed) plus JANAF | Blocked: needs access |
 

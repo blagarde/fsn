@@ -60,12 +60,88 @@ sources:
 
   - source_id: sgte_unary
     name: SGTE data for pure elements (unary database)
+    url: https://github.com/sundmanbo/opencalphad/tree/master/examples/macros
     tier: A
     kind: thermochemistry
+    access: download
+    status: implemented
+    citation: A.T. Dinsdale, "SGTE data for pure elements", CALPHAD 15 (1991) 317-425; 1991-2010 updates.
+    notes: Gibbs energy functions of every element in solid and liquid states, including those JANAF lacks (Sn, U, Th, Y, Pu). Currently taken from the copy distributed with OpenCalphad (pinned commit); verify against the SGTE original.
+
+  - source_id: cost507
+    name: COST 507 thermochemical database for light metal alloys
+    url: https://github.com/sundmanbo/opencalphad/tree/master/examples/macros
+    tier: B
+    kind: phase-diagram
+    access: download
+    status: implemented
+    citation: I. Ansara, A.T. Dinsdale, M.H. Rand (eds.), COST 507 Thermochemical Database for Light Metal Alloys, vol. 2, European Commission (1998). (verify)
+    notes: About 70 assessed binaries and some ternaries of 20 elements, Al-based (Al, B, C, Cr, Cu, Fe, Li, Mg, Mn, N, Ni, Si, Sn, Ti, V, Y, Zn, Zr and others). Copy distributed with OpenCalphad.
+
+  - source_id: opencalphad_examples
+    name: OpenCalphad example databases
+    url: https://github.com/sundmanbo/opencalphad
+    tier: C
+    kind: phase-diagram
+    access: download
+    status: implemented
+    license: Distributed with OpenCalphad (GPL software); individual assessments keep their authors' terms
+    notes: Mixed provenance; several files carry no citation (e.g. OU.TDB). Use for screening only until each file is traced to a published assessment.
+
+  - source_id: pycalphad_testdbs
+    name: pycalphad test and example databases
+    url: https://github.com/pycalphad/pycalphad/tree/develop/pycalphad/tests/databases
+    tier: C
+    kind: phase-diagram
+    access: download
+    status: implemented
+    license: Distributed with pycalphad (MIT software); individual assessments keep their authors' terms
+    notes: Published assessments named in file names and headers (e.g. Dupin 2001 Al-Ni, Sundman 2009 Al-Fe, Lindwall 2015 Al-Fe-O). Some are reduced test versions; check the header before relying on one.
+
+  - source_id: thermochimica_data
+    name: Thermochimica data files
+    url: https://github.com/ORNL-CEES/thermochimica/tree/master/data
+    tier: C
+    kind: phase-diagram
+    access: download
+    status: implemented
+    license: BSD-3-Clause (repository)
+    notes: ChemSage DAT files incl. fission-product noble metals (Kaye), Cs-I, Cs-Te, a fluoride/chloride salt system and Zr alloys. Some are test cases.
+
+  - source_id: tdbdb
+    name: TDBDB, index of published CALPHAD databases
+    tier: B
+    kind: phase-diagram
+    access: download
+    status: blocked
+    notes: Index of published TDB files and their papers; the best route to open assessments of actinide systems (U-Zr, U-Fe, U-W, U-Al, Al-Pb ...). Host not in the environment allowlist; exact URL and terms to verify once reachable.
+
+  - source_id: nims_cpddb
+    name: NIMS Computational Phase Diagram Database (CPDDB)
+    publisher: National Institute for Materials Science, Japan
+    url: https://cpddb.nims.go.jp/
+    tier: B
+    kind: phase-diagram
+    access: licensed
+    status: blocked
+    notes: Assessed binary and ternary TDBs; registration expected. Host not in the allowlist; terms and coverage to verify.
+
+  - source_id: nist_calphad
+    name: NIST CALPHAD databases (e.g. solder, superalloy)
+    publisher: NIST
+    tier: A
+    kind: phase-diagram
+    access: download
+    status: blocked
+    notes: Free NIST TDBs; hosts (nist.gov, data.nist.gov) not in the allowlist. Download URLs to verify.
+
+  - source_id: literature_tdb
+    name: CALPHAD assessments published as paper supplements
+    tier: C
+    kind: phase-diagram
     access: manual
-    status: planned
-    citation: A.T. Dinsdale, "SGTE data for pure elements", CALPHAD 15 (1991) 317-425.
-    notes: Gibbs energy functions of every element in solid and liquid states, including those JANAF lacks (Sn, U, Th, Y, Pu). Needed for liquid-metal thermodynamics and as the CALPHAD reference.
+    status: manual
+    notes: TDB files from journal supplements (CALPHAD, J. Phase Equilib. Diffus., J. Nucl. Mater.). Add each with its DOI as a calphad_files entry pointing at a cached copy.
 
   - source_id: konings2014_actinide_oxides
     name: Thermodynamic properties of the f-elements and their compounds, part 2 (lanthanide and actinide oxides)
@@ -176,7 +252,7 @@ sources:
     kind: thermophysical
     access: licensed
     status: blocked
-    notes: Requires registration; host not in the allowlist. Needed for chloride and fluoride fuel salts.
+    notes: Requires registration; host not in the allowlist. Needed for chloride and fluoride fuel salts. Its CALPHAD companion MSTDB-TC (Thermochimica format) is the key salt phase-equilibrium source; not found in a public mirror.
 
   - source_id: materials_project
     name: Materials Project

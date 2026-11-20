@@ -6,6 +6,7 @@
   endf [--only X ...] [--all] [--skip-done]
                        process ENDF/B-VIII.0 evaluations (needs the conda env with NJOY + OpenMC)
   manual               load data/manual/*.csv
+  calphad              fetch CALPHAD databases, record assessed systems, derive SGTE melting points
   build                init + livechart + janaf + manual (+ endf unless --no-endf)
   check                compare doc claims with the database -> reports/claims_check.{md,csv}
   docs [--check]       regenerate doc indexes, material database facts and claims page; validate links
@@ -54,6 +55,16 @@ def cmd_endf(con, a):
     print(f"cross-section values: {n}")
 
 
+def cmd_calphad(con, a):
+    from .ingest import calphad
+
+    t = _targets()
+    n = calphad.ingest(con, t["calphad_files"], refresh=a.refresh, unary_elements=t.get("sgte_unary_elements"))
+    cov = calphad.coverage(con, t["calphad_systems_needed"])
+    have = sum(bool(c["databases"]) for c in cov)
+    print(f"assessed systems recorded: {n}; needed systems covered: {have}/{len(cov)}")
+
+
 def cmd_manual(con, a):
     print(f"manual property rows: {manual.ingest(con)}")
 
@@ -63,6 +74,7 @@ def cmd_build(con, a):
     cmd_livechart(con, a)
     cmd_janaf(con, a)
     cmd_manual(con, a)
+    cmd_calphad(con, a)
     if not a.no_endf:
         cmd_endf(con, a)
 
@@ -94,7 +106,9 @@ def cmd_docs(con, a):
 
 
 def cmd_status(con, a):
-    for tbl in ("source", "artifact", "nuclide", "species", "thermo", "xs_avg", "property"):
+    from .ingest.calphad import SCHEMA
+    con.executescript(SCHEMA)
+    for tbl in ("source", "artifact", "nuclide", "species", "thermo", "xs_avg", "property", "calphad_db", "calphad_system"):
         print(f"{tbl:10s} {con.execute(f'SELECT COUNT(*) FROM {tbl}').fetchone()[0]}")
     print("\nlast runs:")
     for r in con.execute("SELECT ingester, status, rows, finished_at, substr(message,1,160) m FROM ingest_run ORDER BY run_id DESC LIMIT 8"):
@@ -119,7 +133,7 @@ def main(argv=None):
     p.add_argument("--db", default=str(DEFAULT_DB))
     p.add_argument("--refresh", action="store_true", help="re-download instead of using cached raw files")
     sub = p.add_subparsers(dest="cmd", required=True)
-    for name in ("init", "livechart", "janaf", "manual", "check", "status"):
+    for name in ("init", "livechart", "janaf", "manual", "calphad", "check", "status"):
         sub.add_parser(name)
     d = sub.add_parser("docs")
     d.add_argument("--check", action="store_true", help="report what would change and fail if anything would")

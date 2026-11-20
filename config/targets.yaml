@@ -134,3 +134,81 @@ janaf_species:
   - [Na2Cl2, g]
   - [N2, ref]
   - [O2, ref]
+
+# CALPHAD databases (raw files pinned to a repository commit; cached with provenance).
+calphad_files:
+  # OpenCalphad example databases (sundmanbo/opencalphad)
+  - {db_id: sgte-unary, source_id: sgte_unary, repo: sundmanbo/opencalphad, commit: 341492df5f608fde5304b28ff6737d3c109cb764, path: examples/macros/SGTE-unary1991-2010.TDB, unary: true, note: "SGTE unary 1991-2010 (Dinsdale 1991 and updates), copy distributed with OpenCalphad; verify against the SGTE original"}
+  - {db_id: cost507, source_id: cost507, repo: sundmanbo/opencalphad, commit: 341492df5f608fde5304b28ff6737d3c109cb764, path: examples/macros/cost507R.TDB, note: "COST 507 light-alloy database, about 70 assessed binaries of 20 elements"}
+  - {db_id: oc-u-o, source_id: opencalphad_examples, repo: sundmanbo/opencalphad, commit: 341492df5f608fde5304b28ff6737d3c109cb764, path: examples/macros/OU.TDB, note: "U-O; the file carries no citation, provenance unverified"}
+  - {db_id: oc-mo-re, source_id: opencalphad_examples, repo: sundmanbo/opencalphad, commit: 341492df5f608fde5304b28ff6737d3c109cb764, path: examples/macros/MoRe.TDB}
+  - {db_id: oc-steel1, source_id: opencalphad_examples, repo: sundmanbo/opencalphad, commit: 341492df5f608fde5304b28ff6737d3c109cb764, path: examples/macros/steel1.TDB}
+  - {db_id: oc-crfe, source_id: opencalphad_examples, repo: sundmanbo/opencalphad, commit: 341492df5f608fde5304b28ff6737d3c109cb764, path: examples/TQ4lib/F90/crfe/crfe.TDB}
+  - {db_id: oc-feni, source_id: opencalphad_examples, repo: sundmanbo/opencalphad, commit: 341492df5f608fde5304b28ff6737d3c109cb764, path: examples/TQ4lib/F90/feni/FENI.TDB}
+  - {db_id: oc-k-li-na-cl, source_id: opencalphad_examples, repo: sundmanbo/opencalphad, commit: 341492df5f608fde5304b28ff6737d3c109cb764, path: examples/macros/MQMQA-KLiNaCl.TDB, note: "chloride salt, quasichemical model"}
+  - {db_id: oc-mo-ni-re, source_id: opencalphad_examples, repo: sundmanbo/opencalphad, commit: 341492df5f608fde5304b28ff6737d3c109cb764, path: examples/macros/BEF.TDB, note: "Mo-Ni-Re despite the file name (Mo-Re Mathieu 2013, Mo-Ni Frisk 1994, Ni-Re Yakoob 2012)"}
+  # pycalphad test databases (pycalphad/pycalphad); each file names its source assessment in its header
+  - {db_id: pc-cr-ta, source_id: pycalphad_testdbs, repo: pycalphad/pycalphad, commit: 534b84b3022cb7fa32a6c7926aa4a0b5e8ba5a95, path: pycalphad/tests/databases/CrTa-93Dup-LB.tdb}
+  - {db_id: pc-nb-re, source_id: pycalphad_testdbs, repo: pycalphad/pycalphad, commit: 534b84b3022cb7fa32a6c7926aa4a0b5e8ba5a95, path: pycalphad/tests/databases/nbre_liu.tdb}
+  - {db_id: pc-al-fe, source_id: pycalphad_testdbs, repo: pycalphad/pycalphad, commit: 534b84b3022cb7fa32a6c7926aa4a0b5e8ba5a95, path: pycalphad/tests/databases/Al-Fe_sundman2009.tdb}
+  - {db_id: pc-al-fe-o, source_id: pycalphad_testdbs, repo: pycalphad/pycalphad, commit: 534b84b3022cb7fa32a6c7926aa4a0b5e8ba5a95, path: pycalphad/tests/databases/Al-Fe-O_Lindwall2015.tdb}
+  - {db_id: pc-al-ni, source_id: pycalphad_testdbs, repo: pycalphad/pycalphad, commit: 534b84b3022cb7fa32a6c7926aa4a0b5e8ba5a95, path: pycalphad/tests/databases/alni_dupin_2001.tdb}
+  - {db_id: pc-cr-ni, source_id: pycalphad_testdbs, repo: pycalphad/pycalphad, commit: 534b84b3022cb7fa32a6c7926aa4a0b5e8ba5a95, path: pycalphad/tests/databases/CrNi-21Hao-3g.tdb}
+  - {db_id: pc-w-c, source_id: pycalphad_testdbs, repo: pycalphad/pycalphad, commit: 534b84b3022cb7fa32a6c7926aa4a0b5e8ba5a95, path: pycalphad/tests/databases/WC-22He-3g.tdb}
+  - {db_id: pc-pb-sn, source_id: pycalphad_testdbs, repo: pycalphad/pycalphad, commit: 534b84b3022cb7fa32a6c7926aa4a0b5e8ba5a95, path: pycalphad/tests/databases/pbsn.tdb}
+  - {db_id: pc-zr-la-y-al-o, source_id: pycalphad_testdbs, repo: pycalphad/pycalphad, commit: 534b84b3022cb7fa32a6c7926aa4a0b5e8ba5a95, path: pycalphad/tests/databases/zrlayalo.tdb, note: "oxide system incl. Y2O3, ZrO2, Al2O3"}
+  - {db_id: pc-al2o3-nd2o3-zro2, source_id: pycalphad_testdbs, repo: pycalphad/pycalphad, commit: 534b84b3022cb7fa32a6c7926aa4a0b5e8ba5a95, path: pycalphad/tests/databases/al2o3_nd2o3_zro2.tdb}
+  - {db_id: pc-slag-cafe, source_id: pycalphad_testdbs, repo: pycalphad/pycalphad, commit: 534b84b3022cb7fa32a6c7926aa4a0b5e8ba5a95, path: pycalphad/tests/databases/C_A_S_Fe_O_M.tdb, note: "CaO-Al2O3-SiO2-FeO-MgO slag"}
+  - {db_id: pc-k-li-nd-cl, source_id: pycalphad_testdbs, repo: pycalphad/pycalphad, commit: 534b84b3022cb7fa32a6c7926aa4a0b5e8ba5a95, path: pycalphad/tests/databases/KLiNdCl.tdb}
+  # Thermochimica data files (ORNL-CEES/thermochimica, BSD-3); ChemSage DAT format
+  - {db_id: tc-noble-metals, source_id: thermochimica_data, repo: ORNL-CEES/thermochimica, commit: 1c076b20f958be65bac750f00af2e59ef4f28d9e, path: data/NobleMetals-Kaye.dat, note: "fission-product noble metals (Kaye)"}
+  - {db_id: tc-mo-pd-ru-rh-tc, source_id: thermochimica_data, repo: ORNL-CEES/thermochimica, commit: 1c076b20f958be65bac750f00af2e59ef4f28d9e, path: data/MoPdRuRhTc-Kaye.dat}
+  - {db_id: tc-cs-i, source_id: thermochimica_data, repo: ORNL-CEES/thermochimica, commit: 1c076b20f958be65bac750f00af2e59ef4f28d9e, path: data/CsI-Pham.dat}
+  - {db_id: tc-cs-te, source_id: thermochimica_data, repo: ORNL-CEES/thermochimica, commit: 1c076b20f958be65bac750f00af2e59ef4f28d9e, path: data/CsTe-1.dat}
+  - {db_id: tc-salt-zr-fe-k-cl-na-f-o-li, source_id: thermochimica_data, repo: ORNL-CEES/thermochimica, commit: 1c076b20f958be65bac750f00af2e59ef4f28d9e, path: data/ZrFeKClNaFOLi.dat}
+  - {db_id: tc-zirc, source_id: thermochimica_data, repo: ORNL-CEES/thermochimica, commit: 1c076b20f958be65bac750f00af2e59ef4f28d9e, path: data/ZIRC-noSUBI.dat}
+  - {db_id: tc-cl-al-na, source_id: thermochimica_data, repo: ORNL-CEES/thermochimica, commit: 1c076b20f958be65bac750f00af2e59ef4f28d9e, path: data/ClAlNa.dat}
+
+# Elements whose melting points are derived from the SGTE unary database.
+sgte_unary_elements: [Al, B, Be, C, Ca, Cr, Cu, Fe, Hf, Li, Mg, Mn, Mo, Na, Nb, Ni, Pb, Pu, Re, Si, Sn, Ta, Th, Ti, U, V, W, Y, Zr]
+
+# Systems the project needs assessed, with the question each answers.
+calphad_systems_needed:
+  - {system: U-Pu-Zr, why: "metallic fuel phase stability", questions: [Q-025]}
+  - {system: Pu-U, why: "liquid U-Pu fuel", questions: [Q-025]}
+  - {system: Fe-U, why: "U-Fe eutectic (D-0003)", questions: []}
+  - {system: Cr-U, why: "U-Cr eutectic (D-0003)", questions: []}
+  - {system: U-W, why: "tungsten wall vs liquid fuel", questions: [Q-020, Q-021]}
+  - {system: Ta-U, why: "tantalum fallback container", questions: [Q-020]}
+  - {system: Pb-U, why: "lead carrier vs fuel (X1)", questions: [Q-020]}
+  - {system: Ca-U, why: "calcium carrier vs fuel (X3)", questions: [Q-020]}
+  - {system: Al-U, why: "A2 breach, A3 solution fuel", questions: [Q-035]}
+  - {system: Al-Pb, why: "lead-bonded wall (A2)", questions: [Q-031]}
+  - {system: N-U, why: "nitride fuel dissociation", questions: [Q-012]}
+  - {system: O-U, why: "oxide fuel reference", questions: []}
+  - {system: Al-N, why: "AlN stability in aluminium", questions: [Q-032]}
+  - {system: Al-Zr, why: "ZrB2 wall: Zr leaching into Al", questions: [Q-036]}
+  - {system: B-Zr, why: "ZrB2 stability", questions: [Q-036]}
+  - {system: Al-B-Zr, why: "ZrB2 in liquid aluminium", questions: [Q-036]}
+  - {system: Al-Ti, why: "TiB2 wall: Ti leaching", questions: [Q-036]}
+  - {system: B-U, why: "boron exchange between ZrB2 and fuel", questions: [Q-030]}
+  - {system: Al-W, why: "tungsten attack by aluminium", questions: [Q-030]}
+  - {system: Al-O, why: "alumina and Al2O vapour", questions: [Q-036]}
+  - {system: O-Y, why: "yttria liner", questions: []}
+  - {system: Al-Fe, why: "steel in aluminium", questions: []}
+  - {system: Al-Ni, why: "nickel alloys in aluminium", questions: []}
+  - {system: Fe-Pb, why: "steel in lead", questions: []}
+  - {system: Ni-Pb, why: "nickel alloys in lead", questions: []}
+  - {system: Pb-W, why: "tungsten in lead (X1)", questions: []}
+  - {system: Li-Nb, why: "Nb-1Zr in lithium (B1)", questions: []}
+  - {system: Cr-Fe-Ni, why: "steels and Ni alloys", questions: []}
+  - {system: Mo-Re, why: "Mo-Re alloys", questions: []}
+  - {system: Re-W, why: "W-Re alloys, W transmutation", questions: []}
+  - {system: Cr-Ta, why: "tantalum alloys", questions: []}
+  - {system: Nb-Re, why: "niobium alloys", questions: []}
+  - {system: Cl-Na-U, why: "chloride fuel salt (B4)", questions: []}
+  - {system: F-Li-Na, why: "fluoride salts", questions: []}
+  - {system: Ca-F-U, why: "CaF2 carrier vs fuel (X2)", questions: [Q-020, Q-024]}
+  - {system: Cs-I, why: "fission products vs cladding", questions: [Q-024]}
+  - {system: Cs-Te, why: "fission products vs cladding", questions: [Q-024]}
+  - {system: Mo-Ru, why: "noble-metal fission products", questions: [Q-024]}

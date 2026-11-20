@@ -14,5 +14,6 @@ if [ ! -x "$PREFIX/envs/nuc/bin/njoy" ]; then
   "$PREFIX/bin/micromamba" create -y -q -p "$PREFIX/envs/nuc" -c conda-forge \
     python=3.12 njoy2016 "openmc=0.16.0=nodagmc_nompi*" pandas pyyaml requests pint pytest
 fi
+"$PREFIX/envs/nuc/bin/pip" install -q "pycalphad==0.12.0"
 "$PREFIX/envs/nuc/bin/pip" install -q -e "$HERE"
 echo "Done. Use: export PATH=$PREFIX/envs/nuc/bin:\$PATH; htfbr-data status"

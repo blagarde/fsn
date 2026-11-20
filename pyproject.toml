@@ -12,6 +12,7 @@ dependencies = ["requests", "pyyaml", "numpy", "pint"]
 [project.optional-dependencies]
 # ENDF processing also needs NJOY2016 on PATH; install both via setup/install_env.sh (conda-forge).
 endf = ["openmc"]
+calphad = ["pycalphad==0.12.0"]
 test = ["pytest"]
 
 [project.scripts]

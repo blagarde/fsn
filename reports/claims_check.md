@@ -1,6 +1,6 @@
 # Claims check
 
-Generated 2026-11-20T13:15:33+00:00. 54 confirmed, 7 differ, 8 not checkable yet.
+Generated 2026-11-20T16:37:38+00:00. 55 confirmed, 7 differ, 7 not checkable yet.
 
 | Status | Item | Doc value | Database value | Unit | Diff % | Basis | Where in doc |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -15,7 +15,6 @@ Generated 2026-11-20T13:15:33+00:00. 54 confirmed, 7 differ, 8 not checkable yet
 | NOT CHECKED | dfG_per_O2: ThO2 at 298.15 K | 1169.0 |  | kJ/mol O2 |  | species not in NIST-JANAF | Aluminium coolant / oxide chart |
 | NOT CHECKED | dfG_per_O2: HfO2 at 298.15 K | 1088.0 |  | kJ/mol O2 |  | species not in NIST-JANAF | Aluminium coolant / oxide chart |
 | NOT CHECKED | dfG_per_O2: UO2 at 298.15 K | 1032.0 |  | kJ/mol O2 |  | species not in NIST-JANAF | Aluminium coolant / oxide chart |
-| NOT CHECKED | melting_point: Sn | 232.0 |  | degC |  | missing cr,l table | Aluminium coolant / properties |
 | NOT CHECKED | boiling_point: Sn | 2602.0 |  | degC |  | missing gas or cr,l table | Aluminium coolant / properties |
 | NOT CHECKED | vapor_pressure: Sn at 1500 degC | 0.0005 |  | bar |  | missing gas or cr,l table | Aluminium coolant / properties |
 | NOT CHECKED | vapor_pressure: Sn at 2000 degC | 0.04 |  | bar |  | missing gas or cr,l table | Aluminium coolant / properties |
@@ -55,6 +54,7 @@ Generated 2026-11-20T13:15:33+00:00. 54 confirmed, 7 differ, 8 not checkable yet
 | CONFIRMED | melting_point: Na | 98.0 | 97.83 | degC | 0.2 | JANAF cr,l table: crystal <--> liquid row | Aluminium coolant / properties |
 | CONFIRMED | melting_point: Pb | 327.0 | 327.5 | degC | -0.1 | JANAF cr,l table: crystal <--> liquid row | Aluminium coolant / properties |
 | CONFIRMED | boiling_point: Pb | 1749.0 | 1746.0 | degC | 0.2 | JANAF cr,l table: fugacity = 1 bar row | Aluminium coolant / properties |
+| CONFIRMED | melting_point: Sn | 232.0 | 231.9 | degC | 0.0 | SGTE unary (G_liquid = G_solid, pycalphad) | Aluminium coolant / properties |
 | CONFIRMED | melting_point: Ca | 842.0 | 841.9 | degC | 0.0 | JANAF cr,l table: crystal <--> liquid row | Liquid fuel / carrier table |
 | CONFIRMED | melting_point: Li | 181.0 | 180.5 | degC | 0.3 | JANAF cr,l table: crystal <--> liquid row | Master plan / exclusion rules |
 | CONFIRMED | boiling_point: Li | 1342.0 | 1347.0 | degC | -0.4 | JANAF cr,l table: fugacity = 1 bar row | Master plan / exclusion rules |

@@ -20,7 +20,8 @@ Numbered so design and material pages can point at them. Close a question by rec
 | --- | --- | --- | --- | --- |
 | Q-010 | Infinite-medium k∞, BR and phase windows for seed branches B1–B6 | calc | [B1–B6](designs/README.md) | open |
 | Q-011 | Cross sections averaged over real fast-core spectra (OpenMC) rather than the U-235 fission spectrum | calc | all neutronics rankings | open |
-| Q-012 | Reference thermochemistry for species missing from JANAF: Y2O3, ThO2, UO2, HfO2, Sn, UN | data | [Al boundaries](studies/aluminium-coolant.md), fuels | open |
+| Q-012 | Reference thermochemistry for species missing from JANAF: Y2O3, ThO2, UO2, HfO2, UN; Sn vapour (Sn melting point now from SGTE) | data | [Al boundaries](studies/aluminium-coolant.md), fuels | open |
+| Q-014 | Actinide CALPHAD assessments: U–Pu–Zr, U–Fe, U–Cr, U–W, U–Ta, U–Al, Ca–U, Pb–U, U–N, Al–Pb (see [coverage](data/calphad-coverage.md)); needs TDBDB, NIMS CPDDB, NIST, MSTDB-TC or paper supplements | data | X1–X3, A2, fuels | open |
 | Q-013 | Settle JANAF vs handbook boiling points (Al, Na, Ca, Si, LiF, NaCl differ by 1–2.4%) with a second source | data | [claims check](data/claims-check.md) | open |
 
 ## Liquid fuel at ~2,000 °C
