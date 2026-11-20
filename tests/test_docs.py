@@ -31,3 +31,16 @@ def test_every_design_material_exists_and_is_linked_back():
     users = docs.used_by()
     material_ids = {m["id"] for _, m in docs.pages("materials")}
     assert set(users) <= material_ids
+
+
+def test_calibration_cases_well_formed():
+    import yaml
+
+    from htfbr_data.db import ROOT
+
+    cases = yaml.safe_load((ROOT / "config" / "calibration_cases.yaml").read_text())["cases"]
+    assert len({c["id"] for c in cases}) == len(cases)
+    for c in cases:
+        assert c["expected"] in ("compatible", "conditional"), c["id"]  # known-good cases are never incompatible
+        assert len(c["pair"]) == 2 and len(c["T_C"]) == 2 and c["T_C"][0] <= c["T_C"][1], c["id"]
+        assert all(r.startswith("R") for r in c["rules"]), c["id"]

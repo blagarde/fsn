@@ -1,0 +1,58 @@
+# Known-good material combinations (D-0006, principle P6).
+# The compatibility rules must NOT reject any of these under their real conditions.
+# A rule that does is wrong. Conditions are approximate until pinned to sourced values
+# (fill `sources` with registry source_ids and locators when coding the tests).
+cases:
+  - id: CAL-01
+    name: Sodium with 316 stainless steel
+    pair: [Na, 316SS]
+    T_C: [400, 550]
+    conditions: low dissolved oxygen in sodium
+    expected: compatible
+    rules: [R2, R5]
+    sources: []
+
+  - id: CAL-02
+    name: Hastelloy N in fluoride salt (LiF-BeF2 based)
+    pair: [LiF-BeF2-UF4, Hastelloy-N]
+    T_C: [600, 700]
+    conditions: U(IV)/U(III) redox control; alloy Cr ~7 wt%
+    expected: conditional   # compatible only with the stated redox control
+    rules: [R9, R6]
+    sources: []
+
+  - id: CAL-03
+    name: T91 ferritic-martensitic steel in lead or lead-bismuth
+    pair: [Pb, T91]
+    T_C: [400, 550]
+    conditions: dissolved-oxygen control keeps a Fe-Cr oxide scale
+    expected: conditional   # relies on a protective layer (R7 is always conditional)
+    rules: [R2, R6, R7]
+    sources: []
+
+  - id: CAL-04
+    name: Nb-1Zr with lithium (SP-100 class)
+    pair: [Li, Nb-1Zr]
+    T_C: [1000, 1100]
+    conditions: ppm-level oxygen in niobium
+    expected: conditional
+    rules: [R2, R5]
+    sources: []
+
+  - id: CAL-05
+    name: Alloy 617 in helium
+    pair: [He, Alloy-617]
+    T_C: [850, 950]
+    conditions: ppm-level impurity control (H2O, CO, CH4)
+    expected: conditional
+    rules: [R5, R7]
+    sources: []
+
+  - id: CAL-06
+    name: Molten uranium under CaF2 slag (metallothermic uranium production)
+    pair: [U, CaF2]
+    T_C: [1400, 1600]
+    conditions: short contact, liquid metal and liquid slag
+    expected: compatible
+    rules: [R1, R2]
+    sources: []

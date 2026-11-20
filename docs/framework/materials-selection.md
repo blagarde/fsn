@@ -1,6 +1,6 @@
 # Materials selection method
 
-**Status: proposed (2026-11-20), awaiting approval ([Q-005](../open-questions.md)).**
+**Status:** search strategy P1–P7 adopted as a guiding principle ([D-0006](../decisions/D-0006-materials-search-strategy.md)); steps, thresholds and rules proposed, awaiting approval ([Q-005](../open-questions.md)).
 
 This page defines how candidate materials are found and filtered for every component, so the choice is systematic rather than recalled. It covers every material class: pure metals, alloys, intermetallics, ceramics, composites, salts, liquid metals and gases. It is the upstream half of selection. Candidates that survive here go on to the scoring and stack stages in [materials screening](materials-screening.md).
 
@@ -110,7 +110,7 @@ Each candidate is checked against each partner it touches at the hot-end tempera
 | Rule | Question | Method (in order of preference) | Default margin |
 | --- | --- | --- | --- |
 | **R1 Exchange reactions** | Will A take the anion (O, N, C, B, F, Cl) from compound BX? | Compare ΔfG°(AX) with ΔfG°(BX) per mole of the shared reactant (O2, N2, C, F2, Cl2) at temperature: the generalised Ellingham comparison. In solutions, correct with activities. | Compatible if the compound in place is more stable by ≥ 40 kJ per mol of reactant; within ±40 kJ is conditional |
-| **R2 Liquid-metal attack** | Does a liquid metal dissolve or form compounds with the solid? | Binary phase diagram (intermetallics, solubility at T); if none, Miedema enthalpy of mixing as a screen (strongly negative = attack; positive = immiscible); then solubility slope dS/dT for mass transfer | Incompatible if intermetallics form or solubility at T > ~0.1 at%; conditional if inhibitor or oxygen control required |
+| **R2 Liquid-metal attack and liquid–liquid miscibility** | Does a liquid metal dissolve or form compounds with the solid? Do two liquids stay separate? | Binary phase diagram (intermetallics, solubility at T, miscibility gap and its consolute temperature); if none, Miedema enthalpy of mixing as a screen (strongly negative = attack; positive = immiscible); then solubility slope dS/dT for mass transfer. Miscibility gaps narrow and close as temperature rises, and "immiscible" never means zero solubility: always state the temperature and the mutual solubility | Incompatible if intermetallics form or solubility at T > ~0.1 at%; conditional if inhibitor or oxygen control required |
 | **R3 Low-melting phases** | Do the two form a eutectic or liquid below the hot end + 100 K? | Binary and ternary phase diagrams (CALPHAD) | Incompatible if any liquid forms below peak + 100 K |
 | **R4 Volatility and decomposition** | Does the material, or a reaction product, evaporate or decompose? | Vapour pressure of all species (including volatile oxides MoO3 and WO3, halides AlCl3 and UF6, suboxides Al2O and SiO) and decomposition pressure (UN, AlN, carbonates) | Conditional above 10⁻⁶ bar; incompatible above 10⁻³ bar at the hot end, unless designed for |
 | **R5 Gas–solid** | Do coolant or cover-gas impurities oxidise, nitride or carburise the solid? | Oxygen, nitrogen and carbon potential windows from JANAF; known behaviour for He and CO2 environments | Conditional with a stated impurity limit |
@@ -137,6 +137,37 @@ A verdict at E4–E5 cannot move a candidate past S6 on its own; it creates an o
 - **Nickel alloy in a fluoride salt** (R9, R6). Nickel, molybdenum and tungsten fluorides are much less stable than LiF, NaF or BeF2, so those metals are compatible. Chromium is not: Cr + 2UF4 → CrF2 + 2UF3 proceeds unless the U(IV)/U(III) ratio is kept low. So a Ni-Mo-Cr alloy is rated by its chromium (R6). That is why the molten-salt experiments of the 1960s used Hastelloy N, a nickel alloy with only ~7% Cr, plus redox control.
 - **Steel or nickel alloy in liquid lead** (R2, R6, R7). Nickel dissolves strongly in lead, iron less, chromium in between. A steel survives only if dissolved oxygen keeps an iron–chromium oxide scale stable (R7, conditional, ≤ ~550 °C). An alumina-forming FeCrAl alloy has a more stable scale. Molybdenum, tungsten and SiC barely dissolve and are compatible without a scale.
 
+## Guiding principle: search without enumerating, reject only on evidence
+
+**Adopted 2026-11-20 ([D-0006](../decisions/D-0006-materials-search-strategy.md)).** These seven rules govern how every step above is applied. Their purpose is to keep the search tractable while making the risk of discarding a good combination very low.
+
+The raw space explodes. 7 component slots × ~50 candidates is ~10¹² combinations, before isotopes, temperature and pressure. So the space is never enumerated, and every elimination step is one-sided: it removes only what fails even under favourable assumptions.
+
+| # | Principle | How it is applied |
+| --- | --- | --- |
+| P1 | **Most constraints are pairwise.** | Chemistry is checked per touching pair (~10 pairs per design, ~10 × 50² ≈ 25,000 checks), not per full combination. Only whole-design properties (neutron budget, temperature chain) are checked on the full set, and only on survivors. |
+| P2 | **Continuous variables are intervals, not grids.** | Degradation mechanisms (corrosion, vapour pressure, solubility, creep) worsen with temperature, so a pair is tested at the hot end of its window. A failure triggers a search for the highest workable temperature. Each pair yields an operating window; windows from different pairs are intersected. Pressure is treated the same way. |
+| P3 | **Design choices are screened at their best case.** | Isotopic enrichment is assumed at its best achievable level (Li-7, N-15, B-11, Cl-37, W-184/186, Pb-206/207); its cost is weighed later in scoring. |
+| P4 | **Element-level pruning only where it is exact.** | Additive properties (absorption, activation) prune at element level: if an element's share alone breaks the budget, every material with that share fails. Chemistry is not additive (compounds can be more stable than their elements; scales can protect), so element results only flag; the actual alloy or compound is still tested. |
+| P5 | **Constraint propagation, not enumeration.** | A design is a set of slots with unary gates, pairwise rules and global budgets. A candidate with no compatible partner left in a neighbouring slot is removed, and removals cascade. Only consistent partial designs are ever explored. |
+| P6 | **Asymmetric error control: wrong rejections are the costly error.** | Rejection requires evidence E1–E3; E4–E5 can only mark a pair conditional. Margins sit on the generous side. Every rejection is recorded (rule, evidence, source) and re-screened automatically when data change. Each run is repeated with relaxed thresholds (margins halved, absorption bands widened); what reappears goes on a near-miss list for human review. The rules must pass the [calibration cases](#calibration-cases). |
+| P7 | **Cheap checks first; several survivors per branch.** | Fidelity ladder: element tables → JANAF stability → CALPHAD phase diagrams → infinite-medium neutronics → 3D Monte Carlo. Each stage is roughly 10× costlier per option and sees roughly 10× fewer options. Three to five survivors are kept per branch, never a single winner. |
+
+### Calibration cases
+
+Combinations that have worked in real reactors or long loop tests. The rules must not reject any of them under their real conditions. A rule that would is wrong and must be fixed before it is used. They are listed in `config/calibration_cases.yaml` and become automated tests when the compatibility rules are coded.
+
+| Case | Conditions | Why it works | Rules exercised |
+| --- | --- | --- | --- |
+| Sodium with 316 stainless steel | ~550 °C, low oxygen | Low solubility of Fe, Cr, Ni in Na at this temperature | R2, R5 |
+| Hastelloy N in fluoride salt (LiF-BeF2 based) | ~650–700 °C, U(IV)/U(III) redox control | Ni and Mo fluorides far less stable than the salt; Cr kept low (~7%) and its leaching limited by redox | R9, R6 |
+| T91 / ferritic-martensitic steel in lead or lead-bismuth | ≤ ~550 °C, dissolved-oxygen control | Protective Fe-Cr oxide scale | R2, R6, R7 |
+| Nb-1Zr with lithium (SP-100 class) | ~1,000–1,100 °C, ppm oxygen in Nb | Refractory metal with low solubility in Li; oxygen controlled | R2, R5 |
+| Alloy 617 in helium | ~850–950 °C, ppm impurity control | Impurity-controlled oxidation and carburisation | R5, R7 |
+| Molten uranium under CaF2 slag | ~1,400–1,600 °C, short contact (metallothermic U production) | Metal–salt immiscibility; CaF2 more stable than U fluorides | R1, R2 |
+
+Some conditions are given as approximate ranges; they will be pinned to sourced values when the cases are coded.
+
 ## Records and tooling
 
 | Record | Where | Status |
@@ -144,7 +175,9 @@ A verdict at E4–E5 cannot move a candidate past S6 on its own; it creates an o
 | Component profiles | This page (S1) | Done |
 | Element pre-screen table per component | Generated report from the database | To build: database has absorption, activation and ξ |
 | Candidate list per component and class | `docs/materials/` pages plus the [long list](materials-screening.md#initial-long-list) | Partial; to be regenerated by class |
-| Pairwise verdicts (rule, partner, temperature, verdict, evidence level, source) | `config/compatibility.yaml`, rendered into a compatibility matrix page and into each material page | To build |
+| Pairwise verdicts (rule, partner, temperature window, verdict, evidence level, source) | `config/compatibility.yaml`, rendered into a compatibility matrix page and into each material page | To build |
+| Calibration cases (P6) | `config/calibration_cases.yaml`; automated tests once the rules are coded | Cases listed; tests to build |
+| Rejection log and near-miss report (P6) | Generated on every screening run | To build |
 | R1 exchange-reaction calculator | `htfbr_data` (JANAF ΔfG° at temperature, per mole of reactant) | To build: JANAF data already loaded |
 | Phase diagrams and alloy stability (R3, R10) | pycalphad with open databases; licensed databases where needed | To set up |
 | Liquid-metal screen (R2) | Miedema estimator plus literature solubility entries | To build |
