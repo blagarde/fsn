@@ -1,0 +1,26 @@
+{
+ "case": "B6",
+ "title": "Li heat-pipe monolith, (U,Pu)N in Mo block",
+ "assumptions": "fuel (U,Pu)N 60% at 13.0 (N-15 99.9%); Mo block and heat-pipe walls 25% at 10.2; Li liquid in wicks 3% at 0.45 (Li-7 99.99%); vapour space and gaps 12% (void)",
+ "T_rep_K": 1500.0,
+ "stats": {
+  "particles": 20000,
+  "batches": 60,
+  "inactive": 20,
+  "threads": 1
+ },
+ "scan_stats": {
+  "particles": 10000,
+  "batches": 40,
+  "inactive": 15,
+  "threads": 1
+ },
+ "scan": [
+  {
+   "pu_frac": 0.12,
+   "k_inf": 1.0932931203724008,
+   "sd": 0.0011286944727539477,
+   "CR": 1.2022054356665777
+  }
+ ]
+}
