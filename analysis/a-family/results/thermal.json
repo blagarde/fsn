@@ -1,0 +1,611 @@
+{
+ "inputs": {
+  "Al_cp_J_kgK_db": 1176.7474612704766,
+  "Al": {
+   "rho": 2200.0,
+   "mu": 0.0007,
+   "k": 100.0
+  },
+  "K_FUEL": 15.0,
+  "H_GAP": 6000.0,
+  "K_ZRB2": 40.0,
+  "T_FUEL_MAX_C": 2000.0,
+  "H_ACTIVE": 1.2,
+  "F_AXIAL": 1.25,
+  "F_RADIAL": 1.2,
+  "DT_CORE": 400.0,
+  "P_TH_MW": 1000.0
+ },
+ "A1_ZrB2": [
+  {
+   "q_avg_kW_m": 15.0,
+   "T_in_C": 1348.3277891101661,
+   "T_out_C": 1748.3277891101661,
+   "u_m_s": 0.6315769819899895,
+   "h_kW_m2K": 135.7302782213868,
+   "q_flux_peak_MW_m2": 0.8148134668253594,
+   "T_fuel_peak_C": 1999.9999999999995,
+   "z_fuel_peak_m": 0.372,
+   "T_clad_inner_peak_C": 1839.099843808899,
+   "T_wall_peak_C": 1831.443876249557,
+   "dT_film_gap_clad_fuel_at_peak_K": [
+    4.586518378389308,
+    130.4347346900787,
+    13.741575184406607,
+    91.3043142830551
+   ],
+   "sigma_thermal_ZrB2_MPa": 26.825725673868718,
+   "dp_core_kPa": 9.970656184979017,
+   "n_pins": 55555.555555555555,
+   "core_volume_m3": 5.889550096003371,
+   "fuel_mass_t": 34.89262240587064,
+   "Al_flow_kg_s": 2124.5000157475356,
+   "pumping_core_kW": 19.256962929091983,
+   "fission_gas": {
+    "burnup_FIMA": 0.1,
+    "release_fraction": 0.5,
+    "plenum_to_fuel_volume": 1.0,
+    "p_EOL_MPa": 11.256032275432418,
+    "hoop_stress_MPa": 61.908177514878304
+   }
+  },
+  {
+   "q_avg_kW_m": 20.0,
+   "T_in_C": 1263.8908893869698,
+   "T_out_C": 1663.8908893869698,
+   "u_m_s": 0.8421026426533194,
+   "h_kW_m2K": 139.67529188441506,
+   "q_flux_peak_MW_m2": 1.0864179557671458,
+   "T_fuel_peak_C": 2000.0,
+   "z_fuel_peak_m": 0.30000000000000004,
+   "T_clad_inner_peak_C": 1757.9704785116437,
+   "T_wall_peak_C": 1747.7625217658542,
+   "dT_film_gap_clad_fuel_at_peak_K": [
+    6.567055561345378,
+    192.1868462071039,
+    20.24729074570493,
+    134.53079234497275
+   ],
+   "sigma_thermal_ZrB2_MPa": 35.76763423182495,
+   "dp_core_kPa": 16.495539722982898,
+   "n_pins": 41666.666666666664,
+   "core_volume_m3": 4.417162572002528,
+   "fuel_mass_t": 26.169466804402976,
+   "Al_flow_kg_s": 2124.5000157475356,
+   "pumping_core_kW": 31.858885819310238,
+   "fission_gas": {
+    "burnup_FIMA": 0.1,
+    "release_fraction": 0.5,
+    "plenum_to_fuel_volume": 1.0,
+    "p_EOL_MPa": 10.78586907421312,
+    "hoop_stress_MPa": 59.32227990817216
+   }
+  },
+  {
+   "q_avg_kW_m": 25.0,
+   "T_in_C": 1173.030002171965,
+   "T_out_C": 1573.030002171965,
+   "u_m_s": 1.0526283033166492,
+   "h_kW_m2K": 143.4514207322729,
+   "q_flux_peak_MW_m2": 1.3580224447089322,
+   "T_fuel_peak_C": 2000.0000000000005,
+   "z_fuel_peak_m": 0.249,
+   "T_clad_inner_peak_C": 1670.3803570647624,
+   "T_wall_peak_C": 1657.6204111325255,
+   "dT_film_gap_clad_fuel_at_peak_K": [
+    8.442815608801041,
+    253.76138732751065,
+    26.73429889013722,
+    177.63297112925747
+   ],
+   "sigma_thermal_ZrB2_MPa": 44.70954278978118,
+   "dp_core_kPa": 24.37580981092132,
+   "n_pins": 33333.333333333336,
+   "core_volume_m3": 3.5337300576020234,
+   "fuel_mass_t": 20.935573443522383,
+   "Al_flow_kg_s": 2124.5000157475356,
+   "pumping_core_kW": 47.07855302469207,
+   "fission_gas": {
+    "burnup_FIMA": 0.1,
+    "release_fraction": 0.5,
+    "plenum_to_fuel_volume": 1.0,
+    "p_EOL_MPa": 10.279935699839157,
+    "hoop_stress_MPa": 56.53964634911538
+   }
+  },
+  {
+   "q_avg_kW_m": 30.0,
+   "T_in_C": 1078.3415730220954,
+   "T_out_C": 1478.3415730220954,
+   "u_m_s": 1.263153963979979,
+   "h_kW_m2K": 147.09819993295324,
+   "q_flux_peak_MW_m2": 1.6296269336507188,
+   "T_fuel_peak_C": 2000.0,
+   "z_fuel_peak_m": 0.21300000000000008,
+   "T_clad_inner_peak_C": 1578.9299660313222,
+   "T_wall_peak_C": 1563.6180309126376,
+   "dT_film_gap_clad_fuel_at_peak_K": [
+    10.1973091939913,
+    314.28693509627846,
+    33.11079336623002,
+    220.00085456739495
+   ],
+   "sigma_thermal_ZrB2_MPa": 53.651451347737435,
+   "dp_core_kPa": 33.537156174704535,
+   "n_pins": 27777.777777777777,
+   "core_volume_m3": 2.9447750480016857,
+   "fuel_mass_t": 17.44631120293532,
+   "Al_flow_kg_s": 2124.5000157475356,
+   "pumping_core_kW": 64.7724443829885,
+   "fission_gas": {
+    "burnup_FIMA": 0.1,
+    "release_fraction": 0.5,
+    "plenum_to_fuel_volume": 1.0,
+    "p_EOL_MPa": 9.752689731388479,
+    "hoop_stress_MPa": 53.639793522636644
+   }
+  },
+  {
+   "q_avg_kW_m": 40.0,
+   "T_in_C": 882.5572409646426,
+   "T_out_C": 1282.5572409646425,
+   "u_m_s": 1.6842052853066387,
+   "h_kW_m2K": 154.09662501871483,
+   "q_flux_peak_MW_m2": 2.1728359115342917,
+   "T_fuel_peak_C": 1999.9999999999995,
+   "z_fuel_peak_m": 0.16200000000000003,
+   "T_clad_inner_peak_C": 1389.5359555568566,
+   "T_wall_peak_C": 1369.1200420652776,
+   "dT_film_gap_clad_fuel_at_peak_K": [
+    13.448011955662265,
+    434.1947773593848,
+    45.74333816783933,
+    303.9363441515694
+   ],
+   "sigma_thermal_ZrB2_MPa": 71.5352684636499,
+   "dp_core_kPa": 55.484160882926275,
+   "n_pins": 20833.333333333332,
+   "core_volume_m3": 2.208581286001264,
+   "fuel_mass_t": 13.084733402201488,
+   "Al_flow_kg_s": 2124.5000157475356,
+   "pumping_core_kW": 107.1600915177415,
+   "fission_gas": {
+    "burnup_FIMA": 0.1,
+    "release_fraction": 0.5,
+    "plenum_to_fuel_volume": 1.0,
+    "p_EOL_MPa": 8.662519573430552,
+    "hoop_stress_MPa": 47.64385765386805
+   }
+  }
+ ],
+ "A1_WAlN": [
+  {
+   "q_avg_kW_m": 15.0,
+   "T_in_C": 1353.573522180266,
+   "T_out_C": 1753.573522180266,
+   "u_m_s": 0.6315769819899895,
+   "h_kW_m2K": 135.7302782213868,
+   "q_flux_peak_MW_m2": 0.8148134668253594,
+   "T_fuel_peak_C": 2000.0,
+   "z_fuel_peak_m": 0.378,
+   "T_clad_inner_peak_C": 1841.4085013673316,
+   "T_wall_peak_C": 1836.689609319657,
+   "dT_film_gap_clad_fuel_at_peak_K": [
+    4.54241553175501,
+    129.18050596466318,
+    8.388420601164864,
+    90.42635417526424
+   ],
+   "sigma_thermal_ZrB2_MPa": null,
+   "dp_core_kPa": 9.970656184979017,
+   "n_pins": 55555.555555555555,
+   "core_volume_m3": 5.889550096003371,
+   "fuel_mass_t": 34.89262240587064,
+   "Al_flow_kg_s": 2124.5000157475356,
+   "pumping_core_kW": 19.256962929091983,
+   "fission_gas": {
+    "burnup_FIMA": 0.1,
+    "release_fraction": 0.5,
+    "plenum_to_fuel_volume": 1.0,
+    "p_EOL_MPa": 11.285241669205346,
+    "hoop_stress_MPa": 62.068829180629415
+   }
+  },
+  {
+   "q_avg_kW_m": 20.0,
+   "T_in_C": 1271.6361040241882,
+   "T_out_C": 1671.6361040241882,
+   "u_m_s": 0.8421026426533194,
+   "h_kW_m2K": 139.67529188441506,
+   "q_flux_peak_MW_m2": 1.0864179557671458,
+   "T_fuel_peak_C": 1999.9999999999995,
+   "z_fuel_peak_m": 0.30600000000000005,
+   "T_clad_inner_peak_C": 1761.7995924666384,
+   "T_wall_peak_C": 1755.5077364030726,
+   "dT_film_gap_clad_fuel_at_peak_K": [
+    6.5194901386978765,
+    190.79482987927818,
+    12.389387002346037,
+    133.55638091549474
+   ],
+   "sigma_thermal_ZrB2_MPa": null,
+   "dp_core_kPa": 16.495539722982898,
+   "n_pins": 41666.666666666664,
+   "core_volume_m3": 4.417162572002528,
+   "fuel_mass_t": 26.169466804402976,
+   "Al_flow_kg_s": 2124.5000157475356,
+   "pumping_core_kW": 31.858885819310238,
+   "fission_gas": {
+    "burnup_FIMA": 0.1,
+    "release_fraction": 0.5,
+    "plenum_to_fuel_volume": 1.0,
+    "p_EOL_MPa": 10.828996130273952,
+    "hoop_stress_MPa": 59.55947871650674
+   }
+  },
+  {
+   "q_avg_kW_m": 25.0,
+   "T_in_C": 1183.2623465184906,
+   "T_out_C": 1583.2623465184906,
+   "u_m_s": 1.0526283033166492,
+   "h_kW_m2K": 143.4514207322729,
+   "q_flux_peak_MW_m2": 1.3580224447089322,
+   "T_fuel_peak_C": 1999.9999999999995,
+   "z_fuel_peak_m": 0.255,
+   "T_clad_inner_peak_C": 1675.7175755585085,
+   "T_wall_peak_C": 1667.8527554790512,
+   "dT_film_gap_clad_fuel_at_peak_K": [
+    8.393838543600845,
+    252.28930874753124,
+    16.382571187098012,
+    176.6025161232719
+   ],
+   "sigma_thermal_ZrB2_MPa": null,
+   "dp_core_kPa": 24.37580981092132,
+   "n_pins": 33333.333333333336,
+   "core_volume_m3": 3.5337300576020234,
+   "fuel_mass_t": 20.935573443522383,
+   "Al_flow_kg_s": 2124.5000157475356,
+   "pumping_core_kW": 47.07855302469207,
+   "fission_gas": {
+    "burnup_FIMA": 0.1,
+    "release_fraction": 0.5,
+    "plenum_to_fuel_volume": 1.0,
+    "p_EOL_MPa": 10.336911640330955,
+    "hoop_stress_MPa": 56.853014021820265
+   }
+  },
+  {
+   "q_avg_kW_m": 30.0,
+   "T_in_C": 1091.0288627030786,
+   "T_out_C": 1491.0288627030786,
+   "u_m_s": 1.263153963979979,
+   "h_kW_m2K": 147.09819993295324,
+   "q_flux_peak_MW_m2": 1.6296269336507188,
+   "T_fuel_peak_C": 2000.0,
+   "z_fuel_peak_m": 0.21600000000000008,
+   "T_clad_inner_peak_C": 1585.74310468897,
+   "T_wall_peak_C": 1576.3053205936208,
+   "dT_film_gap_clad_fuel_at_peak_K": [
+    10.172658477833982,
+    313.5271858446252,
+    20.359092768097103,
+    219.46903009123764
+   ],
+   "sigma_thermal_ZrB2_MPa": null,
+   "dp_core_kPa": 33.537156174704535,
+   "n_pins": 27777.777777777777,
+   "core_volume_m3": 2.9447750480016857,
+   "fuel_mass_t": 17.44631120293532,
+   "Al_flow_kg_s": 2124.5000157475356,
+   "pumping_core_kW": 64.7724443829885,
+   "fission_gas": {
+    "burnup_FIMA": 0.1,
+    "release_fraction": 0.5,
+    "plenum_to_fuel_volume": 1.0,
+    "p_EOL_MPa": 9.823335346643926,
+    "hoop_stress_MPa": 54.028344406541606
+   }
+  },
+  {
+   "q_avg_kW_m": 40.0,
+   "T_in_C": 900.0769329174983,
+   "T_out_C": 1300.0769329174982,
+   "u_m_s": 1.6842052853066387,
+   "h_kW_m2K": 154.09662501871483,
+   "q_flux_peak_MW_m2": 2.1728359115342917,
+   "T_fuel_peak_C": 2000.0000000000005,
+   "z_fuel_peak_m": 0.16800000000000004,
+   "T_clad_inner_peak_C": 1399.2234461452654,
+   "T_wall_peak_C": 1386.6397340181334,
+   "dT_film_gap_clad_fuel_at_peak_K": [
+    13.399198208109187,
+    432.61873219220587,
+    28.0923801812916,
+    302.83311253454417
+   ],
+   "sigma_thermal_ZrB2_MPa": null,
+   "dp_core_kPa": 55.484160882926275,
+   "n_pins": 20833.333333333332,
+   "core_volume_m3": 2.208581286001264,
+   "fuel_mass_t": 13.084733402201488,
+   "Al_flow_kg_s": 2124.5000157475356,
+   "pumping_core_kW": 107.1600915177415,
+   "fission_gas": {
+    "burnup_FIMA": 0.1,
+    "release_fraction": 0.5,
+    "plenum_to_fuel_volume": 1.0,
+    "p_EOL_MPa": 8.760073065800995,
+    "hoop_stress_MPa": 48.18040186190548
+   }
+  }
+ ],
+ "A3": [
+  {
+   "x_hm": 0.3333333333333333,
+   "density_g_cc": 7.2045381920523,
+   "HM_density_g_cc": 5.875727415312,
+   "cp_J_kgK": 381.12523926715886,
+   "liquidus_C_approx": 1620.0,
+   "T_in_C": 1670.0,
+   "T_out_C": 2000.0,
+   "dT_K": 330.0,
+   "mdot_kg_s": 7950.937692108254,
+   "Q_m3_s": 1.1036012968713729,
+   "V_core_m3": 10.0,
+   "V_loop_m3": 5.0,
+   "tau_core_s": 9.061243429442547,
+   "tau_loop_s": 4.530621714721273,
+   "delayed_retained_fraction": 0.7345918853879354,
+   "beta_eff_pcm_approx": 154.26429593146645,
+   "HM_out_of_core_fraction": 0.3333333333333333
+  },
+  {
+   "x_hm": 0.3333333333333333,
+   "density_g_cc": 7.2045381920523,
+   "HM_density_g_cc": 5.875727415312,
+   "cp_J_kgK": 381.12523926715886,
+   "liquidus_C_approx": 1620.0,
+   "T_in_C": 1670.0,
+   "T_out_C": 2000.0,
+   "dT_K": 330.0,
+   "mdot_kg_s": 7950.937692108254,
+   "Q_m3_s": 1.1036012968713729,
+   "V_core_m3": 10.0,
+   "V_loop_m3": 10.0,
+   "tau_core_s": 9.061243429442547,
+   "tau_loop_s": 9.061243429442547,
+   "delayed_retained_fraction": 0.6363028752755772,
+   "beta_eff_pcm_approx": 133.6236038078712,
+   "HM_out_of_core_fraction": 0.5
+  },
+  {
+   "x_hm": 0.3333333333333333,
+   "density_g_cc": 7.2045381920523,
+   "HM_density_g_cc": 5.875727415312,
+   "cp_J_kgK": 381.12523926715886,
+   "liquidus_C_approx": 1620.0,
+   "T_in_C": 1670.0,
+   "T_out_C": 2000.0,
+   "dT_K": 330.0,
+   "mdot_kg_s": 7950.937692108254,
+   "Q_m3_s": 1.1036012968713729,
+   "V_core_m3": 20.0,
+   "V_loop_m3": 5.0,
+   "tau_core_s": 18.122486858885093,
+   "tau_loop_s": 4.530621714721273,
+   "delayed_retained_fraction": 0.8505138437372325,
+   "beta_eff_pcm_approx": 178.60790718481883,
+   "HM_out_of_core_fraction": 0.2
+  },
+  {
+   "x_hm": 0.2,
+   "density_g_cc": 5.226311395200603,
+   "HM_density_g_cc": 3.5986318218136435,
+   "cp_J_kgK": 505.0328985339952,
+   "liquidus_C_approx": 1400.0,
+   "T_in_C": 1450.0,
+   "T_out_C": 2000.0,
+   "dT_K": 550.0,
+   "mdot_kg_s": 3600.1255036248517,
+   "Q_m3_s": 0.6888463452313421,
+   "V_core_m3": 10.0,
+   "V_loop_m3": 5.0,
+   "tau_core_s": 14.51702555907675,
+   "tau_loop_s": 7.258512779538375,
+   "delayed_retained_fraction": 0.7642335061558252,
+   "beta_eff_pcm_approx": 160.48903629272328,
+   "HM_out_of_core_fraction": 0.3333333333333333
+  },
+  {
+   "x_hm": 0.2,
+   "density_g_cc": 5.226311395200603,
+   "HM_density_g_cc": 3.5986318218136435,
+   "cp_J_kgK": 505.0328985339952,
+   "liquidus_C_approx": 1400.0,
+   "T_in_C": 1450.0,
+   "T_out_C": 2000.0,
+   "dT_K": 550.0,
+   "mdot_kg_s": 3600.1255036248517,
+   "Q_m3_s": 0.6888463452313421,
+   "V_core_m3": 10.0,
+   "V_loop_m3": 10.0,
+   "tau_core_s": 14.51702555907675,
+   "tau_loop_s": 14.51702555907675,
+   "delayed_retained_fraction": 0.6865890074902201,
+   "beta_eff_pcm_approx": 144.18369157294623,
+   "HM_out_of_core_fraction": 0.5
+  },
+  {
+   "x_hm": 0.2,
+   "density_g_cc": 5.226311395200603,
+   "HM_density_g_cc": 3.5986318218136435,
+   "cp_J_kgK": 505.0328985339952,
+   "liquidus_C_approx": 1400.0,
+   "T_in_C": 1450.0,
+   "T_out_C": 2000.0,
+   "dT_K": 550.0,
+   "mdot_kg_s": 3600.1255036248517,
+   "Q_m3_s": 0.6888463452313421,
+   "V_core_m3": 20.0,
+   "V_loop_m3": 5.0,
+   "tau_core_s": 29.0340511181535,
+   "tau_loop_s": 7.258512779538375,
+   "delayed_retained_fraction": 0.869030769950985,
+   "beta_eff_pcm_approx": 182.49646168970685,
+   "HM_out_of_core_fraction": 0.2
+  }
+ ],
+ "cycles": {
+  "A1_1300C": {
+   "T_out_C": 1300.0,
+   "carnot": 0.8072974605091695,
+   "curzon_ahlborn": 0.5610210261403965,
+   "brayton_recuperated": {
+    "eta": 0.49888101895293296,
+    "pressure_ratio": 2.8461538461538463,
+    "TIT_C": 1250.0
+   },
+   "combined_cycle": {
+    "eta": 0.45881838079810044,
+    "pressure_ratio": 3.6842105263157894,
+    "TIT_C": 1250.0
+   },
+   "brayton_recuperated_TIT1000": {
+    "eta": 0.4425584738730234,
+    "pressure_ratio": 2.5324414715719064,
+    "TIT_C": 1000.0000000000001
+   },
+   "combined_cycle_TIT1000": {
+    "eta": 0.4270010211618881,
+    "pressure_ratio": 2.8157894736842106,
+    "TIT_C": 1000.0000000000001
+   }
+  },
+  "A1_1500C": {
+   "T_out_C": 1500.0,
+   "carnot": 0.8290330767278572,
+   "curzon_ahlborn": 0.5865185333389866,
+   "brayton_recuperated": {
+    "eta": 0.5332984846396271,
+    "pressure_ratio": 3.0702341137123748,
+    "TIT_C": 1450.0
+   },
+   "combined_cycle": {
+    "eta": 0.48075009038687133,
+    "pressure_ratio": 4.447368421052632,
+    "TIT_C": 1450.0
+   },
+   "brayton_recuperated_TIT1000": {
+    "eta": 0.4425584738730234,
+    "pressure_ratio": 2.5324414715719064,
+    "TIT_C": 1000.0000000000001
+   },
+   "combined_cycle_TIT1000": {
+    "eta": 0.4270010211618881,
+    "pressure_ratio": 2.8157894736842106,
+    "TIT_C": 1000.0000000000001
+   }
+  },
+  "A2_1750C": {
+   "T_out_C": 1750.0,
+   "carnot": 0.8501594048884166,
+   "curzon_ahlborn": 0.6129075109078149,
+   "brayton_recuperated": {
+    "eta": 0.5408262178618299,
+    "pressure_ratio": 3.137458193979933,
+    "TIT_C": 1500.0
+   },
+   "combined_cycle": {
+    "eta": 0.48580283587486023,
+    "pressure_ratio": 4.631578947368421,
+    "TIT_C": 1500.0
+   },
+   "brayton_recuperated_TIT1000": {
+    "eta": 0.4425584738730234,
+    "pressure_ratio": 2.5324414715719064,
+    "TIT_C": 1000.0000000000001
+   },
+   "combined_cycle_TIT1000": {
+    "eta": 0.4270010211618881,
+    "pressure_ratio": 2.8157894736842106,
+    "TIT_C": 1000.0000000000001
+   }
+  },
+  "A2_1700C_PbBond": {
+   "T_out_C": 1700.0,
+   "carnot": 0.846362415427109,
+   "curzon_ahlborn": 0.6080336945949423,
+   "brayton_recuperated": {
+    "eta": 0.5408262178618299,
+    "pressure_ratio": 3.137458193979933,
+    "TIT_C": 1500.0
+   },
+   "combined_cycle": {
+    "eta": 0.48580283587486023,
+    "pressure_ratio": 4.631578947368421,
+    "TIT_C": 1500.0
+   },
+   "brayton_recuperated_TIT1000": {
+    "eta": 0.4425584738730234,
+    "pressure_ratio": 2.5324414715719064,
+    "TIT_C": 1000.0000000000001
+   },
+   "combined_cycle_TIT1000": {
+    "eta": 0.4270010211618881,
+    "pressure_ratio": 2.8157894736842106,
+    "TIT_C": 1000.0000000000001
+   }
+  },
+  "A3_2000C": {
+   "T_out_C": 2000.0,
+   "carnot": 0.8666388051822361,
+   "curzon_ahlborn": 0.6348134794139249,
+   "brayton_recuperated": {
+    "eta": 0.5408262178618299,
+    "pressure_ratio": 3.137458193979933,
+    "TIT_C": 1500.0
+   },
+   "combined_cycle": {
+    "eta": 0.48580283587486023,
+    "pressure_ratio": 4.631578947368421,
+    "TIT_C": 1500.0
+   },
+   "brayton_recuperated_TIT1000": {
+    "eta": 0.4425584738730234,
+    "pressure_ratio": 2.5324414715719064,
+    "TIT_C": 1000.0000000000001
+   },
+   "combined_cycle_TIT1000": {
+    "eta": 0.4270010211618881,
+    "pressure_ratio": 2.8157894736842106,
+    "TIT_C": 1000.0000000000001
+   }
+  },
+  "ref_550C": {
+   "T_out_C": 550.0,
+   "carnot": 0.6317196136791594,
+   "curzon_ahlborn": 0.3931389068980936,
+   "brayton_recuperated": {
+    "eta": 0.23057029301372503,
+    "pressure_ratio": 1.9050167224080268,
+    "TIT_C": 500.0
+   },
+   "combined_cycle": {
+    "eta": 0.34106139766456134,
+    "pressure_ratio": 1.7105263157894737,
+    "TIT_C": 500.0
+   },
+   "brayton_recuperated_TIT1000": {
+    "eta": 0.23057029301372503,
+    "pressure_ratio": 1.9050167224080268,
+    "TIT_C": 500.0
+   },
+   "combined_cycle_TIT1000": {
+    "eta": 0.34106139766456134,
+    "pressure_ratio": 1.7105263157894737,
+    "TIT_C": 500.0
+   }
+  }
+ }
+}

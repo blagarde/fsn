@@ -1,0 +1,74 @@
+{
+ "B1": {
+  "T_out_C": 1100,
+  "carnot": 0.7792302370462076,
+  "curzon_ahlborn": 0.5301385704765794,
+  "turbine_inlet_C": 1050,
+  "brayton_He": {
+   "pressure_ratio": 2.4,
+   "eta_gross": 0.5624661887847552,
+   "eta_net": 0.5343428793455174
+  },
+  "assumptions": "He closed Brayton, 1 intercooler, turbine 0.92, compressor 0.89, recuperator 0.95, 5% pressure loss, compressor inlet 35 C, IHX approach 50 K, net = 0.95 gross (approx.)"
+ },
+ "B2": {
+  "T_out_C": 900,
+  "carnot": 0.7415931466564378,
+  "curzon_ahlborn": 0.4916626579292427,
+  "turbine_inlet_C": 850,
+  "brayton_He": {
+   "pressure_ratio": 2.2,
+   "eta_gross": 0.5047091864033126,
+   "eta_net": 0.479473727083147
+  },
+  "assumptions": "He closed Brayton, 1 intercooler, turbine 0.92, compressor 0.89, recuperator 0.95, 5% pressure loss, compressor inlet 35 C, IHX approach 50 K, net = 0.95 gross (approx.)"
+ },
+ "B3": {
+  "T_out_C": 1000,
+  "carnot": 0.7618898008875624,
+  "curzon_ahlborn": 0.5120346332858883,
+  "turbine_inlet_C": 1000,
+  "brayton_He": {
+   "pressure_ratio": 2.35,
+   "eta_gross": 0.5496111147154213,
+   "eta_net": 0.5221305589796502
+  },
+  "assumptions": "He closed Brayton, 1 intercooler, turbine 0.92, compressor 0.89, recuperator 0.95, 5% pressure loss, compressor inlet 35 C, IHX approach 0 K, net = 0.95 gross (approx.)"
+ },
+ "B4": {
+  "T_out_C": 900,
+  "carnot": 0.7415931466564378,
+  "curzon_ahlborn": 0.4916626579292427,
+  "turbine_inlet_C": 825,
+  "brayton_He": {
+   "pressure_ratio": 2.175,
+   "eta_gross": 0.4961141393055254,
+   "eta_net": 0.4713084323402491
+  },
+  "assumptions": "He closed Brayton, 1 intercooler, turbine 0.92, compressor 0.89, recuperator 0.95, 5% pressure loss, compressor inlet 35 C, IHX approach 75 K, net = 0.95 gross (approx.)"
+ },
+ "B5": {
+  "T_out_C": 1100,
+  "carnot": 0.7792302370462076,
+  "curzon_ahlborn": 0.5301385704765794,
+  "turbine_inlet_C": 1050,
+  "brayton_He": {
+   "pressure_ratio": 2.4,
+   "eta_gross": 0.5624661887847552,
+   "eta_net": 0.5343428793455174
+  },
+  "assumptions": "He closed Brayton, 1 intercooler, turbine 0.92, compressor 0.89, recuperator 0.95, 5% pressure loss, compressor inlet 35 C, IHX approach 50 K, net = 0.95 gross (approx.)"
+ },
+ "B6": {
+  "T_out_C": 1100,
+  "carnot": 0.7792302370462076,
+  "curzon_ahlborn": 0.5301385704765794,
+  "turbine_inlet_C": 1050,
+  "brayton_He": {
+   "pressure_ratio": 2.4,
+   "eta_gross": 0.5624661887847552,
+   "eta_net": 0.5343428793455174
+  },
+  "assumptions": "He closed Brayton, 1 intercooler, turbine 0.92, compressor 0.89, recuperator 0.95, 5% pressure loss, compressor inlet 35 C, IHX approach 50 K, net = 0.95 gross (approx.)"
+ }
+}

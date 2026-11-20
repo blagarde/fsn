@@ -1,0 +1,278 @@
+{
+ "Li_boiling": {
+  "Tb_1bar_C": 1346.9699999999998,
+  "Tb_5bar_C": 1629.8550125868815,
+  "Tb_10bar_C": 1784.596150830485,
+  "max_peak_coolant_1bar_C": 1046.9699999999998,
+  "max_peak_coolant_10bar_C": 1484.596150830485,
+  "basis": "JANAF (db) vapour pressure; Clausius-Clapeyron above Tb (calc)",
+  "B1_hot_channel_peak_C": 1137.5,
+  "B1_pressure_for_300K_margin_bar": 1.773535259346582
+ },
+ "Pb_boiling": {
+  "Tb_1bar_C": 1745.8719999999998,
+  "max_peak_coolant_1bar_C": 1445.8719999999998
+ },
+ "B1": {
+  "design": "B1",
+  "P_MWth": 1000,
+  "coolant": {
+   "rho": 432.18499999999995,
+   "k": 55.0,
+   "mu": 0.00024,
+   "cp": 4135.825504322766,
+   "src": "cp db JANAF; rho,k,mu approx.",
+   "mdot_kg_s": 1611.9313205304877,
+   "velocity_m_s": 4.425833649323752,
+   "Re": 34668.49156582074,
+   "Pr": 0.018047238564317527,
+   "h_W_m2K": 143070.2969548181
+  },
+  "T_in_C": 950,
+  "T_out_C": 1100,
+  "geometry": {
+   "r_fuel_mm": 3.0,
+   "gap_mm": 0.1,
+   "t_clad_mm": 0.6,
+   "p_over_d": 1.2,
+   "H_m": 1.0,
+   "n_pins": 33333,
+   "core_diameter_m": 1.7024435233148099,
+   "vol_frac_fuel": 0.4140338212733332,
+   "vol_frac_clad": 0.18769533231057767,
+   "vol_frac_coolant": 0.370208554085341,
+   "Dh_mm": 4.349921419229231
+  },
+  "q_lin_avg_kW_m": 30.0,
+  "q_lin_peak_kW_m": 45.0,
+  "heat_flux_peak_MW_m2": 1.9356682267933218,
+  "core_power_density_MW_m3": 439.3035284191821,
+  "dT_K": {
+   "film": 13.52949052314199,
+   "clad": 21.119547591200135,
+   "gap": 234.81876849623902,
+   "fuel": 179.04931097838227
+  },
+  "T_hot_channel_out_C": 1137.5,
+  "T_clad_peak_C": 1172.1490381143421,
+  "T_fuel_peak_C": 1586.0171175889636,
+  "dP_core_kPa": 22.53470106538442,
+  "pumping_MW": 0.33619297704533846,
+  "pumping_frac": 0.0003361929770453385,
+  "assumptions": "q' avg 30 kW/m, k_fuel 20.0, k_clad 60.0, h_gap 10000.0 W/m2K, F_q 1.5, F_dH 1.25, loop dP = 2.0 x core, pump eff 0.5 (all approx.)"
+ },
+ "B2": {
+  "design": "B2",
+  "P_MWth": 1000,
+  "coolant": {
+   "rho": 10085.22964,
+   "k": 21.004649999999998,
+   "mu": 0.0012320445433921835,
+   "cp": 140.79710907335908,
+   "src": "cp db JANAF; rho,k,mu approx. (NEA handbook form)",
+   "mdot_kg_s": 35512.09277595936,
+   "velocity_m_s": 3.058107425402071,
+   "Re": 141151.8672548714,
+   "Pr": 0.008258567029644682,
+   "h_W_m2K": 52521.516061166665
+  },
+  "T_in_C": 700,
+  "T_out_C": 900,
+  "geometry": {
+   "r_fuel_mm": 3.0,
+   "gap_mm": 0.1,
+   "t_clad_mm": 0.8,
+   "p_over_d": 1.25,
+   "H_m": 1.0,
+   "n_pins": 33333,
+   "core_diameter_m": 1.8692369766125447,
+   "vol_frac_fuel": 0.34344129973665666,
+   "vol_frac_clad": 0.21369680872503075,
+   "vol_frac_coolant": 0.4195842034450504,
+   "Dh_mm": 5.638641825906182
+  },
+  "q_lin_avg_kW_m": 30.0,
+  "q_lin_peak_kW_m": 45.0,
+  "heat_flux_peak_MW_m2": 1.8364031895218693,
+  "core_power_density_MW_m3": 364.4025367666277,
+  "dT_K": {
+   "film": 34.964778765776494,
+   "clad": 164.42058237877833,
+   "gap": 234.81876849623902,
+   "fuel": 179.04931097838227
+  },
+  "T_hot_channel_out_C": 950.0000000000001,
+  "T_clad_peak_C": 1149.3853611445552,
+  "T_fuel_peak_C": 1563.2534406191762,
+  "dP_core_kPa": 143.63730873981416,
+  "pumping_MW": 1.3487345001582332,
+  "pumping_frac": 0.001348734500158233,
+  "assumptions": "q' avg 30 kW/m, k_fuel 20.0, k_clad 10.0, h_gap 10000.0 W/m2K, F_q 1.5, F_dH 1.25, loop dP = 2.0 x core, pump eff 0.75 (all approx.)"
+ },
+ "B3": {
+  "design": "B3",
+  "P_MWth": 1000,
+  "coolant": {
+   "rho": 3.1401154527514454,
+   "cp": 5193.16357992305,
+   "k": 0.3827959695687568,
+   "mu": 4.8596104009438296e-05,
+   "src": "rho, cp ideal gas (calc); k, mu approx. (KTA-type)",
+   "mdot_kg_s": 481.40212830288766,
+   "velocity_m_s": 41.435100990244095,
+   "Re": 24893.980125438207,
+   "Pr": 0.6592742283892775,
+   "h_W_m2K": 2635.2106034196436
+  },
+  "T_in_C": 600,
+  "T_out_C": 1000,
+  "geometry": {
+   "r_fuel_mm": 3.0,
+   "gap_mm": 0.1,
+   "t_clad_mm": 0.7,
+   "p_over_d": 1.42,
+   "H_m": 1.0,
+   "n_pins": 66667,
+   "core_diameter_m": 2.9260159036687465,
+   "vol_frac_fuel": 0.28032244799891515,
+   "vol_frac_clad": 0.15043971375941784,
+   "vol_frac_coolant": 0.5502382056550739,
+   "Dh_mm": 9.297833687873222
+  },
+  "q_lin_avg_kW_m": 15.0,
+  "q_lin_peak_kW_m": 22.5,
+  "heat_flux_peak_MW_m2": 0.9423647946230646,
+  "core_power_density_MW_m3": 148.71567752882711,
+  "dT_K": {
+   "film": 357.60511641846864,
+   "clad": 72.90850530372487,
+   "gap": 117.40938424811951,
+   "fuel": 89.52465548919113
+  },
+  "T_hot_channel_out_C": 1100.0,
+  "T_clad_peak_C": 1530.5136217221939,
+  "T_fuel_peak_C": 1737.4476614595046,
+  "dP_core_kPa": 7.293469114515766,
+  "pumping_MW": 2.6309197916781835,
+  "pumping_frac": 0.0026309197916781833,
+  "assumptions": "q' avg 15 kW/m, k_fuel 20.0, k_clad 10.0, h_gap 10000.0 W/m2K, F_q 1.5, F_dH 1.25, loop dP = 2.0 x core, pump eff 0.85 (all approx.)",
+  "pressure_for_1h_decay_heat_MPa": 1.7073120594151125,
+  "natural_circulation": {
+   "assumptions": "chimney 10 m, loop K = 15, core dT 400 K, He at 800 C (approx.)",
+   "cases": {
+    "7.0 MPa": {
+     "Q_MW": 53.30015652274757,
+     "frac_of_nominal": 0.05330015652274757
+    },
+    "1.0 MPa": {
+     "Q_MW": 7.614308074678223,
+     "frac_of_nominal": 0.007614308074678223
+    },
+    "0.1 MPa": {
+     "Q_MW": 0.7614308074678225,
+     "frac_of_nominal": 0.0007614308074678225
+    }
+   },
+   "decay_heat_frac_1h_approx": 0.013
+  }
+ },
+ "B4": {
+  "design": "B4",
+  "P_MWth": 1000.0,
+  "T_in_C": 700.0,
+  "T_out_C": 900.0,
+  "salt_props": {
+   "rho": 3300.0,
+   "cp": 600.0,
+   "k": 0.6,
+   "mu": 0.004,
+   "src": "all approx."
+  },
+  "mdot_kg_s": 8333.333333333334,
+  "Vdot_m3_s": 2.5252525252525255,
+  "V_core_m3": 10.0,
+  "V_loop_m3": 10.0,
+  "core_power_density_MW_m3": 100.0,
+  "residence_core_s": 3.9599999999999995,
+  "residence_loop_s": 3.9599999999999995,
+  "delayed_fraction_emitted_in_core": 0.5685723140373254,
+  "delayed_fraction_vs_loop_volume": {
+   "V_loop 5.0 m3": 0.6991518606297559,
+   "V_loop 10.0 m3": 0.5685723140373254,
+   "V_loop 20.0 m3": 0.45472552355085305
+  },
+  "beta_Pu239_approx": 0.0021,
+  "beta_eff_circulating_approx": 0.0011940018594783833,
+  "NaCl_vp_bar_at_1173K": 0.0029018005478458836,
+  "NaCl_melting_C": 800.65,
+  "assumptions": "salt cp 600 J/kgK, rho 3,300 kg/m3 (approx.); eutectic NaCl-UCl3 melts near 520 C (approx.); 6-group Pu-239 delayed data (Keepin, approx.)"
+ },
+ "B5": {
+  "design": "B5",
+  "P_MWth": 1000.0,
+  "T_in_C": 900.0,
+  "T_out_C": 1100.0,
+  "core_power_density_MW_m3": 150.0,
+  "core_volume_m3": 6.666666666666667,
+  "core_diameter_m_H1m": 2.9134624815788777,
+  "channel_radius_mm": 4.0,
+  "cell_radius_mm": 6.761234037828133,
+  "n_channels": 46420,
+  "Pb_velocity_m_s": 1.5718379225849377,
+  "Re": 117518.53801871868,
+  "h_W_m2K": 34600.63005687307,
+  "heat_flux_peak_MW_m2": 1.3928571428571428,
+  "T_hot_channel_out_C": 1150.0,
+  "dT_film_K": 40.25525375022659,
+  "cases": {
+   "UN-W": {
+    "dT_conduction_K": 38.07829757130263,
+    "T_wall_peak_C": 1190.2552537502265,
+    "T_cermet_peak_C": 1228.333551321529
+   },
+   "UN-Mo": {
+    "dT_conduction_K": 42.83808476771545,
+    "T_wall_peak_C": 1190.2552537502265,
+    "T_cermet_peak_C": 1233.093338517942
+   }
+  },
+  "dP_core_kPa": 27.08740134753879,
+  "pumping_MW": 0.26492358456567,
+  "assumptions": "150 MW/m3 core average, cermet 60% / Pb 35% / void 5%, channel r 4 mm, H 1 m, k cermet UN-W 45, UN-Mo 40 W/mK (approx.)"
+ },
+ "B6": {
+  "design": "B6",
+  "P_MWth": 10.0,
+  "heat_pipe_kW": 10.0,
+  "n_heat_pipes": 1000.0,
+  "Li_heat_pipe_limits": {
+   "1300.0": {
+    "p_v_bar": 0.07055846168830324,
+    "h_fg_MJ_kg": 21.373919308357348,
+    "rho_v_kg_m3": 0.004530342503682163,
+    "sonic_limit_kW": 11.516815889326345
+   },
+   "1400.0": {
+    "p_v_bar": 0.1898521881989747,
+    "h_fg_MJ_kg": 21.260374639769452,
+    "rho_v_kg_m3": 0.011319125022055499,
+    "sonic_limit_kW": 29.702522496596806
+   },
+   "1500.0": {
+    "p_v_bar": 0.44678136040801036,
+    "h_fg_MJ_kg": 21.14812680115274,
+    "rho_v_kg_m3": 0.024861599870719727,
+    "sonic_limit_kW": 67.1725992069837
+   }
+  },
+  "core_diameter_m": 1.414213562373095,
+  "H_m": 1.5,
+  "core_power_density_MW_m3": 4.244131815783876,
+  "dT_monolith_K": 21.471007481645305,
+  "T_vapour_C": 1150.0,
+  "T_fuel_peak_C": 1201.4710074816453,
+  "heat_pipes_for_1000MWth": 100000.0,
+  "core_diameter_for_1000MWth_m": 14.14213562373095,
+  "assumptions": "10 kW per Li heat pipe (capillary-limited, approx.), OD 20 mm, vapour core 16 mm, monolith k 30 W/mK (approx.), wall + wick dT 30 K (approx.), H 1.5 m"
+ }
+}

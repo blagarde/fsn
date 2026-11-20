@@ -1,0 +1,183 @@
+{
+ "source": "data/htfbr.sqlite (read-only)",
+ "fast_absorption_mb": {
+  "He": 0.0,
+  "C": 1.1,
+  "N": 129.2,
+  "O": 11.9,
+  "Al": 5.2,
+  "Si": 10.5,
+  "Y": 5.5,
+  "Zr": 9.8,
+  "Nb": 27.4,
+  "Mo": 33.2,
+  "Ta": 111.5,
+  "W": 54.9,
+  "Re": 138.8,
+  "Pb": 1.8
+ },
+ "fast_absorption_basis": "ENDF/B-VIII.0 via NJOY2016, natural abundance, MT 101, U-235 Watt spectrum average",
+ "melting_point_C": {
+  "Al": 660.0,
+  "Mo": 2623.0,
+  "Nb": 2477.0,
+  "Pb": 327.0,
+  "Pu": 640.0,
+  "Re": 3185.0,
+  "Si": 1414.0,
+  "Ta": 3017.0,
+  "U": 1135.0,
+  "W": 3422.0,
+  "Zr": 1855.0
+ },
+ "melting_point_basis": "SGTE unary via pycalphad (property table)",
+ "melting_point_C_janaf": {
+  "Al2O3": [
+   2054.0,
+   "JANAF cr,l table: crystal <--> liquid row"
+  ],
+  "AlN": [
+   null,
+   "missing cr,l table"
+  ]
+ },
+ "vapour_pressure_bar": {
+  "Al@1000C": [
+   1.6115780135014795e-07,
+   "JANAF dfG, monomer+dimer"
+  ],
+  "Al@1200C": [
+   8.545594271721846e-06,
+   "JANAF dfG, monomer+dimer"
+  ],
+  "Al@1300C": [
+   4.224601135407088e-05,
+   "JANAF dfG, monomer+dimer"
+  ],
+  "Al@1400C": [
+   0.00017169114571072562,
+   "JANAF dfG, monomer+dimer"
+  ],
+  "Al@1500C": [
+   0.0005931133029155856,
+   "JANAF dfG, monomer+dimer"
+  ],
+  "Al@1600C": [
+   0.0017880605778210475,
+   "JANAF dfG, monomer+dimer"
+  ],
+  "Al@1700C": [
+   0.004803778940710152,
+   "JANAF dfG, monomer+dimer"
+  ],
+  "Al@1800C": [
+   0.011697667052123925,
+   "JANAF dfG, monomer+dimer"
+  ],
+  "Pb@1000C": [
+   0.0018592274195165727,
+   "JANAF dfG, monomer+dimer"
+  ],
+  "Pb@1200C": [
+   0.019106731164960564,
+   "JANAF dfG, monomer+dimer"
+  ],
+  "Pb@1300C": [
+   0.048779963907660324,
+   "JANAF dfG, monomer+dimer"
+  ],
+  "Pb@1400C": [
+   0.1110188997833583,
+   "JANAF dfG, monomer+dimer"
+  ],
+  "Pb@1500C": [
+   0.22975294372177424,
+   "JANAF dfG, monomer+dimer"
+  ],
+  "Pb@1600C": [
+   0.43912956441226686,
+   "JANAF dfG, monomer+dimer"
+  ],
+  "Pb@1700C": [
+   0.7848419552010756,
+   "JANAF dfG, monomer+dimer"
+  ],
+  "Pb@1800C": [
+   1.3181041559080064,
+   "EXTRAPOLATED above Tb=2019 K: Clausius-Clapeyron, constant dHvap=177.6 kJ/mol from JANAF"
+  ]
+ },
+ "boiling_point_C": {
+  "Al": [
+   2518.0,
+   "JANAF cr,l table: fugacity = 1 bar row"
+  ],
+  "Pb": [
+   1746.0,
+   "JANAF cr,l table: fugacity = 1 bar row"
+  ]
+ },
+ "Pb_pressure_for_300K_margin_bar": {
+  "outlet 1400 C": 0.7848419552010756,
+  "outlet 1500 C": 1.3181041559080064,
+  "outlet 1600 C": 2.1175642360208347,
+  "outlet 1700 C": 3.26293770822148
+ },
+ "Al2O3_cp_J_per_molK": {
+  "1000": 124.771,
+  "1200": 128.252,
+  "1400": 131.081,
+  "1600": 133.361
+ },
+ "Al2O3_cp_kJ_per_kgK": {
+  "1000": 1.224,
+  "1200": 1.258,
+  "1400": 1.286,
+  "1600": 1.308
+ },
+ "AlN_decomposition": {
+  "1200": {
+   "dfG_AlN_kJ": -156.3849405,
+   "pN2_over_AlN+Al(l)_bar": 8.129961409380657e-12,
+   "vacuum_congruent_pAl_bar": 1.0588552350492035e-07,
+   "vacuum_congruent_pN2_bar": 5.2942761752460176e-08
+  },
+  "1300": {
+   "dfG_AlN_kJ": -144.6792555,
+   "pN2_over_AlN+Al(l)_bar": 2.468143329276706e-10,
+   "vacuum_congruent_pAl_bar": 9.58505419036517e-07,
+   "vacuum_congruent_pN2_bar": 4.792527095182585e-07
+  },
+  "1400": {
+   "dfG_AlN_kJ": -132.98283899999998,
+   "pN2_over_AlN+Al(l)_bar": 4.976098721865387e-09,
+   "vacuum_congruent_pAl_bar": 6.642873474279537e-06,
+   "vacuum_congruent_pN2_bar": 3.3214367371397683e-06
+  },
+  "1500": {
+   "dfG_AlN_kJ": -121.29469099999999,
+   "pN2_over_AlN+Al(l)_bar": 7.141329628770581e-08,
+   "vacuum_congruent_pAl_bar": 3.6883332186976927e-05,
+   "vacuum_congruent_pN2_bar": 1.8441666093488463e-05
+  },
+  "1600": {
+   "dfG_AlN_kJ": -109.6152745,
+   "pN2_over_AlN+Al(l)_bar": 7.702979138182279e-07,
+   "vacuum_congruent_pAl_bar": 0.0001700196105562681,
+   "vacuum_congruent_pN2_bar": 8.500980527813405e-05
+  },
+  "1800": {
+   "dfG_AlN_kJ": -86.27997849999998,
+   "pN2_over_AlN+Al(l)_bar": 4.490569820364978e-05,
+   "vacuum_congruent_pAl_bar": 0.002303909091746345,
+   "vacuum_congruent_pN2_bar": 0.0011519545458731726
+  },
+  "2000": {
+   "dfG_AlN_kJ": -62.97521949999999,
+   "pN2_over_AlN+Al(l)_bar": 0.0012759846897124523,
+   "vacuum_congruent_pAl_bar": 0.019567536291636854,
+   "vacuum_congruent_pN2_bar": 0.009783768145818427
+  }
+ },
+ "AlN_decomposition_basis": "NIST-JANAF dfG of AlN(cr) and Al(g); reference states Al(cr,l), N2(g)"
+}

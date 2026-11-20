@@ -1,0 +1,591 @@
+{
+ "database": "oc-mo-ni-re (Mo-Re: Mathieu 2013)",
+ "path": "/home/user/htfbr-data/data/raw/opencalphad_examples/5b1704de6914_BEF.TDB",
+ "phases": [
+  "BCC_A2",
+  "SIGMA",
+  "CHI",
+  "HCP_A3",
+  "LIQUID"
+ ],
+ "results": {
+  "1300": {
+   "first_x_Re_with_second_phase": 0.26,
+   "scan": [
+    {
+     "x_Re": 0.2,
+     "phases": [
+      "BCC_A2"
+     ]
+    },
+    {
+     "x_Re": 0.22,
+     "phases": [
+      "BCC_A2"
+     ]
+    },
+    {
+     "x_Re": 0.24,
+     "phases": [
+      "BCC_A2"
+     ]
+    },
+    {
+     "x_Re": 0.26,
+     "phases": [
+      "BCC_A2",
+      "CHI"
+     ]
+    },
+    {
+     "x_Re": 0.28,
+     "phases": [
+      "BCC_A2",
+      "CHI"
+     ]
+    },
+    {
+     "x_Re": 0.3,
+     "phases": [
+      "BCC_A2",
+      "CHI"
+     ]
+    },
+    {
+     "x_Re": 0.32,
+     "phases": [
+      "BCC_A2",
+      "CHI"
+     ]
+    },
+    {
+     "x_Re": 0.34,
+     "phases": [
+      "BCC_A2",
+      "CHI"
+     ]
+    },
+    {
+     "x_Re": 0.36,
+     "phases": [
+      "BCC_A2",
+      "CHI"
+     ]
+    },
+    {
+     "x_Re": 0.38,
+     "phases": [
+      "BCC_A2",
+      "CHI"
+     ]
+    },
+    {
+     "x_Re": 0.4,
+     "phases": [
+      "BCC_A2",
+      "CHI"
+     ]
+    },
+    {
+     "x_Re": 0.42,
+     "phases": [
+      "BCC_A2",
+      "CHI"
+     ]
+    },
+    {
+     "x_Re": 0.44,
+     "phases": [
+      "BCC_A2",
+      "CHI"
+     ]
+    },
+    {
+     "x_Re": 0.46,
+     "phases": [
+      "BCC_A2",
+      "CHI"
+     ]
+    },
+    {
+     "x_Re": 0.48,
+     "phases": [
+      "BCC_A2",
+      "CHI"
+     ]
+    },
+    {
+     "x_Re": 0.5,
+     "phases": [
+      "BCC_A2",
+      "CHI"
+     ]
+    },
+    {
+     "x_Re": 0.52,
+     "phases": [
+      "BCC_A2",
+      "CHI"
+     ]
+    },
+    {
+     "x_Re": 0.54,
+     "phases": [
+      "BCC_A2",
+      "CHI"
+     ]
+    },
+    {
+     "x_Re": 0.56,
+     "phases": [
+      "BCC_A2",
+      "CHI"
+     ]
+    },
+    {
+     "x_Re": 0.58,
+     "phases": [
+      "BCC_A2",
+      "CHI"
+     ]
+    },
+    {
+     "x_Re": 0.6,
+     "phases": [
+      "BCC_A2",
+      "CHI"
+     ]
+    }
+   ]
+  },
+  "1500": {
+   "first_x_Re_with_second_phase": 0.3,
+   "scan": [
+    {
+     "x_Re": 0.2,
+     "phases": [
+      "BCC_A2"
+     ]
+    },
+    {
+     "x_Re": 0.22,
+     "phases": [
+      "BCC_A2"
+     ]
+    },
+    {
+     "x_Re": 0.24,
+     "phases": [
+      "BCC_A2"
+     ]
+    },
+    {
+     "x_Re": 0.26,
+     "phases": [
+      "BCC_A2"
+     ]
+    },
+    {
+     "x_Re": 0.28,
+     "phases": [
+      "BCC_A2"
+     ]
+    },
+    {
+     "x_Re": 0.3,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.32,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.34,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.36,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.38,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.4,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.42,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.44,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.46,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.48,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.5,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.52,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.54,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.56,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.58,
+     "phases": [
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.6,
+     "phases": [
+      "CHI",
+      "SIGMA"
+     ]
+    }
+   ]
+  },
+  "1800": {
+   "first_x_Re_with_second_phase": 0.34,
+   "scan": [
+    {
+     "x_Re": 0.2,
+     "phases": [
+      "BCC_A2"
+     ]
+    },
+    {
+     "x_Re": 0.22,
+     "phases": [
+      "BCC_A2"
+     ]
+    },
+    {
+     "x_Re": 0.24,
+     "phases": [
+      "BCC_A2"
+     ]
+    },
+    {
+     "x_Re": 0.26,
+     "phases": [
+      "BCC_A2"
+     ]
+    },
+    {
+     "x_Re": 0.28,
+     "phases": [
+      "BCC_A2"
+     ]
+    },
+    {
+     "x_Re": 0.3,
+     "phases": [
+      "BCC_A2"
+     ]
+    },
+    {
+     "x_Re": 0.32,
+     "phases": [
+      "BCC_A2"
+     ]
+    },
+    {
+     "x_Re": 0.34,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.36,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.38,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.4,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.42,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.44,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.46,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.48,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.5,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.52,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.54,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.56,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.58,
+     "phases": [
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.6,
+     "phases": [
+      "SIGMA"
+     ]
+    }
+   ]
+  },
+  "2100": {
+   "first_x_Re_with_second_phase": 0.38,
+   "scan": [
+    {
+     "x_Re": 0.2,
+     "phases": [
+      "BCC_A2"
+     ]
+    },
+    {
+     "x_Re": 0.22,
+     "phases": [
+      "BCC_A2"
+     ]
+    },
+    {
+     "x_Re": 0.24,
+     "phases": [
+      "BCC_A2"
+     ]
+    },
+    {
+     "x_Re": 0.26,
+     "phases": [
+      "BCC_A2"
+     ]
+    },
+    {
+     "x_Re": 0.28,
+     "phases": [
+      "BCC_A2"
+     ]
+    },
+    {
+     "x_Re": 0.3,
+     "phases": [
+      "BCC_A2"
+     ]
+    },
+    {
+     "x_Re": 0.32,
+     "phases": [
+      "BCC_A2"
+     ]
+    },
+    {
+     "x_Re": 0.34,
+     "phases": [
+      "BCC_A2"
+     ]
+    },
+    {
+     "x_Re": 0.36,
+     "phases": [
+      "BCC_A2"
+     ]
+    },
+    {
+     "x_Re": 0.38,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.4,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.42,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.44,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.46,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.48,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.5,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.52,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.54,
+     "phases": [
+      "BCC_A2",
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.56,
+     "phases": [
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.58,
+     "phases": [
+      "SIGMA"
+     ]
+    },
+    {
+     "x_Re": 0.6,
+     "phases": [
+      "SIGMA"
+     ]
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,450 @@
+{
+ "janaf": {
+  "T_K": [
+   1600.0,
+   1900.0,
+   2100.0,
+   2300.0
+  ],
+  "per_mol_N2_kJ": {
+   "AlN": [
+    -283.074,
+    -212.96,
+    -166.298,
+    -119.696
+   ],
+   "ZrN": [
+    -434.724,
+    -381.514,
+    -346.496,
+    -308.238
+   ],
+   "TiN": [
+    -373.182,
+    -317.646,
+    -278.428,
+    -238.51
+   ],
+   "BN": [
+    -219.992,
+    -167.982,
+    -133.422,
+    -98.906
+   ]
+  },
+  "per_mol_O2_kJ": {
+   "Al2O3": [
+    -775.956,
+    -710.9506666666666,
+    -667.8993333333334,
+    -625.062
+   ],
+   "ZrO2": [
+    -798.854,
+    -745.939,
+    -710.772,
+    -673.863
+   ],
+   "CaO": [
+    -929.446,
+    -841.992,
+    -765.046,
+    -688.822
+   ]
+  },
+  "p_N2_AlN_bar": [
+   5.738027642228652e-10,
+   1.3977706780282525e-06,
+   7.305408333946194e-05,
+   0.0019128088294443864
+  ],
+  "diboride_nitriding": {
+   "ZrB2": [
+    {
+     "T_K": 1600.0,
+     "dG_to_MN_2BN_kJ": -143.61599999999999,
+     "p_N2_threshold_MN_2BN_bar": 0.0007487557524027225,
+     "dG_to_MN_2B_kJ": 76.376,
+     "p_N2_threshold_MN_2B_bar": 96993.74163145208,
+     "p_N2_AlN_over_threshold": 7.663417107401962e-07
+    },
+    {
+     "T_K": 1900.0,
+     "dG_to_MN_2BN_kJ": -72.77000000000004,
+     "p_N2_threshold_MN_2BN_bar": 0.046376884064707705,
+     "dG_to_MN_2B_kJ": 95.21199999999999,
+     "p_N2_threshold_MN_2B_bar": 171798.10016172522,
+     "p_N2_AlN_over_threshold": 3.0139383147819984e-05
+    },
+    {
+     "T_K": 2100.0,
+     "dG_to_MN_2BN_kJ": -26.147999999999968,
+     "p_N2_threshold_MN_2BN_bar": 0.36847769735234837,
+     "dG_to_MN_2B_kJ": 107.274,
+     "p_N2_threshold_MN_2B_bar": 217012.67956520125,
+     "p_N2_AlN_over_threshold": 0.0001982591724394262
+    },
+    {
+     "T_K": 2300.0,
+     "dG_to_MN_2BN_kJ": 20.066000000000003,
+     "p_N2_threshold_MN_2BN_bar": 2.01281030286351,
+     "dG_to_MN_2B_kJ": 118.97200000000001,
+     "p_N2_threshold_MN_2B_bar": 253380.03628346257,
+     "p_N2_AlN_over_threshold": 0.0009503174873077423
+    }
+   ],
+   "TiB2": [
+    {
+     "T_K": 1600.0,
+     "dG_to_MN_2BN_kJ": -156.04299999999998,
+     "p_N2_threshold_MN_2BN_bar": 0.00040167873415647675,
+     "dG_to_MN_2B_kJ": 63.948999999999984,
+     "p_N2_threshold_MN_2B_bar": 14974.754681224736,
+     "p_N2_AlN_over_threshold": 1.4285116821726897e-06
+    },
+    {
+     "T_K": 1900.0,
+     "dG_to_MN_2BN_kJ": -83.22400000000002,
+     "p_N2_threshold_MN_2BN_bar": 0.02983355325807213,
+     "dG_to_MN_2B_kJ": 84.75799999999998,
+     "p_N2_threshold_MN_2B_bar": 45732.88556160118,
+     "p_N2_AlN_over_threshold": 4.685230304070651e-05
+    },
+    {
+     "T_K": 2100.0,
+     "dG_to_MN_2BN_kJ": -34.976999999999975,
+     "p_N2_threshold_MN_2BN_bar": 0.26303154227292597,
+     "dG_to_MN_2B_kJ": 98.445,
+     "p_N2_threshold_MN_2B_bar": 78935.97609634337,
+     "p_N2_AlN_over_threshold": 0.00027773887005407054
+    },
+    {
+     "T_K": 2300.0,
+     "dG_to_MN_2BN_kJ": 13.082999999999998,
+     "p_N2_threshold_MN_2BN_bar": 1.577898166800393,
+     "dG_to_MN_2B_kJ": 111.989,
+     "p_N2_threshold_MN_2B_bar": 122067.70192275423,
+     "p_N2_AlN_over_threshold": 0.001212251126017285
+    }
+   ]
+  },
+  "p_Al2O_bar": [
+   6.19526036563881e-05,
+   0.004940763132915602,
+   0.043911762599925026,
+   0.26003324471637645
+  ],
+  "ZrB2_dfG_fit_J": {
+   "A": -350055.9090909095,
+   "B": 34.33290909090925,
+   "form": "dfG = A + B*T, 1500-2500 K"
+  },
+  "ZrB2_dfG_kJ": [
+   -293.738,
+   -285.969,
+   -280.522,
+   -273.091
+  ],
+  "TiB2_dfG_kJ": [
+   -250.54,
+   -243.581,
+   -237.659,
+   -231.244
+  ]
+ },
+ "calphad": {
+  "database": "cost507 (824cf2c38cc4_cost507R.TDB)",
+  "C0_AlN_crosscheck": [
+   {
+    "T_K": 1600.0,
+    "dfG_AlN_cost507_kJ": -141.65605064650282,
+    "dfG_AlN_janaf_kJ": -141.537
+   },
+   {
+    "T_K": 1900.0,
+    "dfG_AlN_cost507_kJ": -106.54715204123981,
+    "dfG_AlN_janaf_kJ": -106.48
+   },
+   {
+    "T_K": 2100.0,
+    "dfG_AlN_cost507_kJ": -83.16870225010707,
+    "dfG_AlN_janaf_kJ": -83.149
+   },
+   {
+    "T_K": 2300.0,
+    "dfG_AlN_cost507_kJ": -59.81023629360018,
+    "dfG_AlN_janaf_kJ": -59.848
+   }
+  ],
+  "C1_N_in_Al_sat_AlN": [
+   {
+    "T_K": 1600.0,
+    "x_N_liquid": 0.0008136089775622053,
+    "phases": [
+     "LIQUID",
+     "ALN"
+    ]
+   },
+   {
+    "T_K": 1900.0,
+    "x_N_liquid": 0.0010592267476125686,
+    "phases": [
+     "LIQUID",
+     "ALN"
+    ]
+   },
+   {
+    "T_K": 2100.0,
+    "x_N_liquid": 0.001210616279562532,
+    "phases": [
+     "LIQUID",
+     "ALN"
+    ]
+   },
+   {
+    "T_K": 2300.0,
+    "x_N_liquid": 0.0013515057047010237,
+    "phases": [
+     "LIQUID",
+     "ALN"
+    ]
+   }
+  ],
+  "C2_TiB2_in_Al": [
+   {
+    "T_K": 1600.0,
+    "x_Ti_liquid": 0.00020614532229718075,
+    "x_B_liquid": 0.00041229065351405716,
+    "phases": [
+     "B2TI",
+     "LIQUID"
+    ]
+   },
+   {
+    "T_K": 1900.0,
+    "x_Ti_liquid": 0.0008283260347029143,
+    "x_B_liquid": 0.0016566520389577327,
+    "phases": [
+     "LIQUID",
+     "B2TI"
+    ]
+   },
+   {
+    "T_K": 2100.0,
+    "x_Ti_liquid": 0.0017153803551258281,
+    "x_B_liquid": 0.003430760715751527,
+    "phases": [
+     "LIQUID",
+     "B2TI"
+    ]
+   },
+   {
+    "T_K": 2300.0,
+    "x_Ti_liquid": 0.003195591525266222,
+    "x_B_liquid": 0.00639118304493439,
+    "phases": [
+     "LIQUID",
+     "B2TI"
+    ]
+   }
+  ],
+  "C3_ZrB2_in_Al": [
+   {
+    "T_K": 1600.0,
+    "x_Zr_liquid": 0.00045441140401017525,
+    "x_B_liquid": 0.0009088227405096936,
+    "phases": [
+     "ZRB2JANAF",
+     "LIQUID"
+    ]
+   },
+   {
+    "T_K": 1900.0,
+    "x_Zr_liquid": 0.0018543804420379627,
+    "x_B_liquid": 0.003708760840785886,
+    "phases": [
+     "LIQUID",
+     "ZRB2JANAF"
+    ]
+   },
+   {
+    "T_K": 2100.0,
+    "x_Zr_liquid": 0.003815439627339387,
+    "x_B_liquid": 0.007630879253135053,
+    "phases": [
+     "LIQUID",
+     "ZRB2JANAF"
+    ]
+   },
+   {
+    "T_K": 2300.0,
+    "x_Zr_liquid": 0.0069903898166210916,
+    "x_B_liquid": 0.013980779156877931,
+    "phases": [
+     "LIQUID",
+     "ZRB2JANAF"
+    ]
+   }
+  ],
+  "C3_note": "ZrB2 added from JANAF (GHSER reference states: hcp Zr, beta-B; reference-state error of a few kJ/mol, approx.); B-Zr liquid interaction not assessed in cost507 (ideal).",
+  "C5_ZrN_in_Al": [
+   {
+    "T_K": 1600.0,
+    "x_Zr_liquid": 0.020807830179455446,
+    "x_N_liquid": 0.0006120756930616422,
+    "phases": [
+     "LIQUID",
+     "ALN"
+    ]
+   },
+   {
+    "T_K": 1900.0,
+    "x_Zr_liquid": 0.02079645036638975,
+    "x_N_liquid": 0.0008851912066482413,
+    "phases": [
+     "LIQUID",
+     "ALN"
+    ]
+   },
+   {
+    "T_K": 2100.0,
+    "x_Zr_liquid": 0.020788871384232747,
+    "x_N_liquid": 0.0010670867784138415,
+    "phases": [
+     "LIQUID",
+     "ALN"
+    ]
+   },
+   {
+    "T_K": 2300.0,
+    "x_Zr_liquid": 0.020781461481573074,
+    "x_N_liquid": 0.001244924442251412,
+    "phases": [
+     "LIQUID",
+     "ALN"
+    ]
+   }
+  ],
+  "C5_note": "ZrN added from JANAF (GHSERNN reference: N2 gas per 1/2 mol); N-Zr liquid not assessed (ideal).",
+  "C4_Zr_in_Al_vs_Al3Zr": [
+   {
+    "T_K": 1600.0,
+    "x_Zr_liquid": 0.04514761868929974,
+    "phases": [
+     "LIQUID",
+     "AL3ZR1"
+    ]
+   },
+   {
+    "T_K": 1900.0,
+    "x_Zr_liquid": 0.049999999917854934,
+    "phases": [
+     "LIQUID"
+    ]
+   },
+   {
+    "T_K": 2100.0,
+    "x_Zr_liquid": 0.04999999991755696,
+    "phases": [
+     "LIQUID"
+    ]
+   },
+   {
+    "T_K": 2300.0,
+    "x_Zr_liquid": 0.049999999917289865,
+    "phases": [
+     "LIQUID"
+    ]
+   }
+  ]
+ },
+ "mass_transfer": {
+  "k_m_m_per_s": 0.0004544087898392261,
+  "Re": 105000.00000000001,
+  "Sc": 57.14285714285714,
+  "assumptions": "M1: diffusion-limited dissolution upper bound for wall materials in a non-isothermal Al loop (approx.).\n\n    Hot wall at T_hot, bulk Al held at the saturation level of the cold leg (cold leg acts as a sink).\n    k_m from Dittus-Boelter-type Sh = 0.023 Re^0.8 Sc^0.33 in a 10 mm tube at 3 m/s (A2 reference),\n    liquid Al 2,100 kg/m3, 0.6 mPa s (A2 page assumptions), solute diffusivity 5e-9 m2/s (approx.).\n    Interface reaction kinetics are ignored, so real rates may be far lower: this is a ceiling that shows\n    whether solubility alone could matter, not a corrosion prediction.",
+  "rows": [
+   {
+    "material": "ZrB2 (Zr-limited)",
+    "T_hot_K": 2050.0,
+    "T_cold_K": 1475.0,
+    "x_sat_hot": 0.0031857240124964917,
+    "x_sat_cold": 0.00021159571033149238,
+    "flux_kg_m2_s": 0.009595637668758566,
+    "recession_ceiling_mm_per_year": 62082.47741410831
+   },
+   {
+    "material": "TiB2 (Ti-limited)",
+    "T_hot_K": 2050.0,
+    "T_cold_K": 1475.0,
+    "x_sat_hot": 0.0014299493413091025,
+    "x_sat_cold": 9.525756137968182e-05,
+    "flux_kg_m2_s": 0.0022597921005981583,
+    "recession_ceiling_mm_per_year": 23002.43144488885
+   },
+   {
+    "material": "AlN (N-limited)",
+    "T_hot_K": 2050.0,
+    "T_cold_K": 1475.0,
+    "x_sat_hot": 0.001170852309848092,
+    "x_sat_cold": 0.0007064974250590854,
+    "flux_kg_m2_s": 0.00023004840158902324,
+    "recession_ceiling_mm_per_year": 6634.071230034332
+   },
+   {
+    "material": "ZrB2 (Zr-limited)",
+    "T_hot_K": 1850.0,
+    "T_cold_K": 1475.0,
+    "x_sat_hot": 0.0014669227214049174,
+    "x_sat_cold": 0.00021159571033149238,
+    "flux_kg_m2_s": 0.004050149129510548,
+    "recession_ceiling_mm_per_year": 26203.916877276122
+   },
+   {
+    "material": "TiB2 (Ti-limited)",
+    "T_hot_K": 1850.0,
+    "T_cold_K": 1475.0,
+    "x_sat_hot": 0.0006569465059764191,
+    "x_sat_cold": 9.525756137968182e-05,
+    "flux_kg_m2_s": 0.0009510062615805912,
+    "recession_ceiling_mm_per_year": 9680.295957259621
+   },
+   {
+    "material": "AlN (N-limited)",
+    "T_hot_K": 1850.0,
+    "T_cold_K": 1475.0,
+    "x_sat_hot": 0.0010136625566930138,
+    "x_sat_cold": 0.0007064974250590854,
+    "flux_kg_m2_s": 0.00015217423111285862,
+    "recession_ceiling_mm_per_year": 4388.357761258971
+   },
+   {
+    "material": "ZrB2 (Zr-limited)",
+    "T_hot_K": 1600.0,
+    "T_cold_K": 1300.0,
+    "x_sat_hot": 0.0004544114040101753,
+    "x_sat_cold": 5.708644945173124e-05,
+    "flux_kg_m2_s": 0.0012819172252667922,
+    "recession_ceiling_mm_per_year": 8293.831002341116
+   },
+   {
+    "material": "TiB2 (Ti-limited)",
+    "T_hot_K": 1600.0,
+    "T_cold_K": 1300.0,
+    "x_sat_hot": 0.00020614532229718086,
+    "x_sat_cold": 2.5649537675406525e-05,
+    "flux_kg_m2_s": 0.00030560085437936945,
+    "recession_ceiling_mm_per_year": 3110.712131660345
+   },
+   {
+    "material": "AlN (N-limited)",
+    "T_hot_K": 1600.0,
+    "T_cold_K": 1300.0,
+    "x_sat_hot": 0.0008136089775622052,
+    "x_sat_cold": 0.0005537896730218011,
+    "flux_kg_m2_s": 0.00012871839549755213,
+    "recession_ceiling_mm_per_year": 3711.9449578789704
+   }
+  ]
+ }
+}
