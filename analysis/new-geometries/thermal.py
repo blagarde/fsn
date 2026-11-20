@@ -159,6 +159,14 @@ def l7():
                                  "q_avg_isothermal_MW_m2": q / 1e6, "q_uniform_flux_MW_m2": qu / 1e6,
                                  "area_isothermal_m2": P_TH / q, "area_uniform_m2": P_TH / qu})
     res["flux_grid"] = grid
+    # receiver emissivity sensitivity (coated W can 0.8, can 2,000 C, coolant 1,000 -> 1,500 C)
+    res["receiver_emissivity"] = {f"eps2={e2}": q_avg_isothermal_hot(2000, 1000, 1500, 0.8, e2, R["Pb/Mo"]) / 1e6
+                                  for e2 in (0.25, 0.5, 0.8, 0.9)}
+    # coolant mass flows for 1,000 MWth, 1,000 -> 1,500 C
+    res["mass_flow_kg_s"] = {"Al": P_TH / (PROPS["cp_Al"] * 500), "Pb": P_TH / (PROPS["cp_Pb"] * 500),
+                             "He": P_TH / (PROPS["cp_He"] * 500)}
+    # He in Mo tubes at 7 MPa: hoop stress for 4 mm bore, 1 mm wall
+    res["He_tube_hoop_MPa_4mm_bore_1mm_wall"] = 7.0 * 2.0 / 1.0
     # reference and slab-thickness sweep (coated W, Al/AlN panel, Th 2,000, Tout 1,500)
     sweep = []
     for t_fuel_mm in (10, 20, 30, 40):

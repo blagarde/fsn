@@ -238,7 +238,8 @@ def calphad_coverage_page(con: sqlite3.Connection) -> str | None:
         "# CALPHAD coverage", "",
         f"{len(have)} of {len(cov)} systems the project needs have at least one assessed database loaded. "
         "A system counts as assessed when a condensed-phase parameter spans its elements (interaction term or compound), "
-        "not merely when the elements are listed. A ternary with all three binaries in one database can be extrapolated "
+        "not merely when the elements are listed. Each database is graded: full (liquid and compounds), liquid, compounds, or "
+        "partial (terminal solid solutions only, which does not count as coverage). A ternary with all three binaries covered in one database can be extrapolated "
         "(standard CALPHAD practice) but has no ternary terms. Coverage does not mean quality: check each database's tier and header.", "",
         "## Needed systems", "",
         "| System | Why | Questions | Databases | Liquid assessed | Ternary: binaries covered |",
@@ -246,9 +247,11 @@ def calphad_coverage_page(con: sqlite3.Connection) -> str | None:
     ]
     for c in sorted(cov, key=lambda c: (bool(c["databases"]), c["system"])):
         qs = ", ".join(f"[{q}](../open-questions.md)" for q in c["questions"]) or ""
-        bins = "; ".join(f"{b}: {', '.join(v) or '**none**'}" for b, v in c["binaries"].items())
-        dbtxt = (", ".join(c["databases"]) if c["databases"]
-                 else f"extrapolable from binaries in {', '.join(c['extrapolable'])}" if c.get("extrapolable") else "**gap**")
+        bins = "; ".join(f"{b}: {', '.join(f'{db} ({gr})' for db, gr in v.items()) or '**none**'}" for b, v in c["binaries"].items())
+        partial = [db for db, gr in c.get("grades", {}).items() if gr == "partial"]
+        dbtxt = (", ".join(f"{db} ({c['grades'][db]})" for db in c["databases"]) if c["databases"]
+                 else f"extrapolable from binaries in {', '.join(c['extrapolable'])}" if c.get("extrapolable")
+                 else "**gap**" + (f" (solid solutions only in {', '.join(partial)})" if partial else ""))
         lines.append(f"| {c['system']} | {c['why']} | {qs} | {dbtxt} | {'yes' if c['liquid'] else ('—' if not c['databases'] else 'no')} | {bins} |")
     lines += ["", "## Databases loaded", "",
               "| Database | Source (tier) | File | Loads | Elements | Assessed systems | Notes |",

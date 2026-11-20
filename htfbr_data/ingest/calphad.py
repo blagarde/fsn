@@ -216,28 +216,48 @@ def ingest(con: sqlite3.Connection, files: list[dict], refresh: bool = False, un
     return n_sys
 
 
+SOLUTION_PHASES = {"BCC_A2", "FCC_A1", "HCP_A3", "BCC_B2", "DIAMOND_A4", "CBCC_A12", "CUB_A13", "BCT_A5", "DHCP"}
+
+
+def grade(phases: list[str], liquid: bool) -> str:
+    """How fully a database assesses a system: full (liquid + compounds), liquid, compounds,
+    or partial (terminal solid solutions only, which says nothing about melting or compounds)."""
+    compounds = [p for p in phases if p.upper() not in SOLUTION_PHASES and not p.upper().startswith(("LIQ", "IONIC_LIQ"))]
+    if liquid and compounds:
+        return "full"
+    if liquid:
+        return "liquid"
+    if compounds:
+        return "compounds"
+    return "partial"
+
+
 def coverage(con: sqlite3.Connection, needed: list[dict]) -> list[dict]:
-    """For each needed system: databases that assess it (all binaries for a ternary), or the gap."""
+    """For each needed system: databases that assess it (graded), ternary extrapolability, or the gap.
+    Only 'full', 'liquid' or 'compounds' grades count as coverage; 'partial' is reported but not counted."""
     con.executescript(SCHEMA)
+
+    def graded(system: str) -> dict[str, str]:
+        rows = con.execute(
+            "SELECT s.db_id, s.phases, s.liquid FROM calphad_system s JOIN calphad_db d USING (db_id) WHERE s.system=? AND d.loads_ok=1",
+            (system,)).fetchall()
+        return {r[0]: grade(json.loads(r[1]), bool(r[2])) for r in rows}
+
     out = []
     for item in needed:
         els = sorted(item["system"].split("-"))
         key = "-".join(els)
-        direct = con.execute(
-            "SELECT s.db_id, s.liquid FROM calphad_system s JOIN calphad_db d USING (db_id) WHERE s.system=? AND d.loads_ok=1",
-            (key,)).fetchall()
-        binaries = {}
+        g = graded(key)
+        good = {db: gr for db, gr in g.items() if gr != "partial"}
+        binaries, extrapolable = {}, []
         if len(els) == 3:
             for a, b in itertools.combinations(els, 2):
-                binaries[f"{a}-{b}"] = [r[0] for r in con.execute(
-                    "SELECT db_id FROM calphad_system WHERE system=?", (f"{a}-{b}",))]
-        extrapolable = []
-        if len(els) == 3 and binaries:
-            common = set.intersection(*(set(v) for v in binaries.values()))
-            extrapolable = sorted(common)
+                binaries[f"{a}-{b}"] = graded(f"{a}-{b}")
+            usable = [{db for db, gr in v.items() if gr != "partial"} for v in binaries.values()]
+            extrapolable = sorted(set.intersection(*usable)) if usable else []
         out.append({
             "system": key, "why": item.get("why", ""), "questions": item.get("questions", []),
-            "databases": sorted({r[0] for r in direct}), "liquid": any(r[1] for r in direct),
+            "databases": sorted(good), "grades": g, "liquid": any(gr in ("full", "liquid") for gr in good.values()),
             "binaries": binaries, "extrapolable": extrapolable,
         })
     return out
