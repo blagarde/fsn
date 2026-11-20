@@ -158,6 +158,18 @@ def ingest(con: sqlite3.Connection, targets: dict, reactions: dict[int, str], te
                 rows = []
                 for mt, name in reactions.items():
                     xs = _reaction_xs(data, mt, tkey)
+                    if xs is None and mt == 101:
+                        # Non-fission absorption is the sum of MT 102-117; averaging is linear, so sum the averages
+                        parts = [x for x in (_reaction_xs(data, m, tkey) for m in range(102, 118)) if x is not None]
+                        if parts:
+                            totals: dict[str, float] = {}
+                            for part in parts:
+                                for wid, value in averages(part, temperature_K).items():
+                                    totals[wid] = totals.get(wid, 0.0) + value
+                            rows += [(z, a, SOURCE_ID, mt, name, wid, temperature_K, value,
+                                      method + f"; MT 101 summed from {len(parts)} component reactions", artifact_id)
+                                     for wid, value in totals.items()]
+                        continue
                     if xs is None:
                         continue
                     for wid, value in averages(xs, temperature_K).items():

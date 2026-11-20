@@ -1,6 +1,6 @@
 # Claims check
 
-Generated 2026-11-20T16:37:38+00:00. 55 confirmed, 7 differ, 7 not checkable yet.
+Generated 2026-11-20T16:40:55+00:00. 55 confirmed, 7 differ, 7 not checkable yet.
 
 | Status | Item | Doc value | Database value | Unit | Diff % | Basis | Where in doc |
 | --- | --- | --- | --- | --- | --- | --- | --- |
