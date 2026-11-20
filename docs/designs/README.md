@@ -2,7 +2,7 @@
 
 One page per candidate design. The table is generated from each page's front matter by `htfbr-data docs`; to add a design, copy [the template](_template.md). Designations follow the [taxonomy](../framework/taxonomy.md); status values are explained in the [documentation map](../README.md#conventions).
 
-**Families:** `B` seed branches from the Phase 0 taxonomy · `X` liquid U–Pu fuel at ~2,000 °C ([study](../studies/liquid-fuel-2000c.md)) · `A` aluminium-cooled ([study](../studies/aluminium-coolant.md)).
+**Families:** `B` seed branches from the Phase 0 taxonomy · `X` liquid U–Pu fuel at ~2,000 °C ([study](../studies/liquid-fuel-2000c.md)) · `A` aluminium-cooled ([study](../studies/aluminium-coolant.md)) · `R` radiatively coupled liquid fuel, geometry L7 ([study](../studies/geometry-by-phase.md), [D-0007](../decisions/D-0007-prioritise-radiative-coupling.md)).
 
 <!-- BEGIN GENERATED design-index -->
 12 designs: 8 seed, 3 exploring, 1 analysed.

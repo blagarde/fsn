@@ -10,3 +10,4 @@ One file per decision, newest last. Copy [the template](_template.md) for a new 
 | [D-0004](D-0004-a2-reference-wall.md) | W/AlN is the reference A2 tube wall | 2026-11-19 | accepted |
 | [D-0005](D-0005-docs-in-repo.md) | Project documentation lives in this repository | 2026-11-20 | accepted |
 | [D-0006](D-0006-materials-search-strategy.md) | Materials search strategy (guiding principle) | 2026-11-20 | accepted |
+| [D-0007](D-0007-prioritise-radiative-coupling.md) | Prioritise the radiatively coupled pool (L7) for detailed design | 2026-11-20 | accepted |

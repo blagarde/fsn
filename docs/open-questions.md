@@ -12,7 +12,7 @@ Numbered so design and material pages can point at them. Close a question by rec
 | Q-002 | Is reprocessing in scope? Doubling time depends on out-of-core inventory and cycle time as much as on BR. | decision | all breeders | open |
 | Q-003 | Is a cold-vessel layout (hot core inside a vessel kept ≤ 550 °C) acceptable? It widens structural options. | decision | B1–B6 | open |
 | Q-004 | Confirm targets, taxonomy axes and starting screening weights (gate G0). | decision | [roadmap](project/roadmap.md) | open |
-| Q-006 | Which geometries from the [geometry study](studies/geometry-by-phase.md) become design families (candidates: S6 printed lattice, S5 fluidised bed, L3 liquid-fuel pins, L5 falling film, L7 radiatively coupled pool, S8 particle-cooled core), and should geometry (axis 11) and heat-transport mode (axis 12) join the taxonomy? | decision | new designs | open |
+| Q-006 | L7 radiatively coupled pool already chosen as design family R ([D-0007](decisions/D-0007-prioritise-radiative-coupling.md)). Which other geometries from the [geometry study](studies/geometry-by-phase.md) become design families (candidates: S6 printed lattice, S5 fluidised bed, L3 liquid-fuel pins, L5 falling film, L7 radiatively coupled pool, S8 particle-cooled core), and should geometry (axis 11) and heat-transport mode (axis 12) join the taxonomy? | decision | new designs | open |
 | Q-005 | Approve the [materials selection method](framework/materials-selection.md) details (steps S1–S6, element pre-screen thresholds, chemistry rules R1–R10, ±40 kJ margin). Search strategy P1–P7 already adopted ([D-0006](decisions/D-0006-materials-search-strategy.md)) | decision | all material choices | open |
 
 ## Screening
