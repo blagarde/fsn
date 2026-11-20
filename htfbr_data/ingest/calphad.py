@@ -21,7 +21,8 @@ from pathlib import Path
 
 from ..chem import SYMBOLS
 from ..db import ingest_run, utcnow
-from ..fetch import fetch
+from ..db import ROOT
+from ..fetch import fetch, register_local
 
 _ELEMENTS = {s.upper(): s for s in SYMBOLS}
 _SKIP = {"VA", "/-", "E"}
@@ -156,8 +157,16 @@ def ingest(con: sqlite3.Connection, files: list[dict], refresh: bool = False, un
     with ingest_run(con, "calphad") as info:
         n_sys, failed = 0, []
         for f in files:
-            url = f"https://raw.githubusercontent.com/{f['repo']}/{f['commit']}/{f['path']}"
-            artifact_id, path = fetch(con, f["source_id"], url, refresh=refresh)
+            if f.get("local"):  # downloaded by hand (login-only sources, paper supplements)
+                local = ROOT / f["local"]
+                if not local.exists():
+                    log(f"  {f['db_id']}: SKIPPED, {f['local']} not present (download it by hand; see docs/data/database.md)")
+                    continue
+                artifact_id, path = register_local(con, f["source_id"], local)
+                f = {**f, "path": f["local"], "commit": "local"}
+            else:
+                url = f"https://raw.githubusercontent.com/{f['repo']}/{f['commit']}/{f['path']}"
+                artifact_id, path = fetch(con, f["source_id"], url, refresh=refresh)
             text = Path(path).read_text(errors="replace")
             fmt = "dat" if f["path"].lower().endswith(".dat") else "tdb"
             loads_ok, err, dbf = 1, None, None
@@ -198,7 +207,7 @@ def ingest(con: sqlite3.Connection, files: list[dict], refresh: bool = False, un
                        phase, conditions, source_id, locator, method, artifact_id, entered_by, entered_at, notes)
                        VALUES (?, 'melting_point', ?, NULL, 'none', 'kelvin', ?, 'kelvin', NULL, 101325, NULL, NULL, ?, ?,
                        'calculated', ?, 'htfbr-data calphad', ?, 'G(liquid) = G(stable solid), pycalphad equilibrium')""",
-                    [(el, T, T, f["source_id"], f"{f['path']} @ {f['commit'][:12]}", artifact_id, utcnow()) for el, T in mps.items()],
+                    [(el, T, T, f["source_id"], f"{f['path']} @ {str(f.get('commit', 'local'))[:12]}", artifact_id, utcnow()) for el, T in mps.items()],
                 )
                 log(f"  {f['db_id']}: melting points for {len(mps)} elements")
         con.commit()

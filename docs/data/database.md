@@ -41,6 +41,8 @@ Blocked or not yet implemented sources are listed with their reason in `config/s
 
 The needed systems (`calphad_systems_needed`) are compared with what is loaded in the generated [CALPHAD coverage](calphad-coverage.md) page. Actinide systems (U–Pu–Zr, U–Fe, U–W, U–Al, Ca–U, Pb–U) are the main gap: they need TDBDB, NIMS CPDDB, NIST, ORNL MSTDB-TC or paper supplements, all currently unreachable or not yet entered.
 
+**Login-only and paper-supplement databases.** NIMS CPDDB (700+ TDB files) requires a registered DICE account and forbids bulk download and scraping, so its files are fetched by hand, one per needed system. Supplements behind publisher sites are the same. Put the file in `data/calphad/incoming/` (ignored by git: redistribution terms vary) and add an entry to `calphad_files` with `local:` instead of `repo/commit/path`, the registry `source_id` (`nims_cpddb` or `literature_tdb`) and a `note` giving the DOI or CPDDB identifier. `htfbr-data calphad` registers it with its SHA-256 like any other artifact, and skips (with a message) entries whose file is missing.
+
 Element melting points from SGTE are stored in `property` (source `sgte_unary`, method `calculated`) and used by the claims check where JANAF has no data.
 
 ## Design rules

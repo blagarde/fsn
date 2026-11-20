@@ -114,7 +114,7 @@ sources:
     kind: phase-diagram
     access: download
     status: blocked
-    notes: Index of published TDB files and their papers; the best route to open assessments of actinide systems (U-Zr, U-Fe, U-W, U-Al, Al-Pb ...). Host not in the environment allowlist; exact URL and terms to verify once reachable.
+    notes: Index of published TDB files and their papers; potentially the best route to open assessments of actinide systems. www.tdbdb.cz and tdbdb.cz are allowed but the proxy returns 502 (name wrong or site down); correct address still to find.
 
   - source_id: nims_cpddb
     name: NIMS Computational Phase Diagram Database (CPDDB)
@@ -124,16 +124,28 @@ sources:
     kind: phase-diagram
     access: licensed
     status: blocked
-    notes: Assessed binary and ternary TDBs; registration expected. Host not in the allowlist; terms and coverage to verify.
+    citation: T. Abe et al., CPDDB, National Institute for Materials Science (2007), doi:10.48505/NIMS.3060.
+    notes: 700+ TDB files (unary, binary, multicomponent). Requires a DICE account, e-mail domain registration and a service application; bulk download and scraping are prohibited by the MatNavi terms. Files are downloaded by hand, one per needed system, and registered with `local:` entries.
 
   - source_id: nist_calphad
-    name: NIST CALPHAD databases (e.g. solder, superalloy)
+    name: NIST Solder Systems thermodynamic database (SRD 139)
     publisher: NIST
+    url: http://www.metallurgy.nist.gov/phase/solder/solder.tdb
     tier: A
     kind: phase-diagram
     access: download
     status: blocked
-    notes: Free NIST TDBs; hosts (nist.gov, data.nist.gov) not in the allowlist. Download URLs to verify.
+    notes: Found via the data.nist.gov records API. Pb-Bi-Sn-Ag-Cu-In-Sb-Zn family (relevant to lead and tin coolants); no actinides. Host www.metallurgy.nist.gov not in the allowlist. NIST holds no actinide CALPHAD databases.
+
+  - source_id: nist_alloy_data
+    name: NIST Alloy Data (thermophysical properties of metals)
+    publisher: NIST
+    url: https://trc.nist.gov/metals_data
+    tier: A
+    kind: thermophysical
+    access: download
+    status: blocked
+    notes: Measured density, viscosity, surface tension, heat capacity, conductivity of unary, binary and ternary metal systems, solid and liquid (data.nist.gov record mds2-2153). Directly useful for liquid Al, Pb, Sn, U. Host trc.nist.gov not in the allowlist.
 
   - source_id: literature_tdb
     name: CALPHAD assessments published as paper supplements

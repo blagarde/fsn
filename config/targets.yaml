@@ -169,6 +169,9 @@ calphad_files:
   - {db_id: tc-zirc, source_id: thermochimica_data, repo: ORNL-CEES/thermochimica, commit: 1c076b20f958be65bac750f00af2e59ef4f28d9e, path: data/ZIRC-noSUBI.dat}
   - {db_id: tc-cl-al-na, source_id: thermochimica_data, repo: ORNL-CEES/thermochimica, commit: 1c076b20f958be65bac750f00af2e59ef4f28d9e, path: data/ClAlNa.dat}
 
+  # Hand-downloaded files (login-only sources, paper supplements) use `local:`. Example, kept disabled:
+  # - {db_id: nims-u-zr, source_id: nims_cpddb, local: data/calphad/incoming/U-Zr.tdb, note: "CPDDB entry ...; cite doi:10.48505/NIMS.3060 plus the assessment paper"}
+
 # Elements whose melting points are derived from the SGTE unary database.
 sgte_unary_elements: [Al, B, Be, C, Ca, Cr, Cu, Fe, Hf, Li, Mg, Mn, Mo, Na, Nb, Ni, Pb, Pu, Re, Si, Sn, Ta, Th, Ti, U, V, W, Y, Zr]
 

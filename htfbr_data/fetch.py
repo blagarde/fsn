@@ -64,6 +64,12 @@ def _register(con: sqlite3.Connection, source_id: str, url: str, member: str, da
     return cur.lastrowid, path
 
 
+def register_local(con: sqlite3.Connection, source_id: str, path: Path) -> tuple[int, Path]:
+    """Register a file obtained by hand (e.g. a login-only download) as an artifact, keyed file:<name>."""
+    data = Path(path).read_bytes()
+    return _register(con, source_id, f"file:{Path(path).name}", "", data, Path(path).name)
+
+
 def cached(con: sqlite3.Connection, url: str, member: str = "") -> tuple[int, Path] | None:
     """Most recent artifact for (url, member), if one was fetched before."""
     row = con.execute(
