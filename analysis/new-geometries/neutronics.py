@@ -62,8 +62,16 @@ def load():
     return json.loads(RES.read_text()) if RES.exists() else {}
 
 
-def save(d):
-    RES.write_text(json.dumps(d, indent=1))
+def save(d, case=None):
+    """Merge-on-write so that two runner processes (different cases) can share the file."""
+    cur = load()
+    if case is None:
+        cur.update(d)
+    else:
+        cur[case] = d[case]
+    tmp = RES.with_suffix(".tmp")
+    tmp.write_text(json.dumps(cur, indent=1))
+    tmp.replace(RES)
 
 
 def run(case, pu, stats, label):
@@ -90,14 +98,14 @@ def do_case(case, data):
     print(case, c["desc"], flush=True)
     for g in c["guess"]:
         if not any(abs(r["pu_frac"] - g) < 1e-9 for r in runs):
-            runs.append(run(case, g, BRACKET, f"{case} bracket")); save(data)
+            runs.append(run(case, g, BRACKET, f"{case} bracket")); save(data, case)
     for _ in range(2):  # at most two final iterations
         pts = sorted(runs, key=lambda r: abs(r["k_inf"] - TARGET))[:2]
         p = secant(pts[1]["pu_frac"], pts[1]["k_inf"], pts[0]["pu_frac"], pts[0]["k_inf"])
         fin = [r for r in runs if r["stats"] == FINAL and abs(r["k_inf"] - TARGET) < 0.012]
         if fin:
             break
-        runs.append(run(case, round(p, 4), FINAL, f"{case} final")); save(data)
+        runs.append(run(case, round(p, 4), FINAL, f"{case} final")); save(data, case)
     fin = min((r for r in runs if r["stats"] == FINAL), key=lambda r: abs(r["k_inf"] - TARGET))
     # Pu fraction and CR at exactly k = 1.15: linear interpolation with the nearest other point
     other = min((r for r in runs if r is not fin), key=lambda r: abs(r["k_inf"] - TARGET))
@@ -124,11 +132,38 @@ def do_case(case, data):
                      "wall_s": time.time() - t0}
         print(f"  void: k {v['k_inf']:.4f} worth {d['void']['worth_pcm']:.0f} +- {sd:.0f} pcm", flush=True)
     d["library_notes"] = sorted(M.LIBRARY_NOTES)
-    save(data)
+    save(data, case)
+
+
+
+
+def can_swaps():
+    """L7 container options: replace the 1 mm W can by Ta, Re or Mo at the W-case Pu fraction (one run each)."""
+    data = load()
+    base = data["L7_tube_Al"]
+    pu = base["final"]["pu_frac"]
+    out = data.get("L7_can_swaps", {"pu_frac": pu, "W_reference": base["final"]})
+    for name, mat in (("Ta", lambda: M.element("Ta", 16.4)), ("Re", lambda: M.element("Re", 20.8)),
+                      ("Mo", M.Mo)):
+        if name in out:
+            continue
+        comps = [(M.upu_liquid(pu), .4268), (mat(), .0896), (M.AlN(), .0625), (M.Al(), .1250), (M.vacuum(), .2961)]
+        r = screen(comps, 2100, label=f"L7 can {name}", **FINAL)
+        rho = lambda k: (k - 1) / k
+        out[name] = {"k_inf": r["k_inf"], "k_inf_sd": r["k_inf_sd"], "conversion_ratio": r["conversion_ratio"],
+                     "dk_vs_W_pcm": 1e5 * (rho(r["k_inf"]) - rho(base["final"]["k_inf"])),
+                     "pu_to_recover": (base["final"]["k_inf"] - r["k_inf"]) / base["dk_dPu"],
+                     "density_g_cm3": {"Ta": 16.4, "Re": 20.8, "Mo": 10.0}[name]}
+        print(f"  can {name}: k {r['k_inf']:.4f} CR {r['conversion_ratio']:.3f} d(rho) {out[name]['dk_vs_W_pcm']:.0f} pcm", flush=True)
+        data = load(); data["L7_can_swaps"] = out; save(data, "L7_can_swaps")
+    return out
 
 
 if __name__ == "__main__":
     names = sys.argv[1:] or list(CASES())
     data = load()
     for n in names:
-        do_case(n, data)
+        if n == "--swaps":
+            can_swaps()
+        else:
+            do_case(n, data)

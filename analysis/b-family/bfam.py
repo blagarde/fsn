@@ -187,7 +187,8 @@ def screen_plus(components, T: float, particles: int = 20000, batches: int = 60,
                 keff = sp.keff
                 rates = sp.get_tally(name="rates")
                 flux = sp.get_tally(name="spectrum").mean.ravel()
-                per = {n: {s: float(rates.get_values(nuclides=[n], scores=[s]).ravel()[0]) for s in scores}
+                smap = dict(zip(scores, rates.scores))  # OpenMC may normalise score names
+                per = {n: {s: float(rates.get_values(nuclides=[n], scores=[smap[s]]).ravel()[0]) for s in scores}
                        for n in nuclides}
         finally:
             os.chdir(cwd)
