@@ -474,18 +474,34 @@ def openmc_keff(b: Body, T: float, particles=10000, batches=60, inactive=20) -> 
         inner = openmc.Sphere(r=d["R"])
         outer = openmc.Sphere(r=d["R"] + t_r, boundary_type="vacuum")
     else:
-        inner = openmc.model.RightCircularCylinder((0, 0, -d["H"] / 2), d["H"], d["R"])
+        R, H = d["R"], d["H"]
         rt = t_r if b.refl_faces in ("all", "radial") else 0.0
         zt = t_r if b.refl_faces in ("all", "axial") else 0.0
-        outer = openmc.model.RightCircularCylinder((0, 0, -d["H"] / 2 - zt), d["H"] + 2 * zt, d["R"] + rt,
-                                                   boundary_type="vacuum")
-    cells = [openmc.Cell(fill=fuel, region=-inner)]
-    if b.reflector:
-        cells.append(openmc.Cell(fill=mats[1], region=+inner & -outer))
-    geom = openmc.Geometry(cells)
-    if not b.reflector:  # vacuum on the fuel surface itself
-        for srf in geom.get_all_surfaces().values():
-            srf.boundary_type = "vacuum"
+        c_in, z_lo, z_hi = openmc.ZCylinder(r=R), openmc.ZPlane(-H / 2), openmc.ZPlane(H / 2)
+        inner = -c_in & +z_lo & -z_hi
+        surfs = [c_in, z_lo, z_hi]
+        if b.reflector:
+            c_out = openmc.ZCylinder(r=R + rt) if rt > 0 else c_in
+            zb = openmc.ZPlane(-H / 2 - zt) if zt > 0 else z_lo
+            ztop = openmc.ZPlane(H / 2 + zt) if zt > 0 else z_hi
+            refl_region = (-c_out & +zb & -ztop) & ~inner
+            for srf in {c_out, zb, ztop}:
+                srf.boundary_type = "vacuum"
+        cells_cyl = [openmc.Cell(fill=fuel, region=inner)]
+        if b.reflector:
+            cells_cyl.append(openmc.Cell(fill=mats[1], region=refl_region))
+        geom = openmc.Geometry(cells_cyl)
+        if not b.reflector:
+            for srf in surfs:
+                srf.boundary_type = "vacuum"
+    if b.shape != "cylinder":
+        cells = [openmc.Cell(fill=fuel, region=-inner)]
+        if b.reflector:
+            cells.append(openmc.Cell(fill=mats[1], region=+inner & -outer))
+        geom = openmc.Geometry(cells)
+        if not b.reflector:  # vacuum on the fuel surface itself
+            for srf in geom.get_all_surfaces().values():
+                srf.boundary_type = "vacuum"
     st = openmc.Settings()
     st.particles, st.batches, st.inactive = particles, batches, inactive
     ext = d.get("t", d.get("R", 10)) / 4
@@ -632,6 +648,19 @@ def window(b: Body, transport: bool = True, n_points: int = 5) -> dict:
             "max_power_MW": r_hi.P_MW, "max_power_T_max_K": r_hi.T_max_K, "anchors": [scale_lo, scale_hi], "delta_fit_cm": b.delta_fit, "anchor_note": anchor_note,
             "feedback_to_limit_pcm": r_hi.feedback_to_limit_pcm, "mass_t_at_critical": solve(scaled(lo_size, scale_lo)).mass_t,
             "points": pts}
+
+
+def expansion_check(b: Body, T1: float = 1500.0, T2: float = 3000.0) -> dict:
+    """Reactivity change from T1 to T2 (expansion at fixed mass; cross sections capped at the 2,100 K
+    library limit, Doppler ~ 0 here): OpenMC on both expanded geometries vs the anchored model."""
+    import dataclasses
+    rho = lambda k: 1e5 * (1 - 1 / k)
+    bb = dataclasses.replace(b, k_scale=1.0)
+    k1 = openmc_keff(bb, T1, particles=40000, batches=90, inactive=20)
+    k2 = openmc_keff(bb, T2, particles=40000, batches=90, inactive=20)
+    return {"T1": T1, "T2": T2, "openmc_drho_pcm": rho(k2["openmc_k"]) - rho(k1["openmc_k"]),
+            "openmc_sd_pcm": 1e5 * math.hypot(k1["openmc_sd"], k2["openmc_sd"]),
+            "model_drho_pcm": rho(k_eff(b, T2, T2)[0]) - rho(k_eff(b, T1, T1)[0])}
 
 
 def reflector_worth(b: Body, T: float | None = None) -> dict:

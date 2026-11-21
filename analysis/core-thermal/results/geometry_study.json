@@ -793,5 +793,93 @@
    "worth_pcm": 26324.898843088307,
    "sd_pcm": 52.63129014371387
   }
+ },
+ "HD1_graphite30": {
+  "body": {
+   "shape": "cylinder",
+   "size_cm": 30.0,
+   "height_cm": 0.0,
+   "width_cm": 0.0,
+   "pu": 0.15,
+   "reflector": [
+    "graphite",
+    1.8,
+    30.0
+   ],
+   "h_over_d": 1.0,
+   "delta_fit": 10.583755912331402,
+   "refl_faces": "all",
+   "removal": "convective",
+   "h": 20000.0,
+   "eps": 0.8,
+   "UA": 1000000.0,
+   "T_c": 1500,
+   "faces": 2,
+   "nu": 0.0,
+   "T_limit": 3500.0,
+   "k_scale": 1.0
+  },
+  "transport": true,
+  "critical_size_cm": 13.569333814335469,
+  "runaway_size_cm": 16.15805127292596,
+  "window_cm": 2.588717458590491,
+  "window_pct": 19.077704874911493,
+  "max_power_MW": 21.48495192049071,
+  "max_power_T_max_K": 3498.8816290424347,
+  "anchors": [
+   1.0,
+   1.0
+  ],
+  "delta_fit_cm": 10.583755912331402,
+  "anchor_note": {
+   "openmc_critical_size_cm": 13.569333814335469,
+   "openmc_k_at_size": 1.0006638927172762,
+   "delta_fit_cm": 10.583755912331402
+  },
+  "feedback_to_limit_pcm": -7874.214260476453,
+  "mass_t_at_critical": 0.2700125154856265,
+  "points": [
+   {
+    "size_cm": 14.00078672410055,
+    "P_MW": 2.7438553295490453,
+    "T_max_K": 1864.669390312692,
+    "T_surface_K": 1864.669390312692,
+    "q2_MW_m2": 7.293387806253843,
+    "k_cold": 1.0150934812984254,
+    "status": "equilibrium"
+   },
+   {
+    "size_cm": 14.863692543630714,
+    "P_MW": 9.201036130013955,
+    "T_max_K": 2554.512296566248,
+    "T_surface_K": 2554.512296566248,
+    "q2_MW_m2": 21.09024593132496,
+    "k_cold": 1.0442434634852933,
+    "status": "equilibrium"
+   },
+   {
+    "size_cm": 15.726598363160878,
+    "P_MW": 17.03685388661233,
+    "T_max_K": 3196.0327707415313,
+    "T_surface_K": 3196.0327707415313,
+    "q2_MW_m2": 33.92065541483063,
+    "k_cold": 1.0720480217350319,
+    "status": "equilibrium"
+   }
+  ],
+  "alpha_doppler_pcm_K": 0.04672581997778453,
+  "alpha_expansion_pcm_K": -4.172298155065086,
+  "dims_at_critical": {
+   "R": 13.569333814335469,
+   "H": 27.284608558168113,
+   "V_cm3": 15782.821807670472,
+   "A_cool_cm2": 3483.1515183542874
+  },
+  "reflector_worth": {
+   "k_reflected": 0.9980075299718917,
+   "k_bare": 0.7070818759219352,
+   "worth_pcm": 41226.6926766083,
+   "sd_pcm": 62.82942481463426
+  }
  }
 }
