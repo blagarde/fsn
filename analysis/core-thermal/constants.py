@@ -80,7 +80,16 @@ def metal_solid(pu: float) -> openmc.Material:
 
 
 # Reference recipes, volume fractions. Median flux energies come out roughly hard > medium > soft.
+def upu_liquid_pure(pu: float) -> openmc.Material:
+    m = openmc.Material(name="liquid U-Pu (pure)")
+    M.heavy_metal(m, pu)
+    m.set_density("g/cm3", 16.7)  # ~1,800 K (pool.py liquid density, APPROX)
+    return m
+
+
 REFERENCES = {
+    # pure molten U-Pu: the hardest spectrum, needed for bare metal bodies (pool.py)
+    "metal":  lambda: [(upu_liquid_pure(PU_REF), 1.0)],
     "hard":   lambda: [(metal_solid(PU_REF), 0.50), (M.Pb(), 0.35), (M.W(), 0.15)],
     "medium": lambda: [(M.upun(PU_REF), 0.40), (M.Al(), 0.40), (M.W(), 0.20)],
     "soft":   lambda: [(mox(PU_REF), 0.35), (sodium(), 0.40), (steel(), 0.25)],
