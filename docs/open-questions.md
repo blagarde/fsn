@@ -61,3 +61,12 @@ Numbered so design and material pages can point at them. Close a question by rec
 | Q-046 | Emissive coatings for Mo receivers facing vacuum (bare Mo gives 0.27 MW/m² instead of 0.76) | test | [R2](designs/R2.md), [R3](designs/R3.md) | open |
 | Q-047 | Spectrum class of liquid U–Pu cores: median flux energy ~196 keV puts A2 and R1 in class F, not H | decision | [taxonomy](framework/taxonomy.md), A2, R1–R3 | open |
 | Q-048 | Parked geometries: S5 fluidisation window, S8 wall heat-transfer coefficient, S6 printability and strut irradiation | calc → test | [scoping study](studies/new-geometries-scoping.md) | open |
+
+## Core nuclear-thermal behaviour
+
+| ID | Question | Kind | Blocks | Status |
+| --- | --- | --- | --- | --- |
+| Q-050 | Enter the thermophysical correlations used by the core model (liquid U–Pu density, conductivity, heat capacity; Na, Pb, Al, He, FLiBe properties) into the database with locators | data | [core-thermal study](studies/core-thermal.md) | open |
+| Q-051 | Replace Way–Wigner decay heat with ANS-5.1 or an ENDF decay/fission-yield summation | data → calc | [core-thermal study](studies/core-thermal.md), all loss-of-cooling results | open |
+| Q-052 | Control and engineered prompt feedback for liquid-metal fuel: a laterally confined U–Pu pool has only ~200 pcm of feedback before boiling (Doppler ≈ 0). Which mechanism (free-surface expansion, gas voiding, diluent) gives > 1,000 pcm, and what control authority covers burnup? | calc → decision | A2, X1–X3, R1–R3 | open |
+| Q-053 | Multigroup spectrum solve per composition instead of interpolating between reference spectra (one-group k∞ low by 2,000–7,600 pcm) | calc | [core-thermal study](studies/core-thermal.md) | open |
