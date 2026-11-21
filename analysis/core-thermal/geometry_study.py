@@ -27,7 +27,7 @@ CASES["HD0.25_W20_radial"] = dataclasses.replace(BASE, h_over_d=0.25, reflector=
 CASES["HD4_W20_radial"] = dataclasses.replace(BASE, h_over_d=4, reflector=("W", 19.0, 20.0), refl_faces="radial")
 
 
-CHECK = {"bare_HD0.25", "bare_HD1", "bare_HD4", "HD1_W20", "HD1_BeO20", "HD1_W20_radial"}
+CHECK = {"bare_HD0.25", "bare_HD1", "bare_HD4", "HD1_W20", "HD1_BeO20", "HD1_W20_radial", "HD1_Pb30", "HD1_steel30", "HD1_Udep40", "HD1_graphite30", "HD1_W20_axial", "HD0.25_W20_radial", "HD4_W20_radial", "bare_HD0.5", "bare_HD2"}
 
 
 def main():
@@ -36,13 +36,13 @@ def main():
         if name in res:
             if name in CHECK and "expansion_check" not in res[name]:
                 w = res[name]
-                crit = dataclasses.replace(b, size_cm=w["critical_size_cm"], k_scale=w["anchors"][0], delta_fit=w["delta_fit_cm"])
+                crit = dataclasses.replace(b, size_cm=w["critical_size_cm"], k_scale=w["anchors"][0], delta_fit=w.get("delta_fit_cm"))
                 w["expansion_check"] = pool.expansion_check(crit)
                 print(name, "expansion check", w["expansion_check"], flush=True)
                 OUT.write_text(json.dumps(res, indent=1))
             continue
         w = pool.window(b, transport=True, n_points=3)
-        crit = dataclasses.replace(b, size_cm=w["critical_size_cm"], k_scale=w["anchors"][0], delta_fit=w["delta_fit_cm"])
+        crit = dataclasses.replace(b, size_cm=w["critical_size_cm"], k_scale=w["anchors"][0], delta_fit=w.get("delta_fit_cm"))
         aD, aE = pool.coefficients(crit, 1500.0)
         w["alpha_doppler_pcm_K"], w["alpha_expansion_pcm_K"] = aD, aE
         w["dims_at_critical"] = pool.dims(crit, 1500.0)
