@@ -53,5 +53,6 @@ Clean activation: Pb-209 (3.25 h) → Bi-209; trace Po-210 via Bi-209 capture. E
 - [A2](../designs/A2.md): Liquid U-Pu pool cooled by aluminium
 - [B2](../designs/B2.md): Lead-cooled nitride
 - [B5](../designs/B5.md): Lead-cooled cermet
+- [R2](../designs/R2.md): Radiatively coupled liquid U-Pu, lead-cooled Mo panels
 - [X1](../designs/X1.md): Liquid U-Pu pool, lead behind tungsten tubes
 <!-- END GENERATED -->

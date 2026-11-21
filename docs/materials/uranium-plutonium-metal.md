@@ -49,6 +49,9 @@ Pu-239 delayed-neutron fraction ~0.0021: keep the pool stationary so precursors 
 
 <!-- BEGIN GENERATED used-by -->
 - [A2](../designs/A2.md): Liquid U-Pu pool cooled by aluminium
+- [R1](../designs/R1.md): Radiatively coupled liquid U-Pu, aluminium-cooled AlN panels
+- [R2](../designs/R2.md): Radiatively coupled liquid U-Pu, lead-cooled Mo panels
+- [R3](../designs/R3.md): Radiatively coupled liquid U-Pu, helium-cooled Mo tubes, direct Brayton
 - [X1](../designs/X1.md): Liquid U-Pu pool, lead behind tungsten tubes
 - [X2](../designs/X2.md): Liquid U-Pu pool, CaF2 direct contact
 - [X3](../designs/X3.md): Liquid U-Pu pool, boiling calcium direct contact

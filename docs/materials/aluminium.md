@@ -59,4 +59,5 @@ Single stable isotope (Al-27). Activation is short-lived: Al-28 (2.2 min) in ope
 - [A1](../designs/A1.md): Solid nitride fuel, aluminium-cooled
 - [A2](../designs/A2.md): Liquid U-Pu pool cooled by aluminium
 - [A3](../designs/A3.md): Al-U-Pu solution fuel
+- [R1](../designs/R1.md): Radiatively coupled liquid U-Pu, aluminium-cooled AlN panels
 <!-- END GENERATED -->

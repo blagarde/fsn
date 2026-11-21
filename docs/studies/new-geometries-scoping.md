@@ -81,7 +81,7 @@ What this says:
 
 *(calc: neutronics.py, finite.py. Finite model: homogenised cylinder H = D at the thermal size, 40 cm blanket of the same cell with depleted U, vacuum outside, clean fuel; the breeding ratio is fertile captures over fissile absorptions in core and blanket, an upper-bound proxy.)*
 
-<!-- L7HI -->
+**Statistics and worths of the reference** (50,000 × 100 batches; *calc, l7_detail.py*): k∞ = 1.1493 ± 0.0003 at 10.18% Pu, CR 1.326. Evacuating the N2 gap: −27 ± 37 pcm. Voiding the aluminium: +3,010 ± 35 pcm. Flooding the gap with aluminium (panel breach): −6,260 ± 36 pcm. Flooding with lead: −2,950 ± 33 pcm. Gap gas is neutronically irrelevant, and a breach that floods the gap is a negative-reactivity event.
 
 Yes. The radiative core breeds about as well as A2 per unit of fuel fraction. Its lower fuel fraction costs ~1 point of Pu and ~0.1–0.2 of breeding ratio, and the larger size recovers part of that through lower leakage. The cost shows up in doubling time instead. The Pu inventory is ~9–10 t against ~3 t for A2, so at equal breeding gain the doubling time is ~4× longer. Proxy (fissile 69% of Pu, +20% out of core, 1.25 kg/day per GWth consumption): ~23 years for R1 against ~6 for A2 at the breeding ratios above. The A2 page's 20–35 years assumes BR 1.3–1.5 and 12% Pu, which brackets the realistic case.
 

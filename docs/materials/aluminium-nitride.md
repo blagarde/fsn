@@ -45,4 +45,5 @@ N-14(n,p)C-14 is the main parasitic reaction; N-15 enrichment removes it.
 - [A1](../designs/A1.md): Solid nitride fuel, aluminium-cooled
 - [A2](../designs/A2.md): Liquid U-Pu pool cooled by aluminium
 - [A3](../designs/A3.md): Al-U-Pu solution fuel
+- [R1](../designs/R1.md): Radiatively coupled liquid U-Pu, aluminium-cooled AlN panels
 <!-- END GENERATED -->

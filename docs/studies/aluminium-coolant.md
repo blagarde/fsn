@@ -75,6 +75,12 @@ Through a 2 mm wall with 200 K across it, ZrB2 or AlN pass ~6 MW/m², tungsten ~
 - Oxide skin prevents wetting below ~1,000 °C; good wetting at operating temperature.
 - Hot-leg solubility of Zr, Ti or Al2O sets loop life.
 
+### Hot-leg solubility (A-family Phase 1, 2026-11-20)
+
+CALPHAD (COST 507, with a ZrB2 phase added from NIST-JANAF) puts the saturation content of every Al-side wall in liquid Al above the 0.1 at% margin of rule R2 somewhere between ~1,770 K (ZrB2) and ~1,950 K (TiB2) *(calc)*. Below ~1,600 K all three are well inside it. Loop life above ~1,500 °C therefore depends on dissolution kinetics, a test rather than a calculation ([Q-036](../open-questions.md)). Two corrections to the table above from the same work: at 2,100 K ZrO2 is more stable than Al2O3 (−711 vs −668 kJ per mol O2 *(db)*), and Al2O3 is a cold-leg material only, below ~1,800 K, because of Al2O vapour.
+
+![Saturation content of Zr, Ti or N in liquid aluminium vs temperature for ZrB2, TiB2 and AlN walls](../assets/figures/a-family-solubility.svg)
+
 ## First calculations
 
 [Q-030](../open-questions.md) to [Q-035](../open-questions.md): CALPHAD for Al–Zr–B, Al–Ti–B, Al–N, U–Zr–B, U–Al–N; Monte Carlo BR and void worth; B-11 purity; W/AlN and W/ZrB2 interfaces; breach energetics; Al2O transport.

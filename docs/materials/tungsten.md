@@ -53,6 +53,9 @@ Significant fast-neutron capture (see database facts); transmutation to Re and O
 - [B1](../designs/B1.md): Lithium-cooled nitride
 - [B2](../designs/B2.md): Lead-cooled nitride
 - [B5](../designs/B5.md): Lead-cooled cermet
+- [R1](../designs/R1.md): Radiatively coupled liquid U-Pu, aluminium-cooled AlN panels
+- [R2](../designs/R2.md): Radiatively coupled liquid U-Pu, lead-cooled Mo panels
+- [R3](../designs/R3.md): Radiatively coupled liquid U-Pu, helium-cooled Mo tubes, direct Brayton
 - [X1](../designs/X1.md): Liquid U-Pu pool, lead behind tungsten tubes
 - [X2](../designs/X2.md): Liquid U-Pu pool, CaF2 direct contact
 - [X3](../designs/X3.md): Liquid U-Pu pool, boiling calcium direct contact

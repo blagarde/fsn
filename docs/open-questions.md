@@ -47,3 +47,17 @@ Numbered so design and material pages can point at them. Close a question by rec
 | Q-034 | 3D CFD of one A2 bundle cell: does natural convection change fuel-side heat transfer? (1D estimate: Nu ≈ 1) | calc | [A2](designs/A2.md) | open |
 | Q-035 | U–Al breach energetics: heat release, mixing and pressure | calc → test | [A2](designs/A2.md) | open |
 | Q-036 | Hot-leg solubility of Zr, Ti and Al2O in Al (sets loop life) | calc | A1–A3 | open |
+
+## Radiatively coupled family (R1–R3)
+
+| ID | Question | Kind | Blocks | Status |
+| --- | --- | --- | --- | --- |
+| Q-040 | Emissivity of textured and ZrC-coated W at 1,800–2,200 °C, held ≥ 1,000 h (bare W at ε ≈ 0.3 makes the core 2.4× larger) | test | [R1](designs/R1.md), [R2](designs/R2.md), [R3](designs/R3.md) | open |
+| Q-041 | Evaporation coefficient of AlN in vacuum and under ~1 bar N2 at 1,300–1,600 °C (JANAF upper bound 0.8–29 m/yr in vacuum) | test | [R1](designs/R1.md) | open |
+| Q-042 | Does liquid fuel in a radiatively cooled tube stay near-isothermal (coolant entering at the top)? | calc | R1–R3 | open |
+| Q-043 | Allowed fuel-column height in W tubes (hydrostatic hoop stress ~1.6 MPa per metre, creep at 2,000 °C) and feeding of a tiered core | calc | R1–R3 | open |
+| Q-044 | Heterogeneous / 3D Monte Carlo of R1–R3 (current numbers are homogenised) | calc | R1–R3 | open |
+| Q-045 | Freeze and restart control when fuel and coolant are coupled only by radiation | calc | R1–R3, Q-025 | open |
+| Q-046 | Emissive coatings for Mo receivers facing vacuum (bare Mo gives 0.27 MW/m² instead of 0.76) | test | [R2](designs/R2.md), [R3](designs/R3.md) | open |
+| Q-047 | Spectrum class of liquid U–Pu cores: median flux energy ~196 keV puts A2 and R1 in class F, not H | decision | [taxonomy](framework/taxonomy.md), A2, R1–R3 | open |
+| Q-048 | Parked geometries: S5 fluidisation window, S8 wall heat-transfer coefficient, S6 printability and strut irradiation | calc → test | [scoping study](studies/new-geometries-scoping.md) | open |
