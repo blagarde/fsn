@@ -1,0 +1,10 @@
++ export PATH=/opt/mamba/envs/nuc/bin:/root/.claude/rm-guard/16beca20092e9afdf2f5b58015b3a446/refuse:/nix/var/nix/profiles/default/bin:/root/.local/bin:/root/.cargo/bin:/usr/local/go/bin:/opt/node22/bin:/opt/maven/bin:/opt/gradle/bin:/opt/rbenv/bin:/root/.bun/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin OMP_THREADS=4
++ PATH=/opt/mamba/envs/nuc/bin:/root/.claude/rm-guard/16beca20092e9afdf2f5b58015b3a446/refuse:/nix/var/nix/profiles/default/bin:/root/.local/bin:/root/.cargo/bin:/usr/local/go/bin:/opt/node22/bin:/opt/maven/bin:/opt/gradle/bin:/opt/rbenv/bin:/root/.bun/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
++ OMP_THREADS=4
+++ dirname ./run_study.sh
++ cd .
++ python pool.py calibrate
+slab 15 0.2 OpenMC 0.9432
+slab 25 0.15 OpenMC 1.1257
+slab 40 0.12 OpenMC 1.2488
+slab 60 0.1 OpenMC 1.2762
