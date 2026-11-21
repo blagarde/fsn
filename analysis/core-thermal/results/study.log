@@ -3,26 +3,376 @@
 + OMP_THREADS=4
 ++ dirname ./run_study.sh
 + cd .
-+ python pool.py calibrate
-slab 15 0.2 OpenMC 0.9432
-slab 25 0.15 OpenMC 1.1257
-slab 40 0.12 OpenMC 1.2488
-slab 60 0.1 OpenMC 1.2762
-slab 25 0.1 OpenMC 0.9097
-slab 25 0.2 OpenMC 1.3030
-sphere 8 0.2 OpenMC 0.4605
-sphere 12 0.15 OpenMC 0.5751
-sphere 20 0.1 OpenMC 0.7253
-cylinder 12 0.15 OpenMC 0.6325
-cylinder 25 0.1 OpenMC 0.9084
-f = 0.940, c = 3.55; residual rms 2104 pcm, max 3500 pcm
 + python pool_study.py
-slab_pu10 29.76-29.88 cm, max 14.7 MW
-slab_pu15 20.47-20.60 cm, max 21.2 MW
-slab_pu20 16.27-16.27 cm, max 26.6 MW
-slab_mixed 20.47-20.58 cm, max 700 MW
-slab_nu10 20.47-20.47 cm, max 173 MW
-slab_one_face 20.47-20.56 cm, max 6.04 MW
-slab_radiative_1500 20.47-20.47 cm, max 14.8 MW
-slab_radiative_1000 20.56-20.56 cm, max 15.6 MW
-sphere_bare 23.09-23.68 cm, max 0.295 MW
+slab_pu10 29.77-29.90 cm, max 14.7 MW
+slab_pu15 20.53-20.58 cm, max 21.2 MW
+slab_pu20 16.25-16.27 cm, max 26.6 MW
+slab_mixed 20.53-20.60 cm, max 700 MW
+slab_nu10 20.53-20.58 cm, max 166 MW
+slab_one_face 20.53-20.58 cm, max 6.04 MW
+slab_radiative_1500 20.53-20.58 cm, max 14.1 MW
+slab_radiative_1000 20.51-20.56 cm, max 15 MW
+sphere_bare 23.03-23.65 cm, max 0.295 MW
+sphere_W20 15.32-15.82 cm, max 0.272 MW
+cylinder_HD1 20.87-21.70 cm, max 0.332 MW
++ python validate.py godiva p1 infinite finite
+{'benchmark_R_cm': 8.7407, 'model_R_cm': np.float64(8.414975668748886), 'error_pct': np.float64(-3.726524548961918), 'k_inf': np.float64(2.046381719911879), 'spectrum_note': "harder than 'metal' reference: clamped", 'comment': "one-group diffusion in a 9 cm sphere (~3 transport mean free paths) is outside its validity; this bounds the model's leakage error for small cores"}
+{'run': 'hard:1200', 'nuclide': 'Pb208', 'analog': 0.7337343000922175, 'data': 0.7456329545164628, 'ratio': 1.0162165710704132}
+{'run': 'hard:1200', 'nuclide': 'Pu239', 'analog': 1.9069949997841, 'data': 1.8691878545199054, 'ratio': 0.9801744916643856}
+{'run': 'hard:1200', 'nuclide': 'U238', 'analog': 1.6967674512200273, 'data': 1.6644483868737918, 'ratio': 0.9809525669985023}
+{'run': 'hard:1200', 'nuclide': 'W184', 'analog': 1.3300454276792142, 'data': 1.3079475432041514, 'ratio': 0.983385616750233}
+{'run': 'hard:2100', 'nuclide': 'Pb208', 'analog': 0.7321680001967764, 'data': 0.7461628447159601, 'ratio': 1.0191142531706143}
+{'run': 'hard:2100', 'nuclide': 'Pu239', 'analog': 1.9153296655465792, 'data': 1.8698755362794914, 'ratio': 0.9762682476626725}
+{'run': 'hard:2100', 'nuclide': 'U238', 'analog': 1.7036801467422389, 'data': 1.6649192563576238, 'ratio': 0.9772487280204953}
+{'run': 'hard:2100', 'nuclide': 'W184', 'analog': 1.3462898082604833, 'data': 1.3081162807086446, 'ratio': 0.9716453862180224}
+{'run': 'medium:1200', 'nuclide': 'Al27', 'analog': 0.34828144310124326, 'data': 0.3547575968262258, 'ratio': 1.018594598860382}
+{'run': 'medium:1200', 'nuclide': 'N15', 'analog': 0.23205328167931083, 'data': 0.23706022794479584, 'ratio': 1.021576709578296}
+{'run': 'medium:1200', 'nuclide': 'Pu239', 'analog': 1.5991668133402872, 'data': 1.569317376264721, 'ratio': 0.9813343818627541}
+{'run': 'medium:1200', 'nuclide': 'U238', 'analog': 1.4115140316413772, 'data': 1.390704455077967, 'ratio': 0.9852572655340792}
+{'run': 'medium:1200', 'nuclide': 'W184', 'analog': 1.1404571609207381, 'data': 1.1188757262148816, 'ratio': 0.9810765055932194}
+{'run': 'medium:2100', 'nuclide': 'Al27', 'analog': 0.34647806071883946, 'data': 0.3550840317927568, 'ratio': 1.0248384300468045}
+{'run': 'medium:2100', 'nuclide': 'N15', 'analog': 0.23208771824577798, 'data': 0.2370981739422562, 'ratio': 1.02158862922325}
+{'run': 'medium:2100', 'nuclide': 'Pu239', 'analog': 1.599663416507215, 'data': 1.5699328486976112, 'ratio': 0.981414485383107}
+{'run': 'medium:2100', 'nuclide': 'U238', 'analog': 1.418158235446374, 'data': 1.3908455149183772, 'ratio': 0.9807407101370462}
+{'run': 'medium:2100', 'nuclide': 'W184', 'analog': 1.1322113118559771, 'data': 1.1191879137030027, 'ratio': 0.9884973785223663}
+{'run': 'soft:1200', 'nuclide': 'Fe56', 'analog': 0.26451174878108646, 'data': 0.33095412942456265, 'ratio': 1.2511887693066701}
+{'run': 'soft:1200', 'nuclide': 'Na23', 'analog': 0.3926994149598191, 'data': 0.38840846981003196, 'ratio': 0.9890732071749427}
+{'run': 'soft:1200', 'nuclide': 'O16', 'analog': 0.2006136666177594, 'data': 0.2025410814662574, 'ratio': 1.0096075949410288}
+{'run': 'soft:1200', 'nuclide': 'Pu239', 'analog': 1.4980673385408334, 'data': 1.4519558388922815, 'ratio': 0.969219341172296}
+{'run': 'soft:1200', 'nuclide': 'U238', 'analog': 1.3153188517201717, 'data': 1.291231695459128, 'ratio': 0.9816872112571469}
+{'run': 'soft:2100', 'nuclide': 'Fe56', 'analog': 0.26796307788417306, 'data': 0.33092066297875866, 'ratio': 1.2349487309658347}
+{'run': 'soft:2100', 'nuclide': 'Na23', 'analog': 0.3961786369719251, 'data': 0.3892888819808306, 'ratio': 0.9826094737370134}
+{'run': 'soft:2100', 'nuclide': 'O16', 'analog': 0.19930056615859643, 'data': 0.20264046207174122, 'ratio': 1.0167580854260445}
+{'run': 'soft:2100', 'nuclide': 'Pu239', 'analog': 1.488888503583745, 'data': 1.455869942581936, 'ratio': 0.977823348811994}
+{'run': 'soft:2100', 'nuclide': 'U238', 'analog': 1.3260456622947752, 'data': 1.2941831268649138, 'ratio': 0.9759717660289903}
+{'run': 'metal:1200', 'nuclide': 'Pu239', 'analog': 2.0356023553112306, 'data': 1.9765200678240293, 'ratio': 0.9709755260731323}
+{'run': 'metal:1200', 'nuclide': 'U238', 'analog': 1.821032105060097, 'data': 1.7795364706448125, 'ratio': 0.9772131230965226}
+{'run': 'metal:2100', 'nuclide': 'Pu239', 'analog': 2.0348572526324267, 'data': 1.9764556232176131, 'ratio': 0.9712993973708666}
+{'run': 'metal:2100', 'nuclide': 'U238', 'analog': 1.821413382608027, 'data': 1.779555473604909, 'ratio': 0.9770189955762909}
+MOX-Na {'T_K': np.float64(1760.0194736307308), 'openmc_k_inf': 1.4184926733414096, 'openmc_sd': 0.0013512420778868293, 'model_k_inf': np.float64(1.365954978333377), 'dk_pcm': np.float64(-5253.7695008032515), 'openmc_cr': 0.7629952891290788, 'model_cr': np.float64(0.7963412032092497), 'openmc_median_E_eV': 134229.51771117194, 'model_weights': {'medium': 0.2708458676108003, 'soft': 0.7291541323891997}}
+UN-Pb {'T_K': np.float64(1429.1141615065596), 'openmc_k_inf': 1.232327796651048, 'openmc_sd': 0.001812682822212707, 'model_k_inf': np.float64(1.1911564392015672), 'dk_pcm': np.float64(-4117.135744948075), 'openmc_cr': 0.951515393636894, 'model_cr': np.float64(1.0056091315198907), 'openmc_median_E_eV': 178179.74362806763, 'model_weights': {'hard': 0.09439499399354623, 'medium': 0.9056050060064538}}
+UN-He {'T_K': np.float64(1257.3105285782526), 'openmc_k_inf': 1.4287179720417629, 'openmc_sd': 0.0022274844372845498, 'model_k_inf': np.float64(1.3530977975777005), 'dk_pcm': np.float64(-7562.017446406233), 'openmc_cr': 0.8366344288770896, 'model_cr': np.float64(0.8789953624281431), 'openmc_median_E_eV': 134229.51771117194, 'model_weights': {'medium': 0.3255990976821793, 'soft': 0.6744009023178207}}
+UPu-Al-pool {'T_K': np.float64(1858.8475149319188), 'openmc_k_inf': 1.125014175086693, 'openmc_sd': 0.0012493290689097728, 'model_k_inf': np.float64(1.1053718532836165), 'dk_pcm': np.float64(-1964.2321803076568), 'openmc_cr': 1.1265639400389948, 'model_cr': np.float64(1.1703738502778354), 'openmc_median_E_eV': 178179.74362806763, 'model_weights': {'hard': 0.4721995381393037, 'medium': 0.5278004618606963}}
+UPu-rad-He {'T_K': np.float64(1784.7823981327751), 'openmc_k_inf': 1.3609035789285804, 'openmc_sd': 0.002301074738998104, 'model_k_inf': np.float64(1.312586614454483), 'dk_pcm': np.float64(-4831.696447409728), 'openmc_cr': 0.9915966882032153, 'model_cr': np.float64(1.0441908731105016), 'openmc_median_E_eV': 236520.41354776858, 'model_weights': {'hard': 0.8947592362309305, 'medium': 0.10524076376906956}}
+UPu-rad-Al {'T_K': np.float64(1949.7201542806806), 'openmc_k_inf': 1.1449944306766762, 'openmc_sd': 0.001586470740817613, 'model_k_inf': np.float64(1.1191295443433626), 'dk_pcm': np.float64(-2586.488633331352), 'openmc_cr': 1.1320812710911043, 'model_cr': np.float64(1.1759548306122598), 'openmc_median_E_eV': 178179.74362806763, 'model_weights': {'hard': 0.45466133883515947, 'medium': 0.5453386611648405}}
+UPu-circ {'T_K': 2100.0, 'openmc_k_inf': 1.0528499511935399, 'openmc_sd': 0.0013677049856452063, 'model_k_inf': np.float64(1.1002798177139355), 'dk_pcm': np.float64(4742.98665203956), 'openmc_cr': 1.047258409358758, 'model_cr': np.float64(1.0140428330711415), 'openmc_median_E_eV': 195822.12678327717, 'model_weights': {'hard': 0.9932688320408787, 'medium': 0.006731167959121329}}
+MOX-Na {'P_MW': 1000.0, 'pu': 0.1331034703453861, 'R_cm': np.float64(86.50198717462979), 'H_cm': np.float64(173.00397434925958), 'reflector': ('steel', 7.6, 30.0), 'model_k_eff': np.float64(0.9999883816836868), 'openmc_k_eff': 0.9917043798523806, 'openmc_sd': 0.001273802474050455, 'dk_pcm': np.float64(828.4001831306176)}
+UN-Pb {'P_MW': 1000.0, 'pu': 0.12280296429057673, 'R_cm': np.float64(92.18064211409195), 'H_cm': np.float64(184.3612842281839), 'reflector': ('Pb', 9.8, 50.0), 'model_k_eff': np.float64(1.000001476940441), 'openmc_k_eff': 1.0095440640248605, 'openmc_sd': 0.0013649022611171163, 'dk_pcm': np.float64(-954.2587084419463)}
+UPu-Al-pool {'P_MW': 1000.0, 'pu': 0.1375090988354623, 'R_cm': np.float64(55.2505927338839), 'H_cm': np.float64(110.5011854677678), 'reflector': ('W', 19.0, 20.0), 'model_k_eff': np.float64(0.999999706367473), 'openmc_k_eff': 1.0214960435155396, 'openmc_sd': 0.001004957407226141, 'dk_pcm': np.float64(-2149.6337148066536)}
++ python simulate.py all
+== MOX-Na
+k_inf 1.367  CR(core) 0.80  spectrum weights {'medium': 0.2708458676108003, 'soft': 0.7291541323891997} 
+critical core R 0.41 m, H 0.83 m, V 0.44 m3; fissile 515 kg/m3 -> 0.23 t fissile, 1.6 t HM
+volume fractions f_fuel 0.400, f_wall 0.122, f_cool 0.478, f_other 0.000; radial peaking 1.33
+power limit: fuel 2900 K: q''' 334 MW/m3 core avg -> P 148 MWth, 648 kW/kg fissile
+flux 3.44e+15 n/cm2 s (avg); fluence 1.1e+23 n/cm2 per full-power year
+peak fuel 2627 C, peak wall 585 C, wall heat flux 1.98 MW/m2; mean fuel 1487 C
+coolant 779 kg/s = 0.93 m3/s, v 4.8 m/s, core dp 0.19 bar, core pumping 0.02 MW (0.01 %)
+beta_eff 391 pcm (retained 1.00), Lambda 0.41 us
+Doppler T dk/dT -897 pcm; fuel density -1.55 pcm/K; coolant density -0.95 pcm/K; full coolant void -4419 pcm
+core heat capacity 1.2 MJ/K -> adiabatic 127.5 K/s at full power; decay heat 1 s 9.0 MW, 1 min 3.8 MW, 1 h 1.5 MW, 1 day 0.7 MW, 30 days 0.2 MW
+no cooling after scram: fuel limit reached after 0.1 h (adiabatic core, Way-Wigner decay heat)
+== UN-Pb
+k_inf 1.191  CR(core) 1.01  spectrum weights {'hard': 0.09439499399354623, 'medium': 0.9056050060064538} 
+critical core R 0.55 m, H 1.10 m, V 1.06 m3; fissile 543 kg/m3 -> 0.57 t fissile, 5.4 t HM
+volume fractions f_fuel 0.400, f_wall 0.144, f_cool 0.456, f_other 0.000; radial peaking 1.49
+power limit: coolant velocity 3.0 m/s: q''' 335 MW/m3 core avg -> P 354 MWth, 617 kW/kg fissile
+flux 3.43e+15 n/cm2 s (avg); fluence 1.1e+23 n/cm2 per full-power year
+peak fuel 1303 C, peak wall 1224 C, wall heat flux 2.01 MW/m2; mean fuel 1156 C
+coolant 8544 kg/s = 0.88 m3/s, v 3.0 m/s, core dp 1.29 bar, core pumping 0.11 MW (0.03 %)
+beta_eff 438 pcm (retained 1.00), Lambda 0.30 us
+Doppler T dk/dT -399 pcm; fuel density -1.11 pcm/K; coolant density -0.47 pcm/K; full coolant void -5732 pcm
+core heat capacity 2.5 MJ/K -> adiabatic 144.3 K/s at full power; decay heat 1 s 21.4 MW, 1 min 9.1 MW, 1 h 3.7 MW, 1 day 1.7 MW, 30 days 0.5 MW
+no cooling after scram: fuel limit reached after 0.1 h (adiabatic core, Way-Wigner decay heat)
+== UN-He
+k_inf 1.353  CR(core) 0.88  spectrum weights {'medium': 0.3255990976821793, 'soft': 0.6744009023178207} 
+critical core R 0.37 m, H 0.74 m, V 0.32 m3; fissile 568 kg/m3 -> 0.18 t fissile, 1.4 t HM
+volume fractions f_fuel 0.350, f_wall 0.255, f_cool 0.395, f_other 0.000; radial peaking 1.24
+power limit: coolant velocity 60.0 m/s: q''' 201 MW/m3 core avg -> P 64 MWth, 353 kW/kg fissile
+flux 1.87e+15 n/cm2 s (avg); fluence 5.9e+22 n/cm2 per full-power year
+peak fuel 1117 C, peak wall 1116 C, wall heat flux 0.09 MW/m2; mean fuel 984 C
+coolant 25 kg/s = 8.21 m3/s, v 60.0 m/s, core dp 2.61 bar, core pumping 2.14 MW (3.35 %)
+beta_eff 406 pcm (retained 1.00), Lambda 0.37 us
+Doppler T dk/dT -943 pcm; fuel density -1.40 pcm/K; coolant density 0.00 pcm/K; full coolant void 3 pcm
+core heat capacity 0.7 MJ/K -> adiabatic 96.6 K/s at full power; decay heat 1 s 3.9 MW, 1 min 1.6 MW, 1 h 0.7 MW, 1 day 0.3 MW, 30 days 0.1 MW
+no cooling after scram: fuel limit reached after 0.1 h (adiabatic core, Way-Wigner decay heat)
+== UPu-Al-pool
+k_inf 1.105  CR(core) 1.17  spectrum weights {'hard': 0.4721995381393037, 'medium': 0.5278004618606963} 
+critical core R 0.82 m, H 1.65 m, V 3.51 m3; fissile 614 kg/m3 -> 2.16 t fissile, 25.3 t HM
+volume fractions f_fuel 0.450, f_wall 0.168, f_cool 0.382, f_other 0.000; radial peaking 1.82
+power limit: coolant velocity 6.0 m/s: q''' 576 MW/m3 core avg -> P 2023 MWth, 937 kW/kg fissile
+flux 5.08e+15 n/cm2 s (avg); fluence 1.6e+23 n/cm2 per full-power year
+peak fuel 1845 C, peak wall 1678 C, wall heat flux 9.50 MW/m2; mean fuel 1586 C
+coolant 5730 kg/s = 2.69 m3/s, v 6.0 m/s, core dp 0.91 bar, core pumping 0.24 MW (0.01 %)
+beta_eff 479 pcm (retained 1.00), Lambda 0.23 us
+Doppler T dk/dT -360 pcm; fuel density -1.94 pcm/K; coolant density 0.75 pcm/K; full coolant void 8414 pcm
+core heat capacity 9.9 MJ/K -> adiabatic 205.4 K/s at full power; decay heat 1 s 122.4 MW, 1 min 52.0 MW, 1 h 21.0 MW, 1 day 9.5 MW, 30 days 3.1 MW
+no cooling after scram: fuel limit reached after 0.0 h (adiabatic core, Way-Wigner decay heat)
+== UPu-rad-He
+k_inf 1.313  CR(core) 1.04  spectrum weights {'hard': 0.8947592362309305, 'medium': 0.10524076376906956} 
+critical core R 0.53 m, H 1.06 m, V 0.93 m3; fissile 614 kg/m3 -> 0.57 t fissile, 6.7 t HM
+volume fractions f_fuel 0.450, f_wall 0.153, f_cool 0.397, f_other 0.000; radial peaking 1.52
+power limit: fuel 2373 K: q''' 37 MW/m3 core avg -> P 34 MWth, 60 kW/kg fissile
+flux 3.34e+14 n/cm2 s (avg); fluence 1.1e+22 n/cm2 per full-power year
+peak fuel 2100 C, peak wall 1659 C, wall heat flux 0.76 MW/m2; mean fuel 1512 C
+coolant 17 kg/s = 6.75 m3/s, v 29.4 m/s, core dp 0.02 bar, core pumping 0.01 MW (0.03 %)
+beta_eff 480 pcm (retained 1.00), Lambda 0.20 us
+Doppler T dk/dT -148 pcm; fuel density -2.48 pcm/K; coolant density 0.14 pcm/K; full coolant void 209 pcm
+core heat capacity 1.7 MJ/K -> adiabatic 20.3 K/s at full power; decay heat 1 s 2.1 MW, 1 min 0.9 MW, 1 h 0.4 MW, 1 day 0.2 MW, 30 days 0.1 MW
+no cooling after scram: fuel limit reached after 0.5 h (adiabatic core, Way-Wigner decay heat)
+== UPu-rad-Al
+k_inf 1.119  CR(core) 1.18  spectrum weights {'hard': 0.45466133883515947, 'medium': 0.5453386611648405} 
+critical core R 0.78 m, H 1.55 m, V 2.95 m3; fissile 614 kg/m3 -> 1.81 t fissile, 21.2 t HM
+volume fractions f_fuel 0.450, f_wall 0.153, f_cool 0.397, f_other 0.000; radial peaking 1.79
+power limit: fuel 2373 K: q''' 34 MW/m3 core avg -> P 100 MWth, 55 kW/kg fissile
+flux 2.98e+14 n/cm2 s (avg); fluence 9.4e+21 n/cm2 per full-power year
+peak fuel 2100 C, peak wall 1610 C, wall heat flux 0.89 MW/m2; mean fuel 1677 C
+coolant 283 kg/s = 0.13 m3/s, v 0.3 m/s, core dp 0.00 bar, core pumping 0.00 MW (0.00 %)
+beta_eff 479 pcm (retained 1.00), Lambda 0.23 us
+Doppler T dk/dT -363 pcm; fuel density -1.93 pcm/K; coolant density 0.70 pcm/K; full coolant void 8094 pcm
+core heat capacity 8.3 MJ/K -> adiabatic 12.1 K/s at full power; decay heat 1 s 6.0 MW, 1 min 2.6 MW, 1 h 1.0 MW, 1 day 0.5 MW, 30 days 0.2 MW
+no cooling after scram: fuel limit reached after 0.7 h (adiabatic core, Way-Wigner decay heat)
+== UPu-circ
+k_inf 1.100  CR(core) 1.01  spectrum weights {'hard': 0.9932688320408787, 'medium': 0.006731167959121329} 
+critical core R 0.66 m, H 1.33 m, V 1.85 m3; fissile 819 kg/m3 -> 1.51 t fissile, 17.7 t HM
+volume fractions f_fuel 0.600, f_wall 0.000, f_cool 0.000, f_other 0.400; radial peaking 1.82
+power limit: power-density cap 300 MW/m3: q''' 300 MW/m3 core avg -> P 554 MWth, 366 kW/kg fissile
+flux 2.01e+15 n/cm2 s (avg); fluence 6.4e+22 n/cm2 per full-power year
+peak fuel 2000 C, peak wall -273 C, wall heat flux 0.00 MW/m2; mean fuel 2000 C
+coolant 9717 kg/s = 0.61 m3/s, v nan m/s, core dp 0.00 bar, core pumping 0.00 MW (0.00 %)
+beta_eff 264 pcm (retained 0.55), Lambda 0.14 us
+Doppler T dk/dT -150 pcm; fuel density -2.18 pcm/K; coolant density 0.00 pcm/K; full coolant void 0 pcm
+core heat capacity 5.5 MJ/K -> adiabatic 101.2 K/s at full power; decay heat 1 s 33.5 MW, 1 min 14.2 MW, 1 h 5.7 MW, 1 day 2.6 MW, 30 days 0.9 MW
+no cooling after scram: fuel limit reached after 0.2 h (adiabatic core, Way-Wigner decay heat)
+MOX-Na pu 0.08 f_fuel 0.25: k_inf 0.885
+MOX-Na pu 0.08 f_fuel 0.35: k_inf 0.889
+MOX-Na pu 0.08 f_fuel 0.45: k_inf 0.891
+MOX-Na pu 0.08 f_fuel 0.55: k_inf 0.899
+MOX-Na pu 0.10 f_fuel 0.25: k_inf 0.985
+MOX-Na pu 0.10 f_fuel 0.35: k_inf 0.989
+MOX-Na pu 0.10 f_fuel 0.45: k_inf 0.994
+MOX-Na pu 0.10 f_fuel 0.55: k_inf 1.009 V 257.6 m3 P 6717 MW limit coolant velocity 8.0 m/s
+MOX-Na pu 0.12 f_fuel 0.25: k_inf 1.062 V 57.5 m3 P 6968 MW limit coolant velocity 8.0 m/s
+MOX-Na pu 0.12 f_fuel 0.35: k_inf 1.069 V 21.5 m3 P 2996 MW limit coolant velocity 8.0 m/s
+MOX-Na pu 0.12 f_fuel 0.45: k_inf 1.084 V 8.4 m3 P 1249 MW limit coolant velocity 8.0 m/s
+MOX-Na pu 0.12 f_fuel 0.55: k_inf 1.101 V 3.8 m3 P 511 MW limit coolant velocity 8.0 m/s
+MOX-Na pu 0.15 f_fuel 0.25: k_inf 1.173 V 7.0 m3 P 1235 MW limit fuel 2900 K
+MOX-Na pu 0.15 f_fuel 0.35: k_inf 1.180 V 2.9 m3 P 744 MW limit fuel 2900 K
+MOX-Na pu 0.15 f_fuel 0.45: k_inf 1.203 V 1.3 m3 P 415 MW limit coolant velocity 8.0 m/s
+MOX-Na pu 0.15 f_fuel 0.55: k_inf 1.224 V 0.7 m3 P 189 MW limit coolant velocity 8.0 m/s
+MOX-Na pu 0.20 f_fuel 0.25: k_inf 1.326 V 1.5 m3 P 304 MW limit fuel 2900 K
+MOX-Na pu 0.20 f_fuel 0.35: k_inf 1.353 V 0.6 m3 P 182 MW limit fuel 2900 K
+MOX-Na pu 0.20 f_fuel 0.45: k_inf 1.379 V 0.3 m3 P 123 MW limit fuel 2900 K
+MOX-Na pu 0.20 f_fuel 0.55: k_inf 1.399 V 0.2 m3 P 84 MW limit coolant velocity 8.0 m/s
+MOX-Na pu 0.25 f_fuel 0.25: k_inf 1.455 V 0.6 m3 P 132 MW limit fuel 2900 K
+MOX-Na pu 0.25 f_fuel 0.35: k_inf 1.495 V 0.3 m3 P 83 MW limit fuel 2900 K
+MOX-Na pu 0.25 f_fuel 0.45: k_inf 1.524 V 0.1 m3 P 58 MW limit fuel 2900 K
+MOX-Na pu 0.25 f_fuel 0.55: k_inf 1.545 V 0.1 m3 P 44 MW limit fuel 2900 K
+MOX-Na pu 0.30 f_fuel 0.25: k_inf 1.571 V 0.3 m3 P 74 MW limit fuel 2900 K
+MOX-Na pu 0.30 f_fuel 0.35: k_inf 1.614 V 0.1 m3 P 48 MW limit fuel 2900 K
+MOX-Na pu 0.30 f_fuel 0.45: k_inf 1.645 V 0.1 m3 P 35 MW limit fuel 2900 K
+MOX-Na pu 0.30 f_fuel 0.55: k_inf 1.669 V 0.1 m3 P 27 MW limit fuel 2900 K
+UN-Pb pu 0.08 f_fuel 0.25: k_inf 0.821
+UN-Pb pu 0.08 f_fuel 0.35: k_inf 0.845
+UN-Pb pu 0.08 f_fuel 0.45: k_inf 0.859
+UN-Pb pu 0.08 f_fuel 0.55: k_inf 0.867
+UN-Pb pu 0.10 f_fuel 0.25: k_inf 0.931
+UN-Pb pu 0.10 f_fuel 0.35: k_inf 0.957
+UN-Pb pu 0.10 f_fuel 0.45: k_inf 0.968
+UN-Pb pu 0.10 f_fuel 0.55: k_inf 0.975
+UN-Pb pu 0.12 f_fuel 0.25: k_inf 1.032 V 68.6 m3 P 6795 MW limit coolant velocity 3.0 m/s
+UN-Pb pu 0.12 f_fuel 0.35: k_inf 1.055 V 14.1 m3 P 2016 MW limit coolant velocity 3.0 m/s
+UN-Pb pu 0.12 f_fuel 0.45: k_inf 1.066 V 6.1 m3 P 882 MW limit coolant velocity 3.0 m/s
+UN-Pb pu 0.12 f_fuel 0.55: k_inf 1.074 V 3.4 m3 P 389 MW limit coolant velocity 3.0 m/s
+UN-Pb pu 0.15 f_fuel 0.25: k_inf 1.164 V 3.4 m3 P 1090 MW limit coolant velocity 3.0 m/s
+UN-Pb pu 0.15 f_fuel 0.35: k_inf 1.184 V 1.5 m3 P 502 MW limit coolant velocity 3.0 m/s
+UN-Pb pu 0.15 f_fuel 0.45: k_inf 1.196 V 0.8 m3 P 251 MW limit coolant velocity 3.0 m/s
+UN-Pb pu 0.15 f_fuel 0.55: k_inf 1.205 V 0.5 m3 P 120 MW limit coolant velocity 3.0 m/s
+UN-Pb pu 0.20 f_fuel 0.25: k_inf 1.344 V 0.8 m3 P 428 MW limit coolant velocity 3.0 m/s
+UN-Pb pu 0.20 f_fuel 0.35: k_inf 1.365 V 0.4 m3 P 210 MW limit coolant velocity 3.0 m/s
+UN-Pb pu 0.20 f_fuel 0.45: k_inf 1.378 V 0.2 m3 P 109 MW limit coolant velocity 3.0 m/s
+UN-Pb pu 0.20 f_fuel 0.55: k_inf 1.387 V 0.1 m3 P 53 MW limit coolant velocity 3.0 m/s
+UN-Pb pu 0.25 f_fuel 0.25: k_inf 1.491 V 0.3 m3 P 259 MW limit coolant velocity 3.0 m/s
+UN-Pb pu 0.25 f_fuel 0.35: k_inf 1.513 V 0.2 m3 P 130 MW limit coolant velocity 3.0 m/s
+UN-Pb pu 0.25 f_fuel 0.45: k_inf 1.526 V 0.1 m3 P 69 MW limit coolant velocity 3.0 m/s
+UN-Pb pu 0.25 f_fuel 0.55: k_inf 1.535 V 0.1 m3 P 34 MW limit coolant velocity 3.0 m/s
+UN-Pb pu 0.30 f_fuel 0.25: k_inf 1.613 V 0.2 m3 P 184 MW limit coolant velocity 3.0 m/s
+UN-Pb pu 0.30 f_fuel 0.35: k_inf 1.636 V 0.1 m3 P 94 MW limit coolant velocity 3.0 m/s
+UN-Pb pu 0.30 f_fuel 0.45: k_inf 1.649 V 0.1 m3 P 50 MW limit coolant velocity 3.0 m/s
+UN-Pb pu 0.30 f_fuel 0.55: k_inf 1.658 V 0.0 m3 P 25 MW limit coolant velocity 3.0 m/s
+UN-He pu 0.08 f_fuel 0.25: k_inf 0.909
+UN-He pu 0.08 f_fuel 0.35: k_inf 0.909
+UN-He pu 0.08 f_fuel 0.45: k_inf 0.909
+UN-He pu 0.08 f_fuel 0.55: k_inf 0.909
+UN-He pu 0.10 f_fuel 0.25: k_inf 1.016 V 422.0 m3 P 8018 MW limit coolant velocity 60.0 m/s
+UN-He pu 0.10 f_fuel 0.35: k_inf 1.017 V 144.8 m3 P 2723 MW limit coolant velocity 60.0 m/s
+UN-He pu 0.10 f_fuel 0.45: k_inf 1.017 V 66.5 m3 P 907 MW limit coolant velocity 60.0 m/s
+UN-He pu 0.10 f_fuel 0.55: k_inf 1.017 V 36.1 m3 P 134 MW limit coolant velocity 60.0 m/s
+UN-He pu 0.12 f_fuel 0.25: k_inf 1.113 V 8.7 m3 P 775 MW limit coolant velocity 60.0 m/s
+UN-He pu 0.12 f_fuel 0.35: k_inf 1.114 V 3.6 m3 P 291 MW limit coolant velocity 60.0 m/s
+UN-He pu 0.12 f_fuel 0.45: k_inf 1.114 V 1.9 m3 P 104 MW limit coolant velocity 60.0 m/s
+UN-He pu 0.12 f_fuel 0.55: k_inf 1.115 V 1.1 m3 P 16 MW limit coolant velocity 60.0 m/s
+UN-He pu 0.15 f_fuel 0.25: k_inf 1.241 V 1.6 m3 P 273 MW limit coolant velocity 60.0 m/s
+UN-He pu 0.15 f_fuel 0.35: k_inf 1.242 V 0.7 m3 P 108 MW limit coolant velocity 60.0 m/s
+UN-He pu 0.15 f_fuel 0.45: k_inf 1.243 V 0.4 m3 P 40 MW limit coolant velocity 60.0 m/s
+UN-He pu 0.15 f_fuel 0.55: k_inf 1.243 V 0.3 m3 P 6 MW limit coolant velocity 60.0 m/s
+UN-He pu 0.20 f_fuel 0.25: k_inf 1.418 V 0.4 m3 P 120 MW limit coolant velocity 60.0 m/s
+UN-He pu 0.20 f_fuel 0.35: k_inf 1.420 V 0.2 m3 P 50 MW limit coolant velocity 60.0 m/s
+UN-He pu 0.20 f_fuel 0.45: k_inf 1.420 V 0.1 m3 P 19 MW limit coolant velocity 60.0 m/s
+UN-He pu 0.20 f_fuel 0.55: k_inf 1.421 V 0.1 m3 P 3 MW limit coolant velocity 60.0 m/s
+UN-He pu 0.25 f_fuel 0.25: k_inf 1.563 V 0.2 m3 P 75 MW limit coolant velocity 60.0 m/s
+UN-He pu 0.25 f_fuel 0.35: k_inf 1.565 V 0.1 m3 P 32 MW limit coolant velocity 60.0 m/s
+UN-He pu 0.25 f_fuel 0.45: k_inf 1.566 V 0.1 m3 P 12 MW limit coolant velocity 60.0 m/s
+UN-He pu 0.25 f_fuel 0.55: k_inf 1.566 V 0.0 m3 P 2 MW limit coolant velocity 60.0 m/s
+UN-He pu 0.30 f_fuel 0.25: k_inf 1.685 V 0.1 m3 P 54 MW limit coolant velocity 60.0 m/s
+UN-He pu 0.30 f_fuel 0.35: k_inf 1.686 V 0.1 m3 P 23 MW limit coolant velocity 60.0 m/s
+UN-He pu 0.30 f_fuel 0.45: k_inf 1.687 V 0.0 m3 P 9 MW limit coolant velocity 60.0 m/s
+UN-He pu 0.30 f_fuel 0.55: k_inf 1.688 V 0.0 m3 P 1 MW limit coolant velocity 60.0 m/s
+UPu-Al-pool pu 0.08 f_fuel 0.25: k_inf 0.645
+UPu-Al-pool pu 0.08 f_fuel 0.35: k_inf 0.783
+UPu-Al-pool pu 0.08 f_fuel 0.45: k_inf 0.893
+UPu-Al-pool pu 0.08 f_fuel 0.55: k_inf 0.987
+UPu-Al-pool pu 0.10 f_fuel 0.25: k_inf 0.735
+UPu-Al-pool pu 0.10 f_fuel 0.35: k_inf 0.886
+UPu-Al-pool pu 0.10 f_fuel 0.45: k_inf 1.005 V 503.6 m3 P 46072 MW limit coolant velocity 6.0 m/s
+UPu-Al-pool pu 0.10 f_fuel 0.55: k_inf 1.104 V 3.2 m3 P 1548 MW limit coolant velocity 6.0 m/s
+UPu-Al-pool pu 0.12 f_fuel 0.25: k_inf 0.819
+UPu-Al-pool pu 0.12 f_fuel 0.35: k_inf 0.980
+UPu-Al-pool pu 0.12 f_fuel 0.45: k_inf 1.105 V 3.5 m3 P 2023 MW limit coolant velocity 6.0 m/s
+UPu-Al-pool pu 0.12 f_fuel 0.55: k_inf 1.209 V 0.8 m3 P 648 MW limit fuel 2373 K
+UPu-Al-pool pu 0.15 f_fuel 0.25: k_inf 0.934
+UPu-Al-pool pu 0.15 f_fuel 0.35: k_inf 1.107 V 4.0 m3 P 2595 MW limit coolant velocity 6.0 m/s
+UPu-Al-pool pu 0.15 f_fuel 0.45: k_inf 1.239 V 0.7 m3 P 782 MW limit coolant velocity 6.0 m/s
+UPu-Al-pool pu 0.15 f_fuel 0.55: k_inf 1.347 V 0.3 m3 P 237 MW limit fuel 2373 K
+UPu-Al-pool pu 0.20 f_fuel 0.25: k_inf 1.102 V 5.2 m3 P 3538 MW limit coolant velocity 6.0 m/s
+UPu-Al-pool pu 0.20 f_fuel 0.35: k_inf 1.287 V 0.6 m3 P 810 MW limit coolant velocity 6.0 m/s
+UPu-Al-pool pu 0.20 f_fuel 0.45: k_inf 1.425 V 0.2 m3 P 257 MW limit fuel 2373 K
+UPu-Al-pool pu 0.20 f_fuel 0.55: k_inf 1.537 V 0.1 m3 P 89 MW limit fuel 2373 K
+UPu-Al-pool pu 0.25 f_fuel 0.25: k_inf 1.245 V 1.0 m3 P 1283 MW limit coolant velocity 6.0 m/s
+UPu-Al-pool pu 0.25 f_fuel 0.35: k_inf 1.436 V 0.2 m3 P 406 MW limit fuel 2373 K
+UPu-Al-pool pu 0.25 f_fuel 0.45: k_inf 1.577 V 0.1 m3 P 124 MW limit fuel 2373 K
+UPu-Al-pool pu 0.25 f_fuel 0.55: k_inf 1.689 V 0.1 m3 P 46 MW limit fuel 2373 K
+UPu-Al-pool pu 0.30 f_fuel 0.25: k_inf 1.367 V 0.4 m3 P 754 MW limit coolant velocity 6.0 m/s
+UPu-Al-pool pu 0.30 f_fuel 0.35: k_inf 1.561 V 0.1 m3 P 219 MW limit fuel 2373 K
+UPu-Al-pool pu 0.30 f_fuel 0.45: k_inf 1.702 V 0.1 m3 P 73 MW limit fuel 2373 K
+UPu-Al-pool pu 0.30 f_fuel 0.55: k_inf 1.813 V 0.0 m3 P 29 MW limit fuel 2373 K
+UPu-rad-He pu 0.08 f_fuel 0.25: k_inf 0.868
+UPu-rad-He pu 0.08 f_fuel 0.35: k_inf 0.992
+UPu-rad-He pu 0.08 f_fuel 0.45: k_inf 1.080 V 13.8 m3 P 354 MW limit coolant velocity 60.0 m/s
+UPu-rad-He pu 0.08 f_fuel 0.55: k_inf 1.147 V 3.3 m3 P 96 MW limit fuel 2373 K
+UPu-rad-He pu 0.10 f_fuel 0.25: k_inf 0.979
+UPu-rad-He pu 0.10 f_fuel 0.35: k_inf 1.110 V 10.8 m3 P 368 MW limit coolant velocity 60.0 m/s
+UPu-rad-He pu 0.10 f_fuel 0.45: k_inf 1.203 V 2.3 m3 P 89 MW limit fuel 2373 K
+UPu-rad-He pu 0.10 f_fuel 0.55: k_inf 1.274 V 0.9 m3 P 27 MW limit fuel 2373 K
+UPu-rad-He pu 0.12 f_fuel 0.25: k_inf 1.079 V 29.6 m3 P 799 MW limit coolant velocity 60.0 m/s
+UPu-rad-He pu 0.12 f_fuel 0.35: k_inf 1.216 V 2.9 m3 P 136 MW limit fuel 2373 K
+UPu-rad-He pu 0.12 f_fuel 0.45: k_inf 1.313 V 0.9 m3 P 34 MW limit fuel 2373 K
+UPu-rad-He pu 0.12 f_fuel 0.55: k_inf 1.385 V 0.4 m3 P 11 MW limit fuel 2373 K
+UPu-rad-He pu 0.15 f_fuel 0.25: k_inf 1.212 V 4.4 m3 P 255 MW limit fuel 2373 K
+UPu-rad-He pu 0.15 f_fuel 0.35: k_inf 1.356 V 1.0 m3 P 45 MW limit fuel 2373 K
+UPu-rad-He pu 0.15 f_fuel 0.45: k_inf 1.455 V 0.4 m3 P 13 MW limit fuel 2373 K
+UPu-rad-He pu 0.15 f_fuel 0.55: k_inf 1.532 V 0.2 m3 P 4 MW limit fuel 2373 K
+UPu-rad-He pu 0.20 f_fuel 0.25: k_inf 1.400 V 1.1 m3 P 61 MW limit fuel 2373 K
+UPu-rad-He pu 0.20 f_fuel 0.35: k_inf 1.548 V 0.3 m3 P 2 MW limit fuel 2373 K
+UPu-rad-He pu 0.20 f_fuel 0.45: k_inf 1.650 V 0.1 m3 P 1 MW limit fuel 2373 K
+UPu-rad-He pu 0.20 f_fuel 0.55: k_inf 1.728 V 0.1 m3 P 0 MW limit fuel 2373 K
+UPu-rad-He pu 0.25 f_fuel 0.25: k_inf 1.554 V 0.5 m3 P 25 MW limit fuel 2373 K
+UPu-rad-He pu 0.25 f_fuel 0.35: k_inf 1.702 V 0.2 m3 P 1 MW limit fuel 2373 K
+UPu-rad-He pu 0.25 f_fuel 0.45: k_inf 1.804 V 0.1 m3 P 0 MW limit fuel 2373 K
+UPu-rad-He pu 0.25 f_fuel 0.55: k_inf 1.879 V 0.0 m3 P 0 MW limit fuel 2373 K
+UPu-rad-He pu 0.30 f_fuel 0.25: k_inf 1.681 V 0.2 m3 P 2 MW limit fuel 2373 K
+UPu-rad-He pu 0.30 f_fuel 0.35: k_inf 1.828 V 0.1 m3 P 1 MW limit fuel 2373 K
+UPu-rad-He pu 0.30 f_fuel 0.45: k_inf 1.927 V 0.0 m3 P 0 MW limit fuel 2373 K
+UPu-rad-He pu 0.30 f_fuel 0.55: k_inf 1.999 V 0.0 m3 P 0 MW limit fuel 2373 K
+UPu-rad-Al pu 0.08 f_fuel 0.25: k_inf 0.664
+UPu-rad-Al pu 0.08 f_fuel 0.35: k_inf 0.799
+UPu-rad-Al pu 0.08 f_fuel 0.45: k_inf 0.906
+UPu-rad-Al pu 0.08 f_fuel 0.55: k_inf 0.996
+UPu-rad-Al pu 0.10 f_fuel 0.25: k_inf 0.756
+UPu-rad-Al pu 0.10 f_fuel 0.35: k_inf 0.903
+UPu-rad-Al pu 0.10 f_fuel 0.45: k_inf 1.018 V 71.6 m3 P 1947 MW limit fuel 2373 K
+UPu-rad-Al pu 0.10 f_fuel 0.55: k_inf 1.114 V 2.8 m3 P 75 MW limit fuel 2373 K
+UPu-rad-Al pu 0.12 f_fuel 0.25: k_inf 0.842
+UPu-rad-Al pu 0.12 f_fuel 0.35: k_inf 0.998
+UPu-rad-Al pu 0.12 f_fuel 0.45: k_inf 1.119 V 2.9 m3 P 100 MW limit fuel 2373 K
+UPu-rad-Al pu 0.12 f_fuel 0.55: k_inf 1.219 V 0.8 m3 P 24 MW limit fuel 2373 K
+UPu-rad-Al pu 0.15 f_fuel 0.25: k_inf 0.958
+UPu-rad-Al pu 0.15 f_fuel 0.35: k_inf 1.126 V 3.2 m3 P 130 MW limit fuel 2373 K
+UPu-rad-Al pu 0.15 f_fuel 0.45: k_inf 1.253 V 0.7 m3 P 26 MW limit fuel 2373 K
+UPu-rad-Al pu 0.15 f_fuel 0.55: k_inf 1.358 V 0.3 m3 P 9 MW limit fuel 2373 K
+UPu-rad-Al pu 0.20 f_fuel 0.25: k_inf 1.127 V 3.8 m3 P 182 MW limit fuel 2373 K
+UPu-rad-Al pu 0.20 f_fuel 0.35: k_inf 1.306 V 0.5 m3 P 26 MW limit fuel 2373 K
+UPu-rad-Al pu 0.20 f_fuel 0.45: k_inf 1.440 V 0.2 m3 P 9 MW limit fuel 2373 K
+UPu-rad-Al pu 0.20 f_fuel 0.55: k_inf 1.547 V 0.1 m3 P 4 MW limit fuel 2373 K
+UPu-rad-Al pu 0.25 f_fuel 0.25: k_inf 1.271 V 0.9 m3 P 47 MW limit fuel 2373 K
+UPu-rad-Al pu 0.25 f_fuel 0.35: k_inf 1.456 V 0.2 m3 P 11 MW limit fuel 2373 K
+UPu-rad-Al pu 0.25 f_fuel 0.45: k_inf 1.591 V 0.1 m3 P 4 MW limit fuel 2373 K
+UPu-rad-Al pu 0.25 f_fuel 0.55: k_inf 1.699 V 0.1 m3 P 2 MW limit fuel 2373 K
+UPu-rad-Al pu 0.30 f_fuel 0.25: k_inf 1.394 V 0.4 m3 P 22 MW limit fuel 2373 K
+UPu-rad-Al pu 0.30 f_fuel 0.35: k_inf 1.581 V 0.1 m3 P 6 MW limit fuel 2373 K
+UPu-rad-Al pu 0.30 f_fuel 0.45: k_inf 1.716 V 0.1 m3 P 3 MW limit fuel 2373 K
+UPu-rad-Al pu 0.30 f_fuel 0.55: k_inf 1.822 V 0.0 m3 P 1 MW limit fuel 2373 K
+UPu-circ pu 0.08 f_fuel 0.25: k_inf 0.411
+UPu-circ pu 0.08 f_fuel 0.35: k_inf 0.557
+UPu-circ pu 0.08 f_fuel 0.45: k_inf 0.694
+UPu-circ pu 0.08 f_fuel 0.55: k_inf 0.824
+UPu-circ pu 0.10 f_fuel 0.25: k_inf 0.475
+UPu-circ pu 0.10 f_fuel 0.35: k_inf 0.639
+UPu-circ pu 0.10 f_fuel 0.45: k_inf 0.791
+UPu-circ pu 0.10 f_fuel 0.55: k_inf 0.931
+UPu-circ pu 0.12 f_fuel 0.25: k_inf 0.537
+UPu-circ pu 0.12 f_fuel 0.35: k_inf 0.716
+UPu-circ pu 0.12 f_fuel 0.45: k_inf 0.880
+UPu-circ pu 0.12 f_fuel 0.55: k_inf 1.030 V 14.1 m3 P 4216 MW limit power-density cap 300 MW/m3
+UPu-circ pu 0.15 f_fuel 0.25: k_inf 0.624
+UPu-circ pu 0.15 f_fuel 0.35: k_inf 0.824
+UPu-circ pu 0.15 f_fuel 0.45: k_inf 1.002 V 854.9 m3 P 256466 MW limit power-density cap 300 MW/m3
+UPu-circ pu 0.15 f_fuel 0.55: k_inf 1.162 V 0.7 m3 P 219 MW limit power-density cap 300 MW/m3
+UPu-circ pu 0.20 f_fuel 0.25: k_inf 0.758
+UPu-circ pu 0.20 f_fuel 0.35: k_inf 0.984
+UPu-circ pu 0.20 f_fuel 0.45: k_inf 1.179 V 0.6 m3 P 168 MW limit power-density cap 300 MW/m3
+UPu-circ pu 0.20 f_fuel 0.55: k_inf 1.353 V 0.1 m3 P 45 MW limit power-density cap 300 MW/m3
+UPu-circ pu 0.25 f_fuel 0.25: k_inf 0.878
+UPu-circ pu 0.25 f_fuel 0.35: k_inf 1.123 V 1.0 m3 P 314 MW limit power-density cap 300 MW/m3
+UPu-circ pu 0.25 f_fuel 0.45: k_inf 1.331 V 0.2 m3 P 48 MW limit power-density cap 300 MW/m3
+UPu-circ pu 0.25 f_fuel 0.55: k_inf 1.510 V 0.1 m3 P 19 MW limit power-density cap 300 MW/m3
+UPu-circ pu 0.30 f_fuel 0.25: k_inf 0.987
+UPu-circ pu 0.30 f_fuel 0.35: k_inf 1.246 V 0.3 m3 P 84 MW limit power-density cap 300 MW/m3
+UPu-circ pu 0.30 f_fuel 0.45: k_inf 1.461 V 0.1 m3 P 23 MW limit power-density cap 300 MW/m3
+UPu-circ pu 0.30 f_fuel 0.55: k_inf 1.641 V 0.0 m3 P 10 MW limit power-density cap 300 MW/m3
+MOX-Na | UTOP: +0.5 $ step, no scram: peak fuel 1580 C, peak outlet 569 C, peak power 1.87; final power 1.067, fuel 1574 C
+MOX-Na | ULOF: pump coastdown (20 s halving) to 5 % natural circulation, no scram; coolant boils at 74 s: peak fuel 1487 C, peak outlet 1334 C, peak power 1.00; final power 0.338, fuel 1277 C
+MOX-Na | ULOHS: heat sink lost, flow kept, no scram; coolant boils at 42 s: peak fuel 1578 C, peak outlet 1567 C, peak power 1.00; final power 0.013, fuel 1578 C
+MOX-Na | Load follow: heat demand to 50 %, no rod motion: peak fuel 1487 C, peak outlet 651 C, peak power 1.00; final power 0.829, fuel 1432 C
+MOX-Na | Scram (-10 $) with flow kept: peak fuel 1487 C, peak outlet 545 C, peak power 1.00; final power 0.016, fuel 215 C
+MOX-Na | Scram + total loss of flow and sink; coolant boils at 2 s: peak fuel 2585 C, peak outlet 2585 C, peak power 1.00; final power 0.011, fuel 2585 C
+UN-Pb | UTOP: +0.5 $ step, no scram: peak fuel 1279 C, peak outlet 1279 C, peak power 1.69; final power 1.158, fuel 1279 C
+UN-Pb | ULOF: pump coastdown (20 s halving) to 5 % natural circulation, no scram: peak fuel 1187 C, peak outlet 1187 C, peak power 1.00; final power 0.070, fuel 1131 C
+UN-Pb | ULOHS: heat sink lost, flow kept, no scram: peak fuel 1708 C, peak outlet 1708 C, peak power 1.00; final power 0.013, fuel 1708 C
+UN-Pb | Load follow: heat demand to 50 %, no rod motion: peak fuel 1173 C, peak outlet 1173 C, peak power 1.00; final power 0.638, fuel 1146 C
+UN-Pb | Scram (-10 $) with flow kept: peak fuel 1166 C, peak outlet 1166 C, peak power 1.00; final power 0.016, fuel 708 C
+UN-Pb | Scram + total loss of flow and sink; fuel limit at 205 s; coolant boils at 138 s: peak fuel 4318 C, peak outlet 4318 C, peak power 1.00; final power 0.011, fuel 4318 C
+UN-He | UTOP: +0.5 $ step, no scram: peak fuel 1090 C, peak outlet 1090 C, peak power 1.67; final power 0.971, fuel 1080 C
+UN-He | ULOF: pump coastdown (20 s halving) to 5 % natural circulation, no scram: peak fuel 1032 C, peak outlet 1032 C, peak power 1.00; final power 0.057, fuel 984 C
+UN-He | ULOHS: heat sink lost, flow kept, no scram: peak fuel 1295 C, peak outlet 1295 C, peak power 1.00; final power 0.013, fuel 1295 C
+UN-He | Load follow: heat demand to 50 %, no rod motion: peak fuel 1009 C, peak outlet 1009 C, peak power 1.00; final power 0.649, fuel 984 C
+UN-He | Scram (-10 $) with flow kept: peak fuel 995 C, peak outlet 995 C, peak power 1.00; final power 0.016, fuel 411 C
+UN-He | Scram + total loss of flow and sink; fuel limit at 482 s: peak fuel 4204 C, peak outlet 4204 C, peak power 1.00; final power 0.011, fuel 4204 C
+UPu-Al-pool | UTOP: +0.5 $ step, no scram: peak fuel 1739 C, peak outlet 1739 C, peak power 1.82; final power 1.279, fuel 1739 C
+UPu-Al-pool | ULOF: pump coastdown (20 s halving) to 5 % natural circulation, no scram: peak fuel 1683 C, peak outlet 1683 C, peak power 1.00; final power 0.089, fuel 1652 C
+UPu-Al-pool | ULOHS: heat sink lost, flow kept, no scram; fuel limit at 638 s: peak fuel 2397 C, peak outlet 2397 C, peak power 1.00; final power 0.013, fuel 2397 C
+UPu-Al-pool | Load follow: heat demand to 50 %, no rod motion: peak fuel 1623 C, peak outlet 1623 C, peak power 1.00; final power 0.723, fuel 1606 C
+UPu-Al-pool | Scram (-10 $) with flow kept: peak fuel 1591 C, peak outlet 1591 C, peak power 1.00; final power 0.016, fuel 1108 C
+UPu-Al-pool | Scram + total loss of flow and sink; fuel limit at 69 s; coolant boils at 169 s: peak fuel 5121 C, peak outlet 5121 C, peak power 1.00; final power 0.011, fuel 5121 C
+UPu-rad-He | UTOP: +0.5 $ step, no scram: peak fuel 1620 C, peak outlet 1371 C, peak power 2.07; final power 1.119, fuel 1608 C
+UPu-rad-He | ULOF: pump coastdown (20 s halving) to 5 % natural circulation, no scram: peak fuel 1556 C, peak outlet 1556 C, peak power 1.00; final power 0.102, fuel 1533 C
+UPu-rad-He | ULOHS: heat sink lost, flow kept, no scram: peak fuel 1611 C, peak outlet 1608 C, peak power 1.00; final power 0.013, fuel 1611 C
+UPu-rad-He | Load follow: heat demand to 50 %, no rod motion: peak fuel 1518 C, peak outlet 1345 C, peak power 1.00; final power 0.807, fuel 1516 C
+UPu-rad-He | Scram (-10 $) with flow kept: peak fuel 1512 C, peak outlet 1300 C, peak power 1.00; final power 0.016, fuel 713 C
+UPu-rad-He | Scram + total loss of flow and sink; fuel limit at 2649 s: peak fuel 2259 C, peak outlet 2259 C, peak power 1.00; final power 0.011, fuel 2259 C
+UPu-rad-Al | UTOP: +0.5 $ step, no scram: peak fuel 1818 C, peak outlet 1721 C, peak power 2.19; final power 1.257, fuel 1818 C
+UPu-rad-Al | ULOF: pump coastdown (20 s halving) to 5 % natural circulation, no scram: peak fuel 1804 C, peak outlet 1804 C, peak power 1.01; final power 0.108, fuel 1773 C
+UPu-rad-Al | ULOHS: heat sink lost, flow kept, no scram: peak fuel 1801 C, peak outlet 1799 C, peak power 1.00; final power 0.020, fuel 1801 C
+UPu-rad-Al | Load follow: heat demand to 50 %, no rod motion: peak fuel 1702 C, peak outlet 1642 C, peak power 1.00; final power 0.775, fuel 1702 C
+UPu-rad-Al | Scram (-10 $) with flow kept: peak fuel 1677 C, peak outlet 1600 C, peak power 1.00; final power 0.016, fuel 1120 C
+UPu-rad-Al | Scram + total loss of flow and sink: peak fuel 2095 C, peak outlet 2095 C, peak power 1.00; final power 0.011, fuel 2095 C

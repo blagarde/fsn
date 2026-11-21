@@ -263,13 +263,15 @@ OPENMC_CACHE = OUT / "pool_openmc_cache.json"
 def anchor(b: Body, T0: float) -> float:
     """OpenMC k_eff / model k_eff at the cold state (cached on disk by body geometry and assay)."""
     import dataclasses
-    key = json.dumps([b.shape, b.size_cm, b.width_cm, b.height_cm, b.pu, b.reflector, round(T0, 1), b.T_c])
+    key = json.dumps([b.shape, round(b.size_cm, 3), b.width_cm, b.height_cm, b.pu, b.reflector, round(T0, 1), b.T_c, "hi-stat"])
     try:
         cache = json.loads(OPENMC_CACHE.read_text())
     except (OSError, ValueError):
         cache = {}
     if key not in cache:
-        cache[key] = openmc_keff(dataclasses.replace(b, k_scale=1.0), T0)["openmc_k"]
+        r = openmc_keff(dataclasses.replace(b, k_scale=1.0), T0, particles=40000, batches=90, inactive=20)
+        cache[key] = r["openmc_k"]
+        cache[key + "|sd"] = r["openmc_sd"]
         OPENMC_CACHE.write_text(json.dumps(cache, indent=0))
     return cache[key] / k_eff(dataclasses.replace(b, k_scale=1.0), T0, T0)[0]
 
@@ -554,19 +556,18 @@ def window(b: Body, transport: bool = True, n_points: int = 5) -> dict:
             lo, hi = (lo, mid) if pred(mid) else (mid, hi)
         return 0.5 * (lo + hi)
 
-    scale_lo = scale_hi = 1.0
-    lo_size = hi_size = b.size_cm
-    for _ in range(2):
-        crit = lambda s, sc: k_eff(scaled(s, sc), T0, T0)[0] >= 1.0
-        lo_size = find(lambda s_: crit(s_, scale_lo), 0.5, 500.0)
-        if transport:
-            scale_lo = anchor(scaled(lo_size, 1.0), T0)
-            lo_size = find(lambda s_: crit(s_, scale_lo), 0.5, 500.0)
-        runaway = lambda s_, sc: solve(scaled(s_, sc)).status == "runaway"
-        hi_size = find(lambda s_: runaway(s_, scale_hi), lo_size, lo_size * 1.5 + 5)
-        if transport:
-            scale_hi = anchor(scaled(hi_size, 1.0), T0)
-            hi_size = find(lambda s_: runaway(s_, scale_hi), lo_size, lo_size * 1.5 + 5)
+    # one OpenMC anchor at the critical size: the window is < 1 % in size, and two independent anchors
+    # would add their statistical noise (~ the whole feedback budget) to the window edges
+    crit = lambda s_, sc: k_eff(scaled(s_, sc), T0, T0)[0] >= 1.0
+    scale = 1.0
+    lo_size = find(lambda s_: crit(s_, scale), 0.5, 500.0)
+    if transport:
+        for _ in range(2):
+            scale = anchor(scaled(round(lo_size, 3), 1.0), T0)
+            lo_size = find(lambda s_: crit(s_, scale), 0.5, 500.0)
+    runaway = lambda s_: solve(scaled(s_, scale)).status == "runaway"
+    hi_size = find(runaway, lo_size, lo_size * 1.5 + 5)
+    scale_lo = scale_hi = scale
     pts = []
     for i in range(n_points):
         f = (i + 0.5) / n_points
