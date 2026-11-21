@@ -1,6 +1,6 @@
 # Study: core geometry by phase of matter
 
-**Status:** ideation (2026-11-20). Nothing here is a design yet; [Q-006](../open-questions.md) asks which geometries to develop into design pages.
+**Status:** ideation (2026-11-20); refined with the core-thermal model, feedback and reflectors (2026-11-21). Nothing here is a design yet; [Q-006](../open-questions.md) asks which geometries to develop into design pages.
 
 Geometry decides how far heat must travel through the fuel, how many walls sit at peak temperature, how much coolant dilutes the core (and so the spectrum and breeding), and whether delayed neutrons stay in the core. This page lists the geometries open to each fuel phase, then crosses them with the phase of the coolant (nine heat-transport modes), with what each combination buys and costs for a high-temperature breeder. The taxonomy so far ([axes 1–10](../framework/taxonomy.md)) records fuel chemistry and coolant but not geometry; a proposed eleventh axis is at the end.
 
@@ -119,6 +119,77 @@ New geometries introduced by the grid:
 | ★S9 | Radiating fuel elements | Hot solid fuel (UN, UC, cermet) in vacuum or inert gas radiating to cooled tubes | Fuel and container surface ≥ ~1,800 °C for useful flux; emissivity coatings; fission-gas venting |
 | ★L4-M | Melting carrier through liquid fuel | Solid carrier pellets (e.g. CaF2, Si) fed into the fuel pool melt, rise and leave as liquid, carrying latent heat | Pellet feeding into a 2,000 °C pool; same carry-over and absorption issues as L4 |
 | ★L7 | Radiatively coupled pool | Liquid U–Pu in a refractory container radiating across a gap to aluminium- or lead-cooled walls | Surface needed at 0.3–0.8 MW/m²; container emissivity; gap gas; whether the larger core still breeds |
+
+## Refinement with the core-thermal model (2026-11-21)
+
+The [core nuclear-thermal study](core-thermal.md) added a program, [`pool.py`](../../analysis/core-thermal/pool.py), that simulates simple molten U–Pu bodies with their own temperature feedback, and a reactor-core model sized for 1,000 MWth. This section re-reads the geometries above with it, adds a fourth thing geometry controls (**prompt feedback**), and explores **reflectors**. Numbers are *(calc)*. Every k_eff below is anchored to OpenMC on the same body, and every feedback value was recomputed by OpenMC on the expanded body (40,000 × 70 histories).
+
+### What changes: geometry also sets the feedback
+
+Molten U–Pu has a very hard spectrum, so **Doppler feedback is essentially zero** (|α_D| < 0.05 pcm/K, at the noise level). The only prompt feedback is thermal expansion, and its strength is purely geometric. The fuel mass is fixed, so as the liquid heats its density falls and it grows in the free direction. In one-group terms, k = νσ_f / (σ_a + D′ s² B_fixed² + D′ B_free²), where s is the volume-expansion ratio. **Only leakage through boundaries that do not move with the expansion produces feedback.** In a free-surface pool those are the side walls; the rising surface itself contributes nothing. Hence:
+
+- **Tall, narrow pools have strong feedback; wide, shallow ones have weak feedback.** A laterally confined slab is the limiting case (−200 pcm up to boiling, [core-thermal study](core-thermal.md#the-self-regulating-window)).
+- **A reflector on the sides suppresses feedback; a reflector on the ends keeps it.** A side reflector returns the leaking neutrons that the feedback relies on.
+- **Moderating reflectors (BeO, graphite) cut the critical mass most but suppress feedback most.** Their returned neutrons are slower; the one-group temperature model misses this, which is why the OpenMC check matters.
+
+### Bare free-surface pools, Pu 15%, coolant on the walls at 1,500 K, liquid well mixed
+
+| Pool | Critical R / H (cm) | Mass | Feedback 1,500→3,000 K, OpenMC (pcm) | Model (pcm) | Window in radius | Reflector worth (pcm) |
+| --- | --- | --- | --- | --- | --- | --- |
+| Bare, H/D 0.25 (wide, shallow) | 45.8 / 23 | 2.59 t | **-1,215** ± 61 | -1,370 | ~11 mm | — |
+| Bare, H/D 0.5 | 28.2 / 28 | 1.21 t | **-3,116** ± 64 | -3,130 | ~17 mm | — |
+| Bare, H/D 1 | 20.9 / 42 | 0.98 t | **-4,954** ± 70 | -5,063 | ~19 mm | — |
+| Bare, H/D 2 | 18.2 / 73 | 1.31 t | **-6,154** ± 59 | -6,259 | ~21 mm | — |
+| Bare, H/D 4 (tall, narrow) | 17.4 / 140 | 2.28 t | **-6,669** ± 62 | -6,729 | ~22 mm | — |
+
+The one-group model matches OpenMC within 0.5–13% for bare pools. "Window in radius" is the range of pool radius over which the body settles below boiling (scaled to the OpenMC feedback). Compare 0.4 mm for the confined slab.
+
+### Reflected pools (H/D = 1 unless stated)
+
+| Pool | Critical R / H (cm) | Mass | Feedback 1,500→3,000 K, OpenMC (pcm) | Model (pcm) | Window in radius | Reflector worth (pcm) |
+| --- | --- | --- | --- | --- | --- | --- |
+| W 20 cm, all faces | 16.0 / 32 | 0.44 t | **-3,785** ± 53 | -6,758 | ~14 mm | 22,919 |
+| Pb 30 cm, all faces | 16.2 / 33 | 0.46 t | **-3,575** ± 65 | -6,733 | ~13 mm | 21,363 |
+| Steel 30 cm, all faces | 15.8 / 32 | 0.43 t | **-3,452** ± 61 | -6,778 | ~13 mm | 24,418 |
+| Depleted U 40 cm (blanket), all faces | 15.5 / 31 | 0.40 t | **-3,263** ± 58 | -6,810 | ~12 mm | 26,325 |
+| Graphite 30 cm, all faces | 13.6 / 27 | 0.27 t | **-2,516** ± 65 | -7,003 | ~9 mm | 41,227 |
+| BeO 20 cm, all faces | 11.3 / 23 | 0.16 t | **-2,179** ± 65 | -7,240 | ~8 mm | 67,093 |
+| W 20 cm, side only | 17.8 / 36 | 0.61 t | **-3,116** ± 60 | -5,238 | ~12 mm | 12,326 |
+| W 20 cm, top and bottom only | 19.8 / 40 | 0.84 t | **-5,351** ± 60 | -5,940 | ~20 mm | 3,985 |
+| H/D 0.25, W 20 cm side only | 45.0 / 23 | 2.47 t | **-910** ± 58 | -1,615 | ~8 mm | 972 |
+| H/D 4, W 20 cm side only | 12.7 / 102 | 0.89 t | **-5,015** ± 60 | -8,022 | ~16 mm | 27,193 |
+
+For reflected pools the one-group model with fixed reflector savings **overstates feedback 1.1–3.3×**. The OpenMC column is the one to use. "Reflector worth" is OpenMC k with and without the reflector at the same fuel size: the most a fully movable reflector could control.
+
+### Findings
+
+1. **Reflectors buy small cores at the cost of feedback.** Any full reflector halves the critical radius (21 → 11–16 cm, 1.0 → 0.16–0.46 t) and halves or worse the feedback: −4,950 pcm bare, −3,450 to −3,790 for W, Pb, steel and depleted U, −2,520 for graphite, −2,180 for BeO. For a self-regulating liquid core, **heavy, non-moderating reflectors (W, Pb, depleted-U blanket) are preferred over BeO and graphite.** The depleted-U blanket also breeds.
+2. **Reflect the ends, not the sides.** W on top and bottom only keeps −5,350 pcm (more than bare, because axial leakage drops and radial leakage now dominates). W on the sides only cuts it to −3,120. A tall pool with axial reflectors and leaky sides is the best combination found: strong feedback with a modest critical mass.
+3. **Reflectors are the natural control system for liquid fuel.** Full worths of 4,000 (end reflectors) to 67,000 pcm (BeO), and 21,000–26,000 pcm for the heavy reflectors, far exceed both the feedback budget and plausible burnup swings. A segmented radial reflector that can be moved, drained (liquid Pb) or have a gap opened behind it has ample authority. That is the strongest candidate answer so far to [Q-052](../open-questions.md). Its shutdown worth must not rely on the same expansion it is meant to back up.
+4. **Feedback scales with leakage, so large cores have little.** A 1,000 MWth liquid-fuel core (A2, R1–R3) is big and reflected, so its leakage, and with it its expansion feedback, is small. The core model gives −1.6 to −2.2 pcm/K of fuel expansion feedback for the A2- and R1-like cores ([core-thermal study](core-thermal.md#reactor-cores-at-1000-mwth-simulatepy)), about −1,600 to −2,200 pcm over 1,000 K. That is better than a slab but well below a small tall pool. **Subdividing into tall columns (L3 pins, R-family tubes) helps only if the columns can expand individually, with a free surface in each tube, and the core leaks radially.**
+
+### Revised reading of the geometries
+
+| Geometry | Feedback verdict (new) | Effect on the earlier assessment |
+| --- | --- | --- |
+| Solid fuel S1–S6 (oxide, nitride, carbide) | Doppler present: −530 (nitride/Pb) to −1,700 pcm (oxide) T·dk/dT; solid expansion small | Unchanged; the self-regulating baseline |
+| L1 circulating loop | Loses 45% of delayed neutrons at a 1:1 loop-to-core volume; expansion pushes fuel out of the core (strong) | Still parked; control margin under a dollar |
+| L2 pool with immersed tubes (A2, X1) | Large core, fuel rises around the tubes: moderate (−2.2 pcm/K); wall at 13 MW/m² if sized at the fuel limit | Needs a movable reflector for control; heat-flux problem stands |
+| L3 liquid-fuel pins | Each pin a small tall pool with its own free surface; good if the plenum lets fuel rise | Rises: best liquid-fuel feedback per unit geometry |
+| L4 direct contact (X2, X3) | Carrier voids add strong negative feedback if the carrier absorbs or moderates less than fuel; expansion as for a pool | Unchanged; needs a void-worth calculation ([Q-023](../open-questions.md)) |
+| L5 falling film | Thin film expanding in thickness: slab-like, weak | Falls further |
+| L6 rotating annulus | Confined by rotation: slab-like, weak | Falls further |
+| L7 / R family (radiative) | Tubes with a free surface each: moderate (−1.6 pcm/K); radial power zoning required ([R1 cross-check](../designs/R1.md#cross-check-with-the-core-thermal-model-2026-11-21)) | Stays first; add a movable heavy reflector and size tubes for inventory |
+| Gas cores G1–G5 | Not breeders | Unchanged |
+
+### Design rules carried forward
+
+- Prefer **tall fuel columns with a free surface** and **end (axial) reflectors**. Keep the sides leaking into a blanket rather than a strong reflector.
+- Use **W, Pb or depleted U** for reflectors around liquid fuel, and avoid BeO and graphite next to it.
+- Make a **movable or drainable radial reflector** the primary reactivity control for liquid-fuel cores, and check its worth with OpenMC, not the one-group model.
+- Treat any one-group feedback number for a reflected or large core as an upper bound until checked by transport.
+
+Results: [`results/geometry_study.json`](../../analysis/core-thermal/results/geometry_study.json); driver [`geometry_study.py`](../../analysis/core-thermal/geometry_study.py).
 
 ## Cross-cutting observations
 
