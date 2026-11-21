@@ -68,6 +68,8 @@ class Body:
     width_cm: float = 0.0        # slab lateral side (square); 0 -> effectively infinite (1e4 cm)
     pu: float = 0.15             # Pu / (U + Pu) atom fraction (reactor-grade vector, depleted U)
     reflector: tuple | None = None   # (material, g/cc, thickness cm), e.g. ("W", 19.0, 20)
+    h_over_d: float = 1.0        # cylinder: height / diameter when height_cm = 0
+    refl_faces: str = "all"      # cylinder: all | radial (side only) | axial (top and bottom only)
     removal: str = "convective"  # adiabatic | convective | radiative | immersed
     h: float = 2.0e4             # W/m2 K
     eps: float = 0.8
@@ -90,7 +92,7 @@ def dims(b: Body, T_mean: float) -> dict:
     if b.shape == "sphere":
         R = b.size_cm * s ** (1 / 3)
         return {"R": R, "V_cm3": 4 / 3 * math.pi * R**3, "A_cool_cm2": 4 * math.pi * R * R}
-    H0 = b.height_cm or 2 * b.size_cm
+    H0 = b.height_cm or 2 * b.size_cm * b.h_over_d
     H = H0 * s
     R = b.size_cm
     A = 2 * math.pi * R * H + (2 * math.pi * R * R if b.faces == 2 else 0.0)
@@ -112,21 +114,27 @@ def _cal() -> tuple[float, float]:
     return 1.0, 2.13
 
 
-def extrap(b: Body, g: N.OneGroup) -> float:
+def extrap(b: Body, g: N.OneGroup) -> tuple[float, float]:
+    """(radial or main-direction, axial) extrapolation + reflector savings, cm."""
+    bare = _cal()[1] * g.D
     if not b.reflector:
-        return _cal()[1] * g.D
+        return bare, bare
     import core
     mat, rho, t = b.reflector
     r = N.one_group(N.Region().add("reflector", N.element_material(mat, rho), 1.0, max(b.T_c, 900.0)))
-    return core.savings_cm(g, r, t)
+    refl = core.savings_cm(g, r, t)
+    if b.shape != "cylinder" or b.refl_faces == "all":
+        return refl, refl
+    return (refl, bare) if b.refl_faces == "radial" else (bare, refl)
 
 
-def buckling(b: Body, d: dict, delta: float) -> float:
+def buckling(b: Body, d: dict, delta) -> float:
+    dr, dz = delta if isinstance(delta, tuple) else (delta, delta)
     if b.shape == "slab":
-        return (math.pi / (d["t"] + 2 * delta)) ** 2 + 2 * (math.pi / (d["W"] + 2 * delta)) ** 2
+        return (math.pi / (d["t"] + 2 * dr)) ** 2 + 2 * (math.pi / (d["W"] + 2 * dr)) ** 2
     if b.shape == "sphere":
-        return (math.pi / (d["R"] + delta)) ** 2
-    return (2.405 / (d["R"] + delta)) ** 2 + (math.pi / (d["H"] + 2 * delta)) ** 2
+        return (math.pi / (d["R"] + dr)) ** 2
+    return (2.405 / (d["R"] + dr)) ** 2 + (math.pi / (d["H"] + 2 * dz)) ** 2
 
 
 def one_group(b: Body, T_doppler: float, T_mean: float) -> N.OneGroup:
@@ -143,7 +151,7 @@ def k_eff(b: Body, T_doppler: float, T_mean: float) -> tuple[float, N.OneGroup, 
 
 
 # --------------------------------------------------------------------------- temperatures
-def profile(b: Body, d: dict, delta: float, P_W: float, n: int = 200) -> dict:
+def profile(b: Body, d: dict, delta, P_W: float, n: int = 200) -> dict:
     """1D steady temperature in the liquid for total power P_W with the fundamental-mode source.
 
     Slab: coordinate across the thickness; sphere and cylinder: radius (cylinder ends insulated
@@ -151,6 +159,7 @@ def profile(b: Body, d: dict, delta: float, P_W: float, n: int = 200) -> dict:
     power-weighted mean (for Doppler), max and surface temperatures.
     """
     V = d["V_cm3"] * 1e-6
+    delta = delta[0] if isinstance(delta, tuple) else delta
     if b.shape == "slab":
         L = d["t"] / 100
         x = np.linspace(-L / 2, L / 2, n)
@@ -263,7 +272,8 @@ OPENMC_CACHE = OUT / "pool_openmc_cache.json"
 def anchor(b: Body, T0: float) -> float:
     """OpenMC k_eff / model k_eff at the cold state (cached on disk by body geometry and assay)."""
     import dataclasses
-    key = json.dumps([b.shape, round(b.size_cm, 3), b.width_cm, b.height_cm, b.pu, b.reflector, round(T0, 1), b.T_c, "hi-stat"])
+    key = json.dumps([b.shape, round(b.size_cm, 3), b.width_cm, b.height_cm, b.pu, b.reflector, round(T0, 1), b.T_c, "hi-stat"]
+                     + ([b.refl_faces] if b.reflector and b.refl_faces != "all" else []))
     try:
         cache = json.loads(OPENMC_CACHE.read_text())
     except (OSError, ValueError):
@@ -461,7 +471,9 @@ def openmc_keff(b: Body, T: float, particles=10000, batches=60, inactive=20) -> 
         outer = openmc.Sphere(r=d["R"] + t_r, boundary_type="vacuum")
     else:
         inner = openmc.model.RightCircularCylinder((0, 0, -d["H"] / 2), d["H"], d["R"])
-        outer = openmc.model.RightCircularCylinder((0, 0, -d["H"] / 2 - t_r), d["H"] + 2 * t_r, d["R"] + t_r,
+        rt = t_r if b.refl_faces in ("all", "radial") else 0.0
+        zt = t_r if b.refl_faces in ("all", "axial") else 0.0
+        outer = openmc.model.RightCircularCylinder((0, 0, -d["H"] / 2 - zt), d["H"] + 2 * zt, d["R"] + rt,
                                                    boundary_type="vacuum")
     cells = [openmc.Cell(fill=fuel, region=-inner)]
     if b.reflector:
@@ -584,12 +596,25 @@ def window(b: Body, transport: bool = True, n_points: int = 5) -> dict:
             "points": pts}
 
 
+def reflector_worth(b: Body, T: float | None = None) -> dict:
+    """OpenMC k_eff of the body with and without its reflector (same fuel geometry): the most
+    reactivity a fully withdrawn (or drained / flooded-gap) reflector could take out."""
+    import dataclasses
+    T = T or max(b.T_c, T_SOLIDUS)
+    kr = openmc_keff(dataclasses.replace(b, k_scale=1.0), T, particles=40000, batches=90, inactive=20)
+    kb = openmc_keff(dataclasses.replace(b, k_scale=1.0, reflector=None), T, particles=40000, batches=90, inactive=20)
+    w = 1e5 * (1 / kb["openmc_k"] - 1 / kr["openmc_k"])
+    return {"k_reflected": kr["openmc_k"], "k_bare": kb["openmc_k"], "worth_pcm": w,
+            "sd_pcm": 1e5 * math.hypot(kr["openmc_sd"], kb["openmc_sd"])}
+
+
 # --------------------------------------------------------------------------- CLI
 def body_from(a) -> Body:
     refl = None
     if a.reflector:
         mat, thick = a.reflector.split(":")
-        rho = {"W": 19.0, "Mo": 10.0, "steel": 7.6, "Pb": 10.0, "U": 18.9, "Be": 1.85, "C": 1.8}[mat]
+        rho = {"W": 19.0, "Mo": 10.0, "steel": 7.6, "Pb": 9.8, "Udep": 18.9, "BeO": 3.0, "graphite": 1.8,
+               "SiC": 3.21}[mat]
         refl = (mat, rho, float(thick))
     return Body(shape=a.shape, size_cm=a.size[0], height_cm=a.height, width_cm=a.width, pu=a.pu[0],
                 reflector=refl, removal=a.removal, h=a.h, eps=a.eps, UA=a.UA, T_c=a.Tc, faces=a.faces,

@@ -87,6 +87,13 @@ def element_material(symbol_or_formula: str, rho_gcc: float) -> openmc.Material:
         for nuc, f in M.natural("Si").items():
             m.add_nuclide(nuc, f)
         m.add_nuclide("C12", 1.0)
+    elif symbol_or_formula == "BeO":
+        m.add_nuclide("Be9", 1.0); m.add_nuclide("O16", 1.0)
+    elif symbol_or_formula == "Udep":  # depleted-U blanket / reflector
+        for nuc, f in M.U_VECTOR.items():
+            m.add_nuclide(nuc, f)
+    elif symbol_or_formula == "graphite":
+        m.add_nuclide("C12", 1.0)
     elif symbol_or_formula == "steel":
         for el, w in (("Fe", 0.71), ("Cr", 0.17), ("Ni", 0.12)):
             for nuc, f in M.natural(el).items():
