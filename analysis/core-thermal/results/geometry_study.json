@@ -353,5 +353,445 @@
    "V_cm3": 133184.4487185332,
    "A_cool_cm2": 17208.764848629857
   }
+ },
+ "HD1_W20": {
+  "body": {
+   "shape": "cylinder",
+   "size_cm": 30.0,
+   "height_cm": 0.0,
+   "width_cm": 0.0,
+   "pu": 0.15,
+   "reflector": [
+    "W",
+    19.0,
+    20.0
+   ],
+   "h_over_d": 1.0,
+   "delta_fit": 8.157008633539299,
+   "refl_faces": "all",
+   "removal": "convective",
+   "h": 20000.0,
+   "eps": 0.8,
+   "UA": 1000000.0,
+   "T_c": 1500,
+   "faces": 2,
+   "nu": 0.0,
+   "T_limit": 3500.0,
+   "k_scale": 1.0
+  },
+  "transport": true,
+  "critical_size_cm": 15.992211853262011,
+  "runaway_size_cm": 18.504275875565696,
+  "window_cm": 2.5120640223036848,
+  "window_pct": 15.708046174934132,
+  "max_power_MW": 28.174404241765924,
+  "max_power_T_max_K": 3498.6882901047284,
+  "anchors": [
+   1.0,
+   1.0
+  ],
+  "delta_fit_cm": 8.157008633539299,
+  "anchor_note": {
+   "openmc_critical_size_cm": 15.992211853262011,
+   "openmc_k_at_size": 0.9989893455936604,
+   "delta_fit_cm": 8.157008633539299
+  },
+  "feedback_to_limit_pcm": -7673.617917391551,
+  "mass_t_at_critical": 0.4420118558621423,
+  "points": [
+   {
+    "size_cm": 16.410889190312627,
+    "P_MW": 3.7906070664483473,
+    "T_max_K": 1866.6510618910058,
+    "T_surface_K": 1866.6510618910058,
+    "q2_MW_m2": 7.333021237820116,
+    "k_cold": 1.014651562169115,
+    "status": "equilibrium"
+   },
+   {
+    "size_cm": 17.248243864413855,
+    "P_MW": 12.429574441167407,
+    "T_max_K": 2557.7315146070814,
+    "T_surface_K": 2557.7315146070814,
+    "q2_MW_m2": 21.154630292141636,
+    "k_cold": 1.042977606656135,
+    "status": "equilibrium"
+   },
+   {
+    "size_cm": 18.085598538515082,
+    "P_MW": 22.55437873367717,
+    "T_max_K": 3197.649621900709,
+    "T_surface_K": 3197.649621900709,
+    "q2_MW_m2": 33.95299243801418,
+    "k_cold": 1.070034784830511,
+    "status": "equilibrium"
+   }
+  ],
+  "alpha_doppler_pcm_K": 0.046725819977562484,
+  "alpha_expansion_pcm_K": -4.02342996978391,
+  "dims_at_critical": {
+   "R": 15.992211853262011,
+   "H": 32.15642317934377,
+   "V_cm3": 25836.55926245863,
+   "A_cool_cm2": 4838.0726160809745
+  },
+  "reflector_worth": {
+   "k_reflected": 0.9986526480373566,
+   "k_bare": 0.8126514657957791,
+   "worth_pcm": 22919.06644520778,
+   "sd_pcm": 53.20177855313184
+  }
+ },
+ "HD1_Pb30": {
+  "body": {
+   "shape": "cylinder",
+   "size_cm": 30.0,
+   "height_cm": 0.0,
+   "width_cm": 0.0,
+   "pu": 0.15,
+   "reflector": [
+    "Pb",
+    9.8,
+    30.0
+   ],
+   "h_over_d": 1.0,
+   "delta_fit": 7.91227817830613,
+   "refl_faces": "all",
+   "removal": "convective",
+   "h": 20000.0,
+   "eps": 0.8,
+   "UA": 1000000.0,
+   "T_c": 1500,
+   "faces": 2,
+   "nu": 0.0,
+   "T_limit": 3500.0,
+   "k_scale": 1.0
+  },
+  "transport": true,
+  "critical_size_cm": 16.23655235021386,
+  "runaway_size_cm": 18.74099667272609,
+  "window_cm": 2.5044443225122315,
+  "window_pct": 15.424729760928857,
+  "max_power_MW": 28.899557298339047,
+  "max_power_T_max_K": 3498.668356917101,
+  "anchors": [
+   1.0,
+   1.0
+  ],
+  "delta_fit_cm": 7.91227817830613,
+  "anchor_note": {
+   "openmc_critical_size_cm": 16.23655235021386,
+   "openmc_k_at_size": 0.9980533561449285,
+   "delta_fit_cm": 7.91227817830613
+  },
+  "feedback_to_limit_pcm": -7653.582679832361,
+  "mass_t_at_critical": 0.4625831047313793,
+  "points": [
+   {
+    "size_cm": 16.653959737299232,
+    "P_MW": 3.9060889823526046,
+    "T_max_K": 1866.8695812538874,
+    "T_surface_K": 1866.8695812538874,
+    "q2_MW_m2": 7.33739162507775,
+    "k_cold": 1.0146076169082254,
+    "status": "equilibrium"
+   },
+   {
+    "size_cm": 17.488774511469977,
+    "P_MW": 12.783091860982754,
+    "T_max_K": 2558.0827286491512,
+    "T_surface_K": 2558.0827286491512,
+    "q2_MW_m2": 21.161654572983018,
+    "k_cold": 1.0428516299553814,
+    "status": "equilibrium"
+   },
+   {
+    "size_cm": 18.32358928564072,
+    "P_MW": 23.154440305111372,
+    "T_max_K": 3197.8243357462206,
+    "T_surface_K": 3197.8243357462206,
+    "q2_MW_m2": 33.95648671492441,
+    "k_cold": 1.0698342712026583,
+    "status": "equilibrium"
+   }
+  ],
+  "alpha_doppler_pcm_K": 0.04672581997778453,
+  "alpha_expansion_pcm_K": -4.008443137612576,
+  "dims_at_critical": {
+   "R": 16.23655235021386,
+   "H": 32.647732104708716,
+   "V_cm3": 27038.99372991462,
+   "A_cool_cm2": 4987.0411074622425
+  },
+  "reflector_worth": {
+   "k_reflected": 0.9991536408459621,
+   "k_bare": 0.8233990995882132,
+   "worth_pcm": 21363.081258454742,
+   "sd_pcm": 58.86111996759018
+  }
+ },
+ "HD1_steel30": {
+  "body": {
+   "shape": "cylinder",
+   "size_cm": 30.0,
+   "height_cm": 0.0,
+   "width_cm": 0.0,
+   "pu": 0.15,
+   "reflector": [
+    "steel",
+    7.6,
+    30.0
+   ],
+   "h_over_d": 1.0,
+   "delta_fit": 8.359620308665342,
+   "refl_faces": "all",
+   "removal": "convective",
+   "h": 20000.0,
+   "eps": 0.8,
+   "UA": 1000000.0,
+   "T_c": 1500,
+   "faces": 2,
+   "nu": 0.0,
+   "T_limit": 3500.0,
+   "k_scale": 1.0
+  },
+  "transport": true,
+  "critical_size_cm": 15.789923057263644,
+  "runaway_size_cm": 18.30831064045963,
+  "window_cm": 2.5183875831959863,
+  "window_pct": 15.949334104180334,
+  "max_power_MW": 27.581062894931105,
+  "max_power_T_max_K": 3498.704732637495,
+  "anchors": [
+   1.0,
+   1.0
+  ],
+  "delta_fit_cm": 8.359620308665342,
+  "anchor_note": {
+   "openmc_critical_size_cm": 15.789923057263644,
+   "openmc_k_at_size": 1.0002531446760963,
+   "delta_fit_cm": 8.359620308665342
+  },
+  "feedback_to_limit_pcm": -7690.231990096086,
+  "mass_t_at_critical": 0.42544983198364394,
+  "points": [
+   {
+    "size_cm": 16.20965432112964,
+    "P_MW": 3.696389603422167,
+    "T_max_K": 1866.472802294624,
+    "T_surface_K": 1866.472802294624,
+    "q2_MW_m2": 7.3294560458924805,
+    "k_cold": 1.0146880299150134,
+    "status": "equilibrium"
+   },
+   {
+    "size_cm": 17.049116848861637,
+    "P_MW": 12.14079434077685,
+    "T_max_K": 2557.444482879728,
+    "T_surface_K": 2557.444482879728,
+    "q2_MW_m2": 21.148889657594566,
+    "k_cold": 1.0430821343687176,
+    "status": "equilibrium"
+   },
+   {
+    "size_cm": 17.888579376593633,
+    "P_MW": 22.063653520193814,
+    "T_max_K": 3197.5066032185673,
+    "T_surface_K": 3197.5066032185673,
+    "q2_MW_m2": 33.950132064371346,
+    "k_cold": 1.0702011369322788,
+    "status": "equilibrium"
+   }
+  ],
+  "alpha_doppler_pcm_K": 0.046725819977562484,
+  "alpha_expansion_pcm_K": -4.03584114171866,
+  "dims_at_critical": {
+   "R": 15.789923057263644,
+   "H": 31.749669930434262,
+   "V_cm3": 24868.472760325225,
+   "A_cool_cm2": 4716.451156757101
+  },
+  "reflector_worth": {
+   "k_reflected": 1.0000669869494547,
+   "k_bare": 0.8037876427850381,
+   "worth_pcm": 24417.66785696835,
+   "sd_pcm": 53.25439881274818
+  }
+ },
+ "HD1_BeO20": {
+  "body": {
+   "shape": "cylinder",
+   "size_cm": 30.0,
+   "height_cm": 0.0,
+   "width_cm": 0.0,
+   "pu": 0.15,
+   "reflector": [
+    "BeO",
+    3.0,
+    20.0
+   ],
+   "h_over_d": 1.0,
+   "delta_fit": 12.84712159825935,
+   "refl_faces": "all",
+   "removal": "convective",
+   "h": 20000.0,
+   "eps": 0.8,
+   "UA": 1000000.0,
+   "T_c": 1500,
+   "faces": 2,
+   "nu": 0.0,
+   "T_limit": 3500.0,
+   "k_scale": 1.0
+  },
+  "transport": true,
+  "critical_size_cm": 11.3095808244878,
+  "runaway_size_cm": 13.971611671990079,
+  "window_cm": 2.6620308475022796,
+  "window_pct": 23.53783830553986,
+  "max_power_MW": 16.065362191502732,
+  "max_power_T_max_K": 3499.05481849889,
+  "anchors": [
+   1.0,
+   1.0
+  ],
+  "delta_fit_cm": 12.84712159825935,
+  "anchor_note": {
+   "openmc_critical_size_cm": 11.3095808244878,
+   "openmc_k_at_size": 1.0013823810498994,
+   "delta_fit_cm": 12.84712159825935
+  },
+  "feedback_to_limit_pcm": -8064.4553430527785,
+  "mass_t_at_critical": 0.1563319845973211,
+  "points": [
+   {
+    "size_cm": 11.753252632404847,
+    "P_MW": 1.9252296507679785,
+    "T_max_K": 1863.1086614445426,
+    "T_surface_K": 1863.1086614445426,
+    "q2_MW_m2": 7.262173228890854,
+    "k_cold": 1.0155158622541964,
+    "status": "equilibrium"
+   },
+   {
+    "size_cm": 12.64059624823894,
+    "P_MW": 6.637502789969576,
+    "T_max_K": 2551.9270343618678,
+    "T_surface_K": 2551.9270343618678,
+    "q2_MW_m2": 21.038540687237354,
+    "k_cold": 1.0454516863427166,
+    "status": "equilibrium"
+   },
+   {
+    "size_cm": 13.527939864073034,
+    "P_MW": 12.595600693354248,
+    "T_max_K": 3194.7112204795662,
+    "T_surface_K": 3194.7112204795662,
+    "q2_MW_m2": 33.894224409591324,
+    "k_cold": 1.0739668920180425,
+    "status": "equilibrium"
+   }
+  ],
+  "alpha_doppler_pcm_K": 0.046725819977562484,
+  "alpha_expansion_pcm_K": -4.3115682065793655,
+  "dims_at_critical": {
+   "R": 11.3095808244878,
+   "H": 22.740798478044205,
+   "V_cm3": 9137.9462589035,
+   "A_cool_cm2": 2419.626493184694
+  },
+  "reflector_worth": {
+   "k_reflected": 1.0023959626880787,
+   "k_bare": 0.5993266591544243,
+   "worth_pcm": 67092.93950529963,
+   "sd_pcm": 55.19092878156233
+  }
+ },
+ "HD1_Udep40": {
+  "body": {
+   "shape": "cylinder",
+   "size_cm": 30.0,
+   "height_cm": 0.0,
+   "width_cm": 0.0,
+   "pu": 0.15,
+   "reflector": [
+    "Udep",
+    18.9,
+    40.0
+   ],
+   "h_over_d": 1.0,
+   "delta_fit": 8.683293047197594,
+   "refl_faces": "all",
+   "removal": "convective",
+   "h": 20000.0,
+   "eps": 0.8,
+   "UA": 1000000.0,
+   "T_c": 1500,
+   "faces": 2,
+   "nu": 0.0,
+   "T_limit": 3500.0,
+   "k_scale": 1.0
+  },
+  "transport": true,
+  "critical_size_cm": 15.466766182476666,
+  "runaway_size_cm": 17.995284363778843,
+  "window_cm": 2.528518181302177,
+  "window_pct": 16.348072709387075,
+  "max_power_MW": 26.646371983896625,
+  "max_power_T_max_K": 3498.730886488698,
+  "anchors": [
+   1.0,
+   1.0
+  ],
+  "delta_fit_cm": 8.683293047197594,
+  "anchor_note": {
+   "openmc_critical_size_cm": 15.466766182476666,
+   "openmc_k_at_size": 0.9986068715306263,
+   "delta_fit_cm": 8.683293047197594
+  },
+  "feedback_to_limit_pcm": -7716.82366962323,
+  "mass_t_at_critical": 0.39985900021877263,
+  "points": [
+   {
+    "size_cm": 15.888185879360362,
+    "P_MW": 3.5484789500264484,
+    "T_max_K": 1866.1929742098632,
+    "T_surface_K": 1866.1929742098632,
+    "q2_MW_m2": 7.323859484197266,
+    "k_cold": 1.0147464484246767,
+    "status": "equilibrium"
+   },
+   {
+    "size_cm": 16.731025273127756,
+    "P_MW": 11.686773239685653,
+    "T_max_K": 2556.9929373536665,
+    "T_surface_K": 2556.9929373536665,
+    "q2_MW_m2": 21.13985874707333,
+    "k_cold": 1.0432495543606082,
+    "status": "equilibrium"
+   },
+   {
+    "size_cm": 17.573864666895147,
+    "P_MW": 21.291105676933356,
+    "T_max_K": 3197.2811808691768,
+    "T_surface_K": 3197.2811808691768,
+    "q2_MW_m2": 33.94562361738354,
+    "k_cold": 1.0704675387026106,
+    "status": "equilibrium"
+   }
+  ],
+  "alpha_doppler_pcm_K": 0.046725819977562484,
+  "alpha_expansion_pcm_K": -4.055674820029823,
+  "dims_at_critical": {
+   "R": 15.466766182476666,
+   "H": 31.09988056331525,
+   "V_cm3": 23372.63269925021,
+   "A_cool_cm2": 4525.37271621712
+  },
+  "reflector_worth": {
+   "k_reflected": 0.997943539206202,
+   "k_bare": 0.7903203542164658,
+   "worth_pcm": 26324.898843088307,
+   "sd_pcm": 52.63129014371387
+  }
  }
 }
