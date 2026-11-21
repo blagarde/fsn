@@ -113,10 +113,10 @@ def main():
     elif a.cmd in ("sweep", "all"):
         steady = {}
         for n in names:
-            st = core.solve(spec_for(n, a.set))
-            print(f"== {n}\n{fmt(st)}", flush=True)
+            st = core.solve_for_power(spec_for(n, a.set), a.power or 1000.0)
+            print(f"== {n} (design mode, {a.power or 1000.0:.0f} MWth)\n{fmt(st)}", flush=True)
             steady[n] = dataclasses.asdict(st)
-            steady[n]["curve"] = curve(spec_for(n, a.set)) if not CS.CASES[n].circulating else []
+            steady[n]["curve"] = curve(dataclasses.replace(spec_for(n, a.set), pu=st.pu)) if not CS.CASES[n].circulating else []
         (OUT / "reference.json").write_text(json.dumps(steady, indent=1, default=str))
         (OUT / "sweep.json").write_text(json.dumps(sweep(names), indent=1, default=str))
         if a.cmd == "all":
@@ -124,8 +124,10 @@ def main():
     if a.cmd == "transient":
         out = {}
         for n in names:
-            st = core.solve(spec_for(n, a.set))
-            if not st.critical or CS.CASES[n].circulating:
+            if CS.CASES[n].circulating:
+                continue
+            st = core.solve_for_power(spec_for(n, a.set), a.power or 1000.0)
+            if not st.critical:
                 continue
             out[n] = []
             for sc in K.standard_scenarios(st):

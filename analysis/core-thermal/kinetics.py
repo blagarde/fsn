@@ -82,7 +82,8 @@ def run(st, sc: Scenario, cp_cool: float | None = None):
         Pheat = P0 * ((1 - f_d) * n + H.sum())
         Tin = TL
         mcp = mcp0 * max(sc.flow(t), 1e-4)
-        Tout = min(2 * Tc - Tin, Tf)   # linear-profile closure; outlet cannot exceed the fuel at low flow
+        # linear-profile closure; at very low flow the outlet cannot run away from the fuel
+        Tout = min(2 * Tc - Tin, max(Tf, Tout0 + (Tf - Tf0)))
         q_fc = (Tf - Tc) / R
         dTf = (Pheat - q_fc) / Cf
         dTc = (q_fc - mcp * (Tout - Tin)) / Cc
@@ -96,7 +97,7 @@ def run(st, sc: Scenario, cp_cool: float | None = None):
     n, H, Tf, Tc, TL = Y[0], Y[7:15], Y[15], Y[16], Y[17]
     Pheat = (1 - f_d) * n + H.sum(axis=0)
     rho = np.array([rho_of(ti, a_, b_) for ti, a_, b_ in zip(t, Tf, Tc)]) * 1e5
-    Tout = np.minimum(2 * Tc - TL, Tf)
+    Tout = np.minimum(2 * Tc - TL, np.maximum(Tf, Tout0 + (Tf - Tf0)))
     def first(mask):
         idx = np.argmax(mask)
         return float(t[idx]) if mask.any() else None

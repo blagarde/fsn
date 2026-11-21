@@ -48,7 +48,9 @@ def main():
     # assembly transient at the middle of the Pu 0.15 slab window
     w = res["slab_pu15"]
     mid = 0.5 * (w["critical_size_cm"] + w["runaway_size_cm"])
-    tr = pool.transient(dataclasses.replace(SLAB, size_cm=mid), t_end=3000, transport=True)
+    steady = pool.solve(dataclasses.replace(SLAB, size_cm=mid, k_scale=w["anchors"][0]))
+    tr = pool.transient(dataclasses.replace(SLAB, size_cm=mid, k_scale=w["anchors"][0]), t_end=3000)
+    tr["steady_P_MW"], tr["steady_T_crit_K"], tr["size_cm"] = steady.P_MW, steady.T_crit_K, mid
     res["transient_slab_mid"] = {k: v for k, v in tr.items()}
     OUT.write_text(json.dumps(res, indent=1))
 
