@@ -57,7 +57,7 @@ T_SOLIDUS = 1350.0   # APPROX: U-rich U-Pu liquidus ~1,350-1,400 K; a surface be
 
 
 def rho_gcc(T):
-    return RHO_REF + DRHO_DT * (T - T_REF)
+    return max(RHO_REF + DRHO_DT * (min(T, 6000.0) - T_REF), 1.0)
 
 
 @dataclass
@@ -574,9 +574,15 @@ def window(b: Body, transport: bool = True, n_points: int = 5) -> dict:
     scale = 1.0
     lo_size = find(lambda s_: crit(s_, scale), 0.5, 500.0)
     if transport:
-        for _ in range(2):
+        # iterate the anchor until the OpenMC-critical size stops moving (the one-group reflector
+        # formula can be far off for thick, weakly absorbing reflectors such as Pb)
+        for _ in range(8):
             scale = anchor(scaled(round(lo_size, 3), 1.0), T0)
-            lo_size = find(lambda s_: crit(s_, scale), 0.5, 500.0)
+            new = find(lambda s_: crit(s_, scale), 0.5, 500.0)
+            done = abs(new - lo_size) < 0.02
+            lo_size = new
+            if done:
+                break
     runaway = lambda s_: solve(scaled(s_, scale)).status == "runaway"
     hi_size = find(runaway, lo_size, lo_size * 1.5 + 5)
     scale_lo = scale_hi = scale
