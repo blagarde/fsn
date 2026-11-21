@@ -1,3 +1,7 @@
 running hard:1200
 /opt/mamba/envs/nuc/lib/python3.12/site-packages/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=1.
   warn(msg, IDWarning)
+  k_inf 1.4092  median E 2.37e+05 eV
+running hard:2100
+/opt/mamba/envs/nuc/lib/python3.12/site-packages/openmc/mixin.py:72: IDWarning: Another Filter instance already exists with id=6.
+  warn(msg, IDWarning)

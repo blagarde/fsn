@@ -1,0 +1,17 @@
+{
+ "label": "X1sw_Pb0.00",
+ "T_K": 2100.0,
+ "k_inf": 1.3684015148064779,
+ "k_inf_sd": 0.0013671297672268898,
+ "conversion_ratio": 1.3233785538753537,
+ "median_energy_eV": 259939.37057886977,
+ "parasitic_absorption_share": {
+  "Pu242": 0.006674089889773009
+ },
+ "temperature_note": "",
+ "nuclides": 7,
+ "fractions": {
+  "UPu x=0.089": 1.0
+ },
+ "wall_s": 64.5
+}

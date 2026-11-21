@@ -241,6 +241,9 @@ class Steady:
     adiabatic_rate_K_s: float = 0.0
     decay_MW: dict = field(default_factory=dict)
     adiabatic_after_scram_s_to_limit: float = 0.0
+    T_fuel_limit_K: float = 0.0
+    T_wall_limit_K: float = 0.0
+    T_coolant_boil_K: float = 0.0
 
 
 def solve(spec: CoreSpec, P_MW: float | None = None, geometry: tuple | None = None) -> Steady:
@@ -374,6 +377,8 @@ def solve(spec: CoreSpec, P_MW: float | None = None, geometry: tuple | None = No
         E += res.P_MW * decay_heat_fraction(t) * dt
         t += dt
     res.adiabatic_after_scram_s_to_limit = t
+    res.T_fuel_limit_K, res.T_wall_limit_K = T_lim_f, T_lim_w
+    res.T_coolant_boil_K = 0.0 if spec.circulating else (cool.T_boil or 0.0)
     return res
 
 

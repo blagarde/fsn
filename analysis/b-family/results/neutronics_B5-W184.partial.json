@@ -1,0 +1,38 @@
+{
+ "case": "B5-W184",
+ "title": "Pb-cooled UN-W cermet, W-184 enriched to 95% (approx.)",
+ "assumptions": "as B5-W, W 95% W-184",
+ "T_rep_K": 1500.0,
+ "stats": {
+  "particles": 20000,
+  "batches": 60,
+  "inactive": 20,
+  "threads": 1
+ },
+ "scan_stats": {
+  "particles": 10000,
+  "batches": 40,
+  "inactive": 15,
+  "threads": 1
+ },
+ "scan": [
+  {
+   "pu_frac": 0.12,
+   "k_inf": 0.8629549007404244,
+   "sd": 0.000769738239652935,
+   "CR": 1.2429128960396738
+  },
+  {
+   "pu_frac": 0.18,
+   "k_inf": 1.1188702483543267,
+   "sd": 0.0010566517826609866,
+   "CR": 0.7814500889952786
+  },
+  {
+   "pu_frac": 0.24,
+   "k_inf": 1.326086077206455,
+   "sd": 0.0010974408139858337,
+   "CR": 0.5490222803130568
+  }
+ ]
+}

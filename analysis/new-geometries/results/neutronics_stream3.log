@@ -7,3 +7,14 @@ L7_tube_He L7, He (7 MPa) in Mo panels
   L7_tube_He final: Pu 0.0983 k 1.1528+-0.0006 CR 1.255 E50 215 keV (595 s)
 S9_UN_Al S9: (U,Pu)N 14 mm plates in 0.5 mm W, vacuum gap, AlN/Al panels
   S9_UN_Al bracket: Pu 0.1200 k 1.1934+-0.0013 CR 1.269 E50 148 keV (166 s)
+  S9_UN_Al bracket: Pu 0.1700 k 1.4427+-0.0014 CR 0.846 E50 178 keV (129 s)
+  S9_UN_Al final: Pu 0.1113 k 1.1432+-0.0007 CR 1.380 E50 148 keV (420 s)
+  void: k 1.1816 worth 2842 +- 73 pcm
+L7_plate40_Al L7 plates: 40 mm fuel slab
+  L7_plate40_Al bracket: Pu 0.1000 k 1.3418+-0.0016 CR 1.231 E50 237 keV (80 s)
+  L7_plate40_Al bracket: Pu 0.1400 k 1.5858+-0.0015 CR 0.834 E50 260 keV (72 s)
+  L7_plate40_Al final: Pu 0.0686 k 1.1019+-0.0006 CR 1.863 E50 215 keV (278 s)
+  L7_plate40_Al final: Pu 0.0749 k 1.1548+-0.0008 CR 1.695 E50 215 keV (262 s)
+A2_ref A2 reference: 66.8% liquid U-Pu, W 10.6%, AlN 3.0%, Al 19.6%
+L7_tube_Al L7 reference: W fuel tubes r 10 mm in rows between AlN/Al panels, vacuum gap
+L7_plate20_Al L7 plates: 20 mm fuel slab, 1 mm W cans, AlN/Al panels

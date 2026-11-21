@@ -130,7 +130,9 @@ def main():
             out[n] = []
             for sc in K.standard_scenarios(st):
                 r = K.run(st, sc)
-                print(f"{n} | {sc.name}: peak fuel {r['peak']['T_fuel_K']-273.15:.0f} C, peak outlet {r['peak']['T_out_K']-273.15:.0f} C, "
+                lim = (f"; fuel limit at {r['t_fuel_limit_s']:.0f} s" if r["t_fuel_limit_s"] else "") + \
+                      (f"; coolant boils at {r['t_coolant_boil_s']:.0f} s" if r["t_coolant_boil_s"] else "")
+                print(f"{n} | {sc.name}{lim}: peak fuel {r['peak']['T_fuel_K']-273.15:.0f} C, peak outlet {r['peak']['T_out_K']-273.15:.0f} C, "
                       f"peak power {r['peak']['power_frac']:.2f}; final power {r['final']['power_frac']:.3f}, fuel {r['final']['T_fuel_K']-273.15:.0f} C", flush=True)
                 out[n].append(r)
         (OUT / "transients.json").write_text(json.dumps(out))

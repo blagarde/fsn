@@ -1,0 +1,38 @@
+{
+ "case": "B3-N",
+ "title": "He-cooled (U,Pu)N, SiC/SiC cladding and structure",
+ "assumptions": "fuel (U,Pu)N 30% at 13.0 g/cm3 (N-15 99.9%); SiC/SiC 15% at 2.9; He 55% at 7 MPa, 1,400 K",
+ "T_rep_K": 1500.0,
+ "stats": {
+  "particles": 20000,
+  "batches": 60,
+  "inactive": 20,
+  "threads": 1
+ },
+ "scan_stats": {
+  "particles": 10000,
+  "batches": 40,
+  "inactive": 15,
+  "threads": 1
+ },
+ "scan": [
+  {
+   "pu_frac": 0.14,
+   "k_inf": 1.3094314207009126,
+   "sd": 0.0020264973692927985,
+   "CR": 1.0864398292053787
+  },
+  {
+   "pu_frac": 0.2,
+   "k_inf": 1.5678271556946648,
+   "sd": 0.0012119053720231528,
+   "CR": 0.718792254041308
+  },
+  {
+   "pu_frac": 0.26,
+   "k_inf": 1.7743293987772464,
+   "sd": 0.0012945400840824685,
+   "CR": 0.5147790239133451
+  }
+ ]
+}

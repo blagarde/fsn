@@ -1,0 +1,19 @@
+{
+ "label": "X2_salt_out",
+ "T_K": 2100.0,
+ "k_inf": 1.2836941693067359,
+ "k_inf_sd": 0.001597591316938609,
+ "conversion_ratio": 1.5184808865602597,
+ "median_energy_eV": 236520.41354776858,
+ "parasitic_absorption_share": {
+  "Pu242": 0.0060680276201540125,
+  "He4": 0.0
+ },
+ "temperature_note": "",
+ "nuclides": 8,
+ "fractions": {
+  "UPu x=0.078": 0.8,
+  "void-filler": 0.2
+ },
+ "wall_s": 52.6
+}

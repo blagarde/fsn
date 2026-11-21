@@ -1,0 +1,38 @@
+{
+ "case": "B3-C",
+ "title": "He-cooled (U,Pu)C, SiC/SiC cladding and structure",
+ "assumptions": "fuel (U,Pu)C 30% at 12.3 g/cm3; SiC/SiC 15% at 2.9; He 55% at 7 MPa, 1,400 K (2.4 kg/m3, ideal gas)",
+ "T_rep_K": 1500.0,
+ "stats": {
+  "particles": 20000,
+  "batches": 60,
+  "inactive": 20,
+  "threads": 1
+ },
+ "scan_stats": {
+  "particles": 10000,
+  "batches": 40,
+  "inactive": 15,
+  "threads": 1
+ },
+ "scan": [
+  {
+   "pu_frac": 0.14,
+   "k_inf": 1.2871918357091217,
+   "sd": 0.0013428725042276136,
+   "CR": 1.0909708882352105
+  },
+  {
+   "pu_frac": 0.2,
+   "k_inf": 1.5428556805069702,
+   "sd": 0.001494606826019094,
+   "CR": 0.7262682485710162
+  },
+  {
+   "pu_frac": 0.26,
+   "k_inf": 1.7379912479938004,
+   "sd": 0.001494265168857837,
+   "CR": 0.5252590755696881
+  }
+ ]
+}

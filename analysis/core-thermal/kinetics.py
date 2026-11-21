@@ -44,7 +44,8 @@ class Scenario:
     rho_ext: callable = lambda t: 0.0          # pcm
     flow: callable = lambda t: 1.0             # fraction of nominal
     sink: callable = lambda t: 1.0             # heat-sink capacity fraction of nominal
-    loop_heat_capacity_factor: float = 3.0     # loop/pool heat capacity relative to in-core coolant
+    loop_heat_capacity_factor: float = 20.0    # loop/pool heat capacity relative to in-core coolant (pool-type
+                                               # primary ~10-50; loop-type ~3-5). APPROX, stated in results
 
 
 def run(st, sc: Scenario, cp_cool: float | None = None):
@@ -70,7 +71,7 @@ def run(st, sc: Scenario, cp_cool: float | None = None):
     KD, af, ac = st.doppler_K_D_pcm, st.fuel_density_pcm_per_K, st.coolant_density_pcm_per_K
 
     def rho_of(t, Tf, Tc):
-        return 1e-5 * (sc.rho_ext(t) + KD * math.log(Tf / Tf0) + af * (Tf - Tf0) + ac * (Tc - Tc0))
+        return 1e-5 * (sc.rho_ext(t) + KD * math.log(max(Tf, 1.0) / Tf0) + af * (Tf - Tf0) + ac * (Tc - Tc0))
 
     def f(t, y):
         n, C, H, Tf, Tc, TL = y[0], y[1:7], y[7:15], y[15], y[16], y[17]
@@ -81,7 +82,7 @@ def run(st, sc: Scenario, cp_cool: float | None = None):
         Pheat = P0 * ((1 - f_d) * n + H.sum())
         Tin = TL
         mcp = mcp0 * max(sc.flow(t), 1e-4)
-        Tout = 2 * Tc - Tin
+        Tout = min(2 * Tc - Tin, Tf)   # linear-profile closure; outlet cannot exceed the fuel at low flow
         q_fc = (Tf - Tc) / R
         dTf = (Pheat - q_fc) / Cf
         dTc = (q_fc - mcp * (Tout - Tin)) / Cc
@@ -95,8 +96,15 @@ def run(st, sc: Scenario, cp_cool: float | None = None):
     n, H, Tf, Tc, TL = Y[0], Y[7:15], Y[15], Y[16], Y[17]
     Pheat = (1 - f_d) * n + H.sum(axis=0)
     rho = np.array([rho_of(ti, a_, b_) for ti, a_, b_ in zip(t, Tf, Tc)]) * 1e5
-    Tout = 2 * Tc - TL
-    return {"scenario": sc.name, "t": t.tolist(), "power_frac": Pheat.tolist(), "fission_frac": n.tolist(),
+    Tout = np.minimum(2 * Tc - TL, Tf)
+    def first(mask):
+        idx = np.argmax(mask)
+        return float(t[idx]) if mask.any() else None
+    t_fuel = first(Tf > st.T_fuel_limit_K)
+    t_boil = first(Tout > st.T_coolant_boil_K) if st.T_coolant_boil_K else None
+    return {"scenario": sc.name, "loop_heat_capacity_factor": sc.loop_heat_capacity_factor,
+            "t_fuel_limit_s": t_fuel, "t_coolant_boil_s": t_boil,
+            "valid_until_s": min(x for x in (t_fuel, t_boil, sc.t_end) if x is not None), "t": t.tolist(), "power_frac": Pheat.tolist(), "fission_frac": n.tolist(),
             "T_fuel_K": Tf.tolist(), "T_coolant_K": Tc.tolist(), "T_in_K": TL.tolist(), "T_out_K": Tout.tolist(),
             "rho_pcm": rho.tolist(), "beta_pcm": B * 1e5, "success": bool(sol.success),
             "peak": {"T_fuel_K": float(Tf.max()), "T_out_K": float(Tout.max()), "power_frac": float(Pheat.max())},

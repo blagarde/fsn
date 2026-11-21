@@ -4,3 +4,9 @@ S8_particles S8: (U,Pu)N pins in Mo, falling Al2O3 particles (packing 0.58) in c
 L5_film_Al L5: 2 mm U-Pu films on both faces of W/AlN/Al panels, 3 mm gas space
   L5_film_Al bracket: Pu 0.1600 k 1.1506+-0.0014 CR 0.865 E50 178 keV (174 s)
   L5_film_Al bracket: Pu 0.2200 k 1.3845+-0.0013 CR 0.587 E50 196 keV (164 s)
+  L5_film_Al final: Pu 0.1598 k 1.1503+-0.0006 CR 0.866 E50 178 keV (528 s)
+  void: k 1.2412 worth 6364 +- 60 pcm
+L3_pins_Al L3: liquid U-Pu pins 9 mm bore, 0.8 mm W + 0.3 mm AlN, Al coolant, p/d 1.12
+L3_pins_Pb L3: liquid U-Pu pins 9 mm bore, 0.8 mm W, Pb coolant, p/d 1.12
+S6_lattice_He S6: printed (U,Pu)N-Mo cermet lattice (70/30), solid 0.60, He 0.40
+S5_bed_He S5: (U,Pu)N kernels + ZrN coat, bed solids 0.50, He 7 MPa, Mo structure

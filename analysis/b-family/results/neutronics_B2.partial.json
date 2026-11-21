@@ -1,0 +1,38 @@
+{
+ "case": "B2",
+ "title": "Pb-cooled (U,Pu)N pins, SiC/SiC cladding",
+ "assumptions": "fuel (U,Pu)N 40% at 13.0 g/cm3 (N-15 99.9%); SiC/SiC cladding 12% at 2.9; Pb 45% at 10.0 g/cm3; gap void 3%",
+ "T_rep_K": 1300.0,
+ "stats": {
+  "particles": 20000,
+  "batches": 60,
+  "inactive": 20,
+  "threads": 1
+ },
+ "scan_stats": {
+  "particles": 10000,
+  "batches": 40,
+  "inactive": 15,
+  "threads": 1
+ },
+ "scan": [
+  {
+   "pu_frac": 0.12,
+   "k_inf": 1.1795793193784883,
+   "sd": 0.0012290097218757947,
+   "CR": 1.2996964349827755
+  },
+  {
+   "pu_frac": 0.18,
+   "k_inf": 1.4707627991013794,
+   "sd": 0.0009302142476317976,
+   "CR": 0.8158784391847868
+  },
+  {
+   "pu_frac": 0.24,
+   "k_inf": 1.6943019552399492,
+   "sd": 0.0016349052100063266,
+   "CR": 0.5701410174422747
+  }
+ ]
+}
