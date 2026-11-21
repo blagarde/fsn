@@ -1,0 +1,3 @@
+bare_HD0.5 expansion check {'T1': 1500.0, 'T2': 3000.0, 'openmc_drho_pcm': -3115.7518769371227, 'openmc_sd_pcm': 64.45068312073838, 'model_drho_pcm': np.float64(-3130.422432822666)}
+bare_HD2 expansion check {'T1': 1500.0, 'T2': 3000.0, 'openmc_drho_pcm': -6154.0143921803065, 'openmc_sd_pcm': 58.89974619941703, 'model_drho_pcm': np.float64(-6258.989408711724)}
+HD1_Pb30 expansion check {'T1': 1500.0, 'T2': 3000.0, 'openmc_drho_pcm': -3574.6202785597925, 'openmc_sd_pcm': 65.15301516290981, 'model_drho_pcm': np.float64(-6733.136760632386)}
