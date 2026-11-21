@@ -76,6 +76,7 @@ class Body:
     faces: int = 2               # slab: cooled faces (1 or 2); cylinder: 1 = side only, 2 = side + ends
     nu: float = 1.0              # conduction enhancement in the liquid (Nu); 0 -> fully mixed
     T_limit: float = 3500.0      # K: boiling / vapour limit (APPROX)
+    k_scale: float = 1.0         # set by solve(transport=True): OpenMC k / model k at the cold state
 
 
 # --------------------------------------------------------------------------- geometry
@@ -96,9 +97,24 @@ def dims(b: Body, T_mean: float) -> dict:
     return {"R": R, "H": H, "V_cm3": math.pi * R * R * H, "A_cool_cm2": A}
 
 
+CALIBRATION = OUT / "pool_calibration.json"
+
+
+def _cal() -> tuple[float, float]:
+    """(leakage factor f, extrapolation coefficient c) fitted to OpenMC by `pool.py calibrate`;
+    (1, 2.13) = plain one-group diffusion if no calibration exists for the current constants."""
+    try:
+        d = json.loads(CALIBRATION.read_text())
+        if d.get("constants") == str(N.CONSTANTS):
+            return d["f"], d["c"]
+    except (OSError, ValueError, KeyError):
+        pass
+    return 1.0, 2.13
+
+
 def extrap(b: Body, g: N.OneGroup) -> float:
     if not b.reflector:
-        return 2.13 * g.D
+        return _cal()[1] * g.D
     import core
     mat, rho, t = b.reflector
     r = N.one_group(N.Region().add("reflector", N.element_material(mat, rho), 1.0, max(b.T_c, 900.0)))
@@ -123,7 +139,7 @@ def k_eff(b: Body, T_doppler: float, T_mean: float) -> tuple[float, N.OneGroup, 
     d = dims(b, T_mean)
     delta = extrap(b, g)
     B2 = buckling(b, d, delta)
-    return g.nu_sig_f / (g.sig_a + g.D * B2), g, d, delta
+    return b.k_scale * g.nu_sig_f / (g.sig_a + _cal()[0] * g.D * B2), g, d, delta
 
 
 # --------------------------------------------------------------------------- temperatures
@@ -241,8 +257,30 @@ def coefficients(b: Body, T: float) -> tuple[float, float]:
     return (rho(kD) - rho(k0)) / dT, (rho(kE) - rho(k0)) / dT
 
 
-def solve(b: Body) -> Result:
+OPENMC_CACHE = OUT / "pool_openmc_cache.json"
+
+
+def anchor(b: Body, T0: float) -> float:
+    """OpenMC k_eff / model k_eff at the cold state (cached on disk by body geometry and assay)."""
+    import dataclasses
+    key = json.dumps([b.shape, b.size_cm, b.width_cm, b.height_cm, b.pu, b.reflector, round(T0, 1), b.T_c])
+    try:
+        cache = json.loads(OPENMC_CACHE.read_text())
+    except (OSError, ValueError):
+        cache = {}
+    if key not in cache:
+        cache[key] = openmc_keff(dataclasses.replace(b, k_scale=1.0), T0)["openmc_k"]
+        OPENMC_CACHE.write_text(json.dumps(cache, indent=0))
+    return cache[key] / k_eff(dataclasses.replace(b, k_scale=1.0), T0, T0)[0]
+
+
+def solve(b: Body, transport: bool = False) -> Result:
+    """Self-regulated equilibrium. transport=True anchors k_eff to OpenMC at the cold state
+    (the one-group model then supplies only the temperature dependence)."""
+    import dataclasses
     T0 = max(b.T_c, T_SOLIDUS)
+    if transport:
+        b = dataclasses.replace(b, k_scale=anchor(b, T0))
     k0, g0, d0, _ = k_eff(b, T0, T0)
     res = Result(body=asdict(b), status="", k_cold=k0)
     aD, aE = coefficients(b, T0)
@@ -333,7 +371,7 @@ def solve(b: Body) -> Result:
 
 
 # --------------------------------------------------------------------------- transient
-def transient(b: Body, t_end: float = 600.0, T_start: float | None = None, rho_insert_pcm: float | None = None):
+def transient(b: Body, t_end: float = 600.0, T_start: float | None = None, transport: bool = False):
     """Point kinetics + one lumped temperature, starting cold and just molten.
 
     The body is assembled at t = 0 at T_start (default the solidus): its cold excess reactivity
@@ -342,7 +380,10 @@ def transient(b: Body, t_end: float = 600.0, T_start: float | None = None, rho_i
     Expansion feedback is taken as instantaneous (no inertia): optimistic for fast excursions.
     """
     from scipy.integrate import solve_ivp
+    import dataclasses
     T0 = T_start or max(T_SOLIDUS, min(b.T_c, b.T_limit))
+    if transport:
+        b = dataclasses.replace(b, k_scale=anchor(b, T0))
     k0, g, d0, _ = k_eff(b, T0, T0)
     beta, lam = np.array(g.beta), np.array(g.lam)
     B, Lam = beta.sum(), g.gen_time
@@ -448,6 +489,100 @@ def openmc_keff(b: Body, T: float, particles=10000, batches=60, inactive=20) -> 
             "dk_pcm": 1e5 * (k_model - float(k.nominal_value)), "dims_cm": d}
 
 
+CAL_CASES = [  # (shape, size cm, pu, width/height) bare bodies spanning the sizes of interest
+    ("slab", 15, 0.20, 300), ("slab", 25, 0.15, 300), ("slab", 40, 0.12, 300), ("slab", 60, 0.10, 300),
+    ("slab", 25, 0.10, 300), ("slab", 25, 0.20, 300),
+    ("sphere", 8, 0.20, 0), ("sphere", 12, 0.15, 0), ("sphere", 20, 0.10, 0),
+    ("cylinder", 12, 0.15, 24), ("cylinder", 25, 0.10, 50),
+]
+
+
+def calibrate(T=1500.0):
+    """Fit the leakage factor f and extrapolation coefficient c to OpenMC k_eff of bare bodies."""
+    import dataclasses
+    rows = []
+    for shape, size, pu, extra in CAL_CASES:
+        b = Body(shape=shape, size_cm=size, pu=pu, width_cm=extra if shape == "slab" else 0.0,
+                 height_cm=extra if shape == "cylinder" else 0.0, T_c=T)
+        c = openmc_keff(b, T)
+        g = one_group(b, T, T)
+        rows.append({"shape": shape, "size_cm": size, "pu": pu, "openmc_k": c["openmc_k"], "openmc_sd": c["openmc_sd"],
+                     "k_inf": g.k_inf, "D": g.D, "M2": g.M2, "dims": c["dims_cm"]})
+        print(rows[-1]["shape"], size, pu, f"OpenMC {c['openmc_k']:.4f}", flush=True)
+
+    def k_of(r, f, cc):
+        b = Body(shape=r["shape"], size_cm=r["size_cm"], pu=r["pu"])
+        d = r["dims"]
+        bb = dataclasses.replace(b, width_cm=d.get("W", 0.0))
+        B2 = buckling(bb, d, cc * r["D"])
+        return r["k_inf"] / (1 + f * r["M2"] * B2)
+    best = None
+    for f in np.linspace(0.5, 1.3, 81):
+        for cc in np.linspace(0.0, 6.0, 121):
+            err = sum((k_of(r, f, cc) - r["openmc_k"]) ** 2 for r in rows)
+            if best is None or err < best[0]:
+                best = (err, f, cc)
+    _, f, cc = best
+    for r in rows:
+        r["model_raw_k"] = k_of(r, 1.0, 2.13)
+        r["model_cal_k"] = k_of(r, f, cc)
+        r["residual_pcm"] = 1e5 * (r["model_cal_k"] - r["openmc_k"])
+    out = {"constants": str(N.CONSTANTS), "f": float(f), "c": float(cc), "T_K": T,
+           "rms_residual_pcm": float(np.sqrt(np.mean([r["residual_pcm"] ** 2 for r in rows]))),
+           "max_residual_pcm": float(max(abs(r["residual_pcm"]) for r in rows)), "cases": rows}
+    CALIBRATION.write_text(json.dumps(out, indent=1))
+    print(f"f = {f:.3f}, c = {cc:.2f}; residual rms {out['rms_residual_pcm']:.0f} pcm, max {out['max_residual_pcm']:.0f} pcm")
+    return out
+
+
+def window(b: Body, transport: bool = True, n_points: int = 5) -> dict:
+    """The self-regulating window in size: from first criticality (cold) to the size above which
+    the body is still supercritical when its hottest point reaches T_limit. Power along the window.
+
+    The OpenMC anchor (k_scale) varies slowly with size, so it is computed at the window edges
+    and interpolated in between (two refinement passes).
+    """
+    import dataclasses
+    T0 = max(b.T_c, T_SOLIDUS)
+
+    def scaled(size, scale):
+        return dataclasses.replace(b, size_cm=size, k_scale=scale)
+
+    def find(pred, lo, hi):
+        for _ in range(50):
+            mid = 0.5 * (lo + hi)
+            lo, hi = (lo, mid) if pred(mid) else (mid, hi)
+        return 0.5 * (lo + hi)
+
+    scale_lo = scale_hi = 1.0
+    lo_size = hi_size = b.size_cm
+    for _ in range(2):
+        crit = lambda s, sc: k_eff(scaled(s, sc), T0, T0)[0] >= 1.0
+        lo_size = find(lambda s_: crit(s_, scale_lo), 0.5, 500.0)
+        if transport:
+            scale_lo = anchor(scaled(lo_size, 1.0), T0)
+            lo_size = find(lambda s_: crit(s_, scale_lo), 0.5, 500.0)
+        runaway = lambda s_, sc: solve(scaled(s_, sc)).status == "runaway"
+        hi_size = find(lambda s_: runaway(s_, scale_hi), lo_size, lo_size * 1.5 + 5)
+        if transport:
+            scale_hi = anchor(scaled(hi_size, 1.0), T0)
+            hi_size = find(lambda s_: runaway(s_, scale_hi), lo_size, lo_size * 1.5 + 5)
+    pts = []
+    for i in range(n_points):
+        f = (i + 0.5) / n_points
+        s_ = lo_size + f * (hi_size - lo_size)
+        sc = scale_lo + f * (scale_hi - scale_lo)
+        r = solve(scaled(s_, sc))
+        pts.append({"size_cm": s_, "P_MW": r.P_MW, "T_max_K": r.T_max_K, "T_surface_K": r.T_surface_K,
+                    "q2_MW_m2": r.q2_surface_MW_m2, "k_cold": r.k_cold, "status": r.status})
+    r_hi = solve(scaled(hi_size * 0.9999, scale_hi))
+    return {"body": asdict(b), "transport": transport, "critical_size_cm": lo_size, "runaway_size_cm": hi_size,
+            "window_cm": hi_size - lo_size, "window_pct": 100 * (hi_size / lo_size - 1),
+            "max_power_MW": r_hi.P_MW, "max_power_T_max_K": r_hi.T_max_K, "anchors": [scale_lo, scale_hi],
+            "feedback_to_limit_pcm": r_hi.feedback_to_limit_pcm, "mass_t_at_critical": solve(scaled(lo_size, scale_lo)).mass_t,
+            "points": pts}
+
+
 # --------------------------------------------------------------------------- CLI
 def body_from(a) -> Body:
     refl = None
@@ -485,7 +620,7 @@ def show(r: Result) -> str:
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("cmd", nargs="?", default="solve", choices=["solve", "scan", "transient", "check"])
+    ap.add_argument("cmd", nargs="?", default="solve", choices=["solve", "scan", "transient", "check", "calibrate", "window"])
     ap.add_argument("--shape", default="slab", choices=["slab", "sphere", "cylinder"])
     ap.add_argument("--size", type=float, nargs="+", default=[30.0], help="cm: slab thickness / radius")
     ap.add_argument("--height", type=float, default=0.0)
@@ -502,23 +637,39 @@ def main():
     ap.add_argument("--T-limit", type=float, default=3500.0)
     ap.add_argument("--t-end", type=float, default=600.0)
     ap.add_argument("--json", default=None, help="write results to this file")
+    ap.add_argument("--transport", action="store_true", help="anchor k_eff to OpenMC (10-20 s per body)")
     a = ap.parse_args()
     out = []
     if a.cmd == "solve":
-        r = solve(body_from(a))
+        r = solve(body_from(a), transport=a.transport)
         print(show(r))
         out = [asdict(r)]
     elif a.cmd == "scan":
         import dataclasses
         base = body_from(a)
+        print("k_eff anchored to OpenMC at the cold state" if a.transport else
+              f"fast mode: one-group diffusion, leakage calibration f, c = {_cal()} (see pool_calibration.json)")
         print(f"{'Pu':>6} {"size":>7} {'k_cold':>7} {'status':>12} {'P_MW':>10} {'T_max_C':>8} {'q2_MW/m2':>9}")
         for pu in a.pu:
             for s in a.size:
-                r = solve(dataclasses.replace(base, pu=pu, size_cm=s))
+                r = solve(dataclasses.replace(base, pu=pu, size_cm=s), transport=a.transport)
                 st = r.status.split(" ")[0]
                 print(f"{pu:6.3f} {s:7.2f} {r.k_cold:7.4f} {st:>12} {r.P_MW:10.4g} "
                       f"{(r.T_max_K - 273.15) if r.T_max_K else float('nan'):8.0f} {r.q2_surface_MW_m2:9.3g}")
                 out.append(asdict(r))
+    elif a.cmd == "window":
+        out = []
+        for pu in a.pu:
+            w = window(body_from(a).__class__(**{**asdict(body_from(a)), "pu": pu}), transport=a.transport)
+            print(f"Pu {pu:.3f}: critical at {w['critical_size_cm']:.2f} cm ({w['mass_t_at_critical']:.1f} t), runaway above "
+                  f"{w['runaway_size_cm']:.2f} cm: window {w['window_cm']:.2f} cm ({w['window_pct']:.2f} %); "
+                  f"max self-regulated power {w['max_power_MW']:.3g} MW (hottest point {w['max_power_T_max_K'] - 273.15:.0f} C)")
+            for p_ in w["points"]:
+                print(f"    size {p_['size_cm']:.2f} cm: {p_['P_MW']:.3g} MW, surface {p_['T_surface_K'] - 273.15:.0f} C, "
+                      f"max {p_['T_max_K'] - 273.15:.0f} C, {p_['q2_MW_m2']:.3g} MW/m2")
+            out.append(w)
+    elif a.cmd == "calibrate":
+        out = [calibrate()]
     elif a.cmd == "check":
         b = body_from(a)
         c = openmc_keff(b, max(b.T_c, T_SOLIDUS))
@@ -526,7 +677,7 @@ def main():
               f"{c['model_k']:.4f} (model - OpenMC = {c['dk_pcm']:.0f} pcm)")
         out = [c]
     else:
-        tr = transient(body_from(a), a.t_end)
+        tr = transient(body_from(a), a.t_end, transport=a.transport)
         print(f"inserted {tr['rho0_pcm']:.0f} pcm ({tr['rho0_pcm']/tr['beta_pcm']:.2f} $); peak {tr['peak_P_MW']:.4g} MW; "
               f"final {tr['final_P_MW']:.4g} MW at {tr['final_T_K'] - 273.15:.0f} C (peak {tr['peak_T_K'] - 273.15:.0f} C)")
         out = [tr]
