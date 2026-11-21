@@ -53,8 +53,9 @@ def main():
         "gap_flooded_Pb": lambda: comps(pu, gap=M.Pb()),
     }
     rho = lambda k: (k - 1) / k
+    only = sys.argv[1:]
     for name, f in cases.items():
-        if name in out:
+        if name in out or (only and name not in only):
             continue
         t0 = time.time()
         r = screen(f(), 2100, label=name, **HI)
@@ -65,6 +66,9 @@ def main():
             b = out["R1_reference_N2_gap"]
             out[name]["worth_pcm"] = 1e5 * (rho(r["k_inf"]) - rho(b["k_inf"]))
             out[name]["worth_sd_pcm"] = 1e5 * ((r["k_inf_sd"] / r["k_inf"] ** 2) ** 2 + (b["k_inf_sd"] / b["k_inf"] ** 2) ** 2) ** 0.5
+        cur = json.loads(RES.read_text()) if RES.exists() else {}
+        cur.update({k: v for k, v in out.items() if k in (name, "pu_frac", "stats", "R1_reference_N2_gap")})
+        out = cur
         RES.write_text(json.dumps(out, indent=1))
         print(name, json.dumps({k: v for k, v in out[name].items() if k != "parasitic_absorption_share"}), flush=True)
 

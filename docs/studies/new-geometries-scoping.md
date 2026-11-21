@@ -8,11 +8,27 @@
 
 All at 1,000 MWth. Neutronics: infinite homogenised medium, reactor-grade Pu (approx. vector: Pu-238 2, Pu-239 60, Pu-240 24, Pu-241 9, Pu-242 5 at%), depleted U (0.25% U-235), N-15 99.9% *(calc, neutronics.py)*. Thermal: governing limit and the core size it implies *(calc, thermal.py; properties approx.)*.
 
-<!-- TABLE -->
+| Candidate | Configuration (volume fractions) | Governing heat-transfer limit | Core (m³) | Fuel (t) | Pu for k∞ 1.15 | CR | Median E (keV) | Coolant void (pcm) | Pu in core (t) | Outlet (°C) |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| A2 reference | Liquid U–Pu 67%, W 10.6%, AlN 3%, Al 19.6% | Tube wall ~3 MW/m² | 3.3 | 35 | 9.1% | 1.45 | 196 | +3,670 ± 60 | 3.2 | 1,750–1,880 |
+| **L7 / R1** tubes, Al/AlN | Fuel 43%, W 9%, AlN 6%, Al 12.5%, N2 gap 30% | Radiation 0.77 MW/m² (coated W, 2,000 °C) | 15.1 | 103 | 10.2% | 1.32 | 196 | +3,010 ± 80 | 10.5 | 1,500 |
+| L7 / R2 tubes, Pb/Mo | As R1, Mo walls and Pb | Radiation 0.76 MW/m² (coated receiver) | 15.1 | 103 | 10.0% | 1.24 | 215 | +1,310 ± 70 | 10.3 | 1,400–1,500 |
+| L7 / R3 tubes, He/Mo | As R1, Mo tubes and He | Radiation 0.67 MW/m² | 17.1 | 117 | 9.8% | 1.26 | 215 | gas | 11.4 | 1,300–1,500 |
+| L7 plates, 20 mm | Fuel 62.5%, W 6%, AlN 6%, Al 12.5%, gap 12.5% | Radiation 0.77 MW/m² | 20.9 | 209 | 8.5% | 1.55 | 196 | +2,530 ± 60 | 17.7 | 1,500 |
+| L7 plates, 40 mm | Fuel 77% | Radiation 0.77 MW/m² | 33.9 | 417 | 7.4% | 1.71 | 215 | — | 31 | 1,500 |
+| S9 radiating UN plates | (U,Pu)N 56%, W 4%, AlN 8%, Al 16%, gap 16% | Radiation 0.77 MW/m² (power zoned) | 16.3 | 124 | 11.3% | 1.37 | 148 | +2,840 ± 70 | 13.2 | 1,500 |
+| S5 fluidised bed, He | (U,Pu)N 43%, ZrN 7%, He 45%, Mo 5% | Fluidisation window: 16–32 MW per m² of bed | ~31 (1 m bed) | ~180 | 10.7% | 1.38 | 162 | gas | ~18 | ~1,200 |
+| S6 printed lattice, He | (U,Pu)N 42%, Mo 18%, He 40% | He pumping ~26 MW at 100 MW/m³ | 10 | 57 | 12.8% | 1.11 | 178 | gas | 6.9 | 1,100–1,300 |
+| S8 particle-cooled pins | (U,Pu)N 30%, Mo 8%, Al2O3 36%, gas 26% | Granular flow h ~600 W/m²K: 0.18 MW/m² | 33 | 134 | 17.6% | 0.94 | 101 | +18,760 ± 70 | 22 | ~1,200 |
+| L3 pins, Al | Fuel 47%, W 18%, AlN 7.5%, Al 28% | Wall 3 MW/m² (as A2) | 1.3* | 10* | 12.9% | 1.07 | 178 | +4,750 ± 60 | 1.2* | 1,750–1,900 |
+| L3 pins, Pb | Fuel 52%, W 20%, Pb 28% | Wall 3 MW/m²; Pb 3.3 bar for 1,700 °C | 1.3* | 11* | 11.2% | 1.11 | 215 | +2,110 ± 90 | 1.2* | 1,450–1,700 |
+| L5 falling film, Al | Fuel 29%, W 17%, AlN 4%, Al 29%, gas 21% | Wall 3 MW/m² (as A2) | 2.3* | 11* | 16.0% | 0.87 | 178 | +6,360 ± 60 | 1.7* | 1,750–1,900 |
+
+\* Heat-transfer size only; a real core is larger, set by criticality and blankets. Pu in core is fuel mass × heavy-metal fraction × Pu fraction at k∞ 1.15, with no blanket or out-of-core inventory. Source: `results/summary.csv` *(calc)*.
 
 How to read it:
 
-- **Pu fraction and conversion ratio track the fuel volume fraction and the wall material.** Dense liquid U–Pu at high fraction (A2, L7 plates) needs 8.5–9% Pu and converts at 1.4–1.55. Thin-walled pins (L3) carry 18–20% tungsten, need 11–13% Pu and convert at only 1.07–1.11. The particle-cooled core (S8) is the only candidate with a softened spectrum (median ~100 keV, from Al2O3); it needs 17.6% Pu and does not breed in the core.
+- **Pu fraction and conversion ratio track the fuel volume fraction and the wall material.** Dense liquid U–Pu at high fraction (A2, L7 plates) needs 7.4–9.1% Pu and converts at 1.45–1.71. Thin-walled pins (L3) and films (L5) carry 17–20% tungsten. They need 11–16% Pu and convert at only 0.87–1.11. The particle-cooled core (S8) is the only candidate with a softened spectrum (median ~100 keV, from Al2O3); it needs 17.6% Pu and does not breed in the core.
 - **Coolant-void worths are positive in every liquid-cooled case** (infinite medium, no leakage): removing Al or Pb hardens the spectrum. They are an upper bound; leakage in a finite core reduces them.
 - **Core size is set by heat transfer only for the radiative, granular and fluidised cases.** For L3 and L5 the heat-transfer size (1–2 m³) is below any critical size, so criticality and blankets set the core, as for A2.
 
@@ -118,7 +134,7 @@ Pair verdicts are detailed on [R1](../designs/R1.md#chemistry-who-touches-whom).
 (U,Pu)N plates, 14 mm thick in 0.5 mm W cans, radiating across 2 mm gaps to AlN/Al panels: fuel 56%, W 4%, AlN 8%, Al 16%, gap 16% *(calc)*.
 
 - **Thermal.** The same radiation limit as L7, but solid fuel cannot even out its own surface temperature. With unzoned power the flux is 0.61 MW/m² and the core 20.4 m³; with power zoned to match, 0.77 MW/m² and 16.3 m³. Plate centre-to-surface rise is ~110–135 K at k ~20 W/m·K (approx.).
-- **Neutronics.** <!-- S9 -->
+- **Neutronics.** Pu 11.3%, CR 1.37, median energy 148 keV (nitrogen softens it), Al-void worth +2,840 ± 70 pcm *(calc)*. Close to R1, with more Pu because UN carries less heavy metal per volume than liquid U–Pu.
 - **Chemistry.** The UN surface at ~2,000 °C+ is above where nitride holds its nitrogen without overpressure. UN data are missing from JANAF ([Q-012](../open-questions.md)), so the evidence is E5. Fission gas must be vented through the can, and swelling limits burnup. In exchange there is no liquid containment.
 - **Verdict.** Same surface physics as L7, worse fuel behaviour at 2,000 °C, no online processing. Treat it as a solid-fuel variant inside the R family, not a family of its own.
 
@@ -172,7 +188,7 @@ A printed (U,Pu)N–Mo cermet (70/30 vol%) gyroid lattice, solid fraction 0.60, 
 
 2 mm films of liquid U–Pu on both faces of W/AlN/Al panels (A2's wall), with 3 mm of gas space: fuel 28.6%, W 17.1%, AlN 4.3%, Al 28.6%, gas 21.4% *(calc)*.
 
-- **Neutronics.** <!-- L5 -->
+- **Neutronics.** Pu 16.0%, CR 0.87, Al-void worth +6,360 ± 60 pcm *(calc)*. Tungsten takes ~23% of absorptions. With 29% fuel and 17% W this core cannot breed internally.
 - **Thermal.** The film is turbulent (Re ~44,000, Brauer correlation), moving at ~1 m/s, with ~2.4 s in a 2.5 m core. The conduction drop is 75 K at 3 MW/m² (A2 ~205 K). The core would be only ~2.3 m³ by heat transfer.
 - **Chemistry and kinetics.** Each wall still faces fuel and coolant: A2's critical risk, unchanged. The fuel is outside the film for part of each circuit, so delayed-neutron precursors decay out of the core.
 - **Verdict.** Park. It improves the least important part of A2 (the fuel-side drop) and worsens breeding and kinetics.
