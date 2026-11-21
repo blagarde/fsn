@@ -44,3 +44,17 @@ def test_calibration_cases_well_formed():
         assert c["expected"] in ("compatible", "conditional"), c["id"]  # known-good cases are never incompatible
         assert len(c["pair"]) == 2 and len(c["T_C"]) == 2 and c["T_C"][0] <= c["T_C"][1], c["id"]
         assert all(r.startswith("R") for r in c["rules"]), c["id"]
+
+
+def test_readme_summary_is_current():
+    """The README's design-options summary must be updated after every study."""
+    import re
+    from pathlib import Path
+    root = Path(__file__).resolve().parents[1]
+    readme = (root / "README.md").read_text()
+    m = re.search(r"\*\*Updated:\*\* (\d{4}-\d{2}-\d{2})", readme)
+    assert m, "README.md needs a '**Updated:** YYYY-MM-DD' line in 'Most promising design options'"
+    studies = (root / "docs" / "studies" / "README.md").read_text()
+    dates = re.findall(r"\| (\d{4}-\d{2}-\d{2}) \|", studies)
+    assert dates and m.group(1) >= max(dates), (
+        f"README summary updated {m.group(1)}, but the newest study is dated {max(dates)}: update the summary")

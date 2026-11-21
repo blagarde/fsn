@@ -31,6 +31,8 @@ The project explores many reactor designs built from many materials. The documen
 
 ## Conventions
 
+- **After every study, update the "Most promising design options" summary in the [top-level README](../README.md#most-promising-design-options)** (ranking, numbers, parked list, cross-cutting findings) and its `Updated:` date. `tests/test_docs.py` fails if that date is older than the newest study.
+
 - **IDs.** Designs: `B1`–`B6` (seed branches), `X1`–`X3` (liquid fuel at ~2,000 °C), `A1`–`A3` (aluminium-cooled); new families get a new letter. Decisions: `D-0001`. Questions: `Q-001`. Materials: lowercase slugs (`aluminium`, `zirconium-diboride`).
 - **Front matter.** Every design and material page starts with a YAML header (ID, status, key parameters, links). `htfbr-data docs` builds the index tables from it, so add a page and run the command; never edit an index table by hand.
 - **Status values.** Designs: `seed` (named only), `exploring` (being analysed), `analysed` (feasibility assessed), `parked`, `rejected`. Materials: `candidate`, `shortlisted`, `excluded`.

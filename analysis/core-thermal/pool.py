@@ -69,6 +69,7 @@ class Body:
     pu: float = 0.15             # Pu / (U + Pu) atom fraction (reactor-grade vector, depleted U)
     reflector: tuple | None = None   # (material, g/cc, thickness cm), e.g. ("W", 19.0, 20)
     h_over_d: float = 1.0        # cylinder: height / diameter when height_cm = 0
+    delta_fit: float | None = None   # reflector savings (cm) fitted to OpenMC; overrides the one-group formula
     refl_faces: str = "all"      # cylinder: all | radial (side only) | axial (top and bottom only)
     removal: str = "convective"  # adiabatic | convective | radiative | immersed
     h: float = 2.0e4             # W/m2 K
@@ -119,10 +120,13 @@ def extrap(b: Body, g: N.OneGroup) -> tuple[float, float]:
     bare = _cal()[1] * g.D
     if not b.reflector:
         return bare, bare
-    import core
-    mat, rho, t = b.reflector
-    r = N.one_group(N.Region().add("reflector", N.element_material(mat, rho), 1.0, max(b.T_c, 900.0)))
-    refl = core.savings_cm(g, r, t)
+    if b.delta_fit is not None:
+        refl = b.delta_fit
+    else:
+        import core
+        mat, rho, t = b.reflector
+        r = N.one_group(N.Region().add("reflector", N.element_material(mat, rho), 1.0, max(b.T_c, 900.0)))
+        refl = core.savings_cm(g, r, t)
     if b.shape != "cylinder" or b.refl_faces == "all":
         return refl, refl
     return (refl, bare) if b.refl_faces == "radial" else (bare, refl)
@@ -572,10 +576,38 @@ def window(b: Body, transport: bool = True, n_points: int = 5) -> dict:
     # would add their statistical noise (~ the whole feedback budget) to the window edges
     crit = lambda s_, sc: k_eff(scaled(s_, sc), T0, T0)[0] >= 1.0
     scale = 1.0
-    lo_size = find(lambda s_: crit(s_, scale), 0.5, 500.0)
-    if transport:
-        # iterate the anchor until the OpenMC-critical size stops moving (the one-group reflector
-        # formula can be far off for thick, weakly absorbing reflectors such as Pb)
+    if transport and b.reflector:
+        # reflected: one-group reflector savings are unreliable (moderating or weakly absorbing
+        # reflectors), so find the OpenMC-critical size directly (secant on size), then fit the
+        # savings so that the model is critical there; the temperature dependence uses that savings.
+        bare = window(dataclasses.replace(b, reflector=None), transport=False, n_points=1)["critical_size_cm"]
+        def kmc(s_):
+            return openmc_keff(dataclasses.replace(b, size_cm=s_, k_scale=1.0), T0, particles=20000, batches=60, inactive=20)["openmc_k"]
+        s0, s1 = 0.5 * bare, 0.8 * bare
+        k0_, k1_ = kmc(s0), kmc(s1)
+        for _ in range(8):
+            s2 = max(0.15 * bare, min(1.2 * bare, s1 + (1 - k1_) * (s1 - s0) / (k1_ - k0_)))
+            s0, k0_, s1, k1_ = s1, k1_, s2, kmc(s2)
+            if abs(k1_ - 1) < 0.002:
+                break
+        lo_size = s1
+        d0 = dims(dataclasses.replace(b, size_cm=lo_size), T0)
+        g0 = one_group(b, T0, T0)
+        f_leak, c_ext = _cal()
+        def k_with(delta):
+            bb = dataclasses.replace(b, size_cm=lo_size, delta_fit=delta)
+            return k_eff(bb, T0, T0)[0]
+        a_, c_ = 0.0, 3 * lo_size
+        for _ in range(60):
+            m_ = 0.5 * (a_ + c_)
+            a_, c_ = (m_, c_) if k_with(m_) < 1 else (a_, m_)
+        b = dataclasses.replace(b, delta_fit=0.5 * (a_ + c_))
+        anchor_note = {"openmc_critical_size_cm": lo_size, "openmc_k_at_size": k1_, "delta_fit_cm": b.delta_fit}
+    else:
+        anchor_note = {}
+        lo_size = find(lambda s_: crit(s_, scale), 0.5, 500.0)
+    if transport and not b.reflector:
+        # iterate the anchor until the OpenMC-critical size stops moving
         for _ in range(8):
             scale = anchor(scaled(round(lo_size, 3), 1.0), T0)
             new = find(lambda s_: crit(s_, scale), 0.5, 500.0)
@@ -597,7 +629,7 @@ def window(b: Body, transport: bool = True, n_points: int = 5) -> dict:
     r_hi = solve(scaled(hi_size * 0.9999, scale_hi))
     return {"body": asdict(b), "transport": transport, "critical_size_cm": lo_size, "runaway_size_cm": hi_size,
             "window_cm": hi_size - lo_size, "window_pct": 100 * (hi_size / lo_size - 1),
-            "max_power_MW": r_hi.P_MW, "max_power_T_max_K": r_hi.T_max_K, "anchors": [scale_lo, scale_hi],
+            "max_power_MW": r_hi.P_MW, "max_power_T_max_K": r_hi.T_max_K, "anchors": [scale_lo, scale_hi], "delta_fit_cm": b.delta_fit, "anchor_note": anchor_note,
             "feedback_to_limit_pcm": r_hi.feedback_to_limit_pcm, "mass_t_at_critical": solve(scaled(lo_size, scale_lo)).mass_t,
             "points": pts}
 

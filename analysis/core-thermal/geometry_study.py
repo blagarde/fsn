@@ -33,7 +33,7 @@ def main():
         if name in res:
             continue
         w = pool.window(b, transport=True, n_points=3)
-        crit = dataclasses.replace(b, size_cm=w["critical_size_cm"], k_scale=w["anchors"][0])
+        crit = dataclasses.replace(b, size_cm=w["critical_size_cm"], k_scale=w["anchors"][0], delta_fit=w["delta_fit_cm"])
         aD, aE = pool.coefficients(crit, 1500.0)
         w["alpha_doppler_pcm_K"], w["alpha_expansion_pcm_K"] = aD, aE
         w["dims_at_critical"] = pool.dims(crit, 1500.0)
