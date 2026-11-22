@@ -135,6 +135,24 @@ def main():
     v = upu_vapour(3500.0)
     liq_u = M.Liquid("U-Pu liquid", 15000.0, 1.5, 4e-3, 45.0, "APPROX")
     res["skull"]["void_power_density"] = {f"H {H} m": M.q3_for_void(0.3, H, liq_u, v) / 1e6 for H in (0.3, 1.0)}
+    # 6. thermostat mode: no bulk boiling in operation; heat leaves by internal natural convection to cooled
+    #    walls; boiling (of the salt solvent or a carrier metal in contact with the fuel) caps the temperature.
+    #    Internally heated layer, Nu = 0.34 Ra^0.226 on the cooled boundary (Kulacki-Goldstein type; APPROX).
+    th = []
+    for label, k, rho, mu, cp, beta in (("liquid U-Pu metal", 45.0, 15600.0, 4e-3, 190.0, 6e-5),
+                                        ("NaCl-(U,Pu)Cl3 salt", 0.5, 2600.0, 1e-3, 700.0, 3e-4)):
+        for L in (0.01, 0.03, 0.1):          # half-gap between cooled surfaces, m
+            for q3 in (50e6, 300e6):
+                nu, a = mu / rho, k / (rho * cp)
+                Ra = M.G * beta * q3 * L ** 5 / (nu * a * k)
+                Nu = max(0.34 * Ra ** 0.226, 1.0)
+                h = Nu * k / L
+                dT_cond = q3 * L * L / (2 * k)              # pure-conduction rise (slab, one cooled face)
+                dT = min(q3 * L / h, dT_cond)               # convection cannot do worse than conduction
+                q2 = q3 * L
+                th.append({"fuel": label, "half_gap_m": L, "q3_MW_m3": q3 / 1e6, "h": h, "q2_MW_m2": q2 / 1e6,
+                           "dT_fuel_to_wall_K": dT, "area_m2_per_GW": 1e9 / q2})
+    res["thermostat"] = th
     (OUT / "thermal.json").write_text(json.dumps(res, indent=1, default=str))
 
     # printed summary
@@ -153,6 +171,9 @@ def main():
     print("== architectures for 1 GWth")
     for k, a in arch.items():
         print(" ", k, {kk: (round(vv, 2) if isinstance(vv, float) else vv) for kk, vv in a.items()})
+    print("== thermostat mode: fuel-to-wall temperature drop and wall area per GW")
+    for t in res["thermostat"]:
+        print(f"  {t['fuel']:22s} half-gap {t['half_gap_m']*100:.0f} cm, {t['q3_MW_m3']:.0f} MW/m3: h {t['h']:.0f}, q2 {t['q2_MW_m2']:.1f} MW/m2, dT {t['dT_fuel_to_wall_K']:.0f} K, {t['area_m2_per_GW']:.0f} m2/GW")
     print("== skull-cooled U-Pu", res["skull"]["void_power_density"])
     for s in res["skull"]["wall"]:
         print("  ", {k: (round(v, 3) if isinstance(v, float) else v) for k, v in s.items()})

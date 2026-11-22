@@ -1837,5 +1837,115 @@
    "H 0.3 m": 0.1546908203803168,
    "H 1.0 m": 0.04640724611409506
   }
- }
+ },
+ "thermostat": [
+  {
+   "fuel": "liquid U-Pu metal",
+   "half_gap_m": 0.01,
+   "q3_MW_m3": 50.0,
+   "h": 13791.485528636682,
+   "q2_MW_m2": 0.5,
+   "dT_fuel_to_wall_K": 36.25425259387747,
+   "area_m2_per_GW": 2000.0
+  },
+  {
+   "fuel": "liquid U-Pu metal",
+   "half_gap_m": 0.01,
+   "q3_MW_m3": 300.0,
+   "h": 20676.31931804713,
+   "q2_MW_m2": 3.0,
+   "dT_fuel_to_wall_K": 145.09352239406934,
+   "area_m2_per_GW": 333.3333333333333
+  },
+  {
+   "fuel": "liquid U-Pu metal",
+   "half_gap_m": 0.03,
+   "q3_MW_m3": 50.0,
+   "h": 15908.777621914365,
+   "q2_MW_m2": 1.5,
+   "dT_fuel_to_wall_K": 94.2875710283201,
+   "area_m2_per_GW": 666.6666666666666
+  },
+  {
+   "fuel": "liquid U-Pu metal",
+   "half_gap_m": 0.03,
+   "q3_MW_m3": 300.0,
+   "h": 23850.58269375713,
+   "q2_MW_m2": 9.0,
+   "dT_fuel_to_wall_K": 377.34927131804386,
+   "area_m2_per_GW": 111.11111111111111
+  },
+  {
+   "fuel": "liquid U-Pu metal",
+   "half_gap_m": 0.1,
+   "q3_MW_m3": 50.0,
+   "h": 18604.202073930814,
+   "q2_MW_m2": 5.0,
+   "dT_fuel_to_wall_K": 268.75648738551723,
+   "area_m2_per_GW": 200.0
+  },
+  {
+   "fuel": "liquid U-Pu metal",
+   "half_gap_m": 0.1,
+   "q3_MW_m3": 300.0,
+   "h": 27891.587308658356,
+   "q2_MW_m2": 30.0,
+   "dT_fuel_to_wall_K": 1075.593140971476,
+   "area_m2_per_GW": 33.333333333333336
+  },
+  {
+   "fuel": "NaCl-(U,Pu)Cl3 salt",
+   "half_gap_m": 0.01,
+   "q3_MW_m3": 50.0,
+   "h": 1377.172715718262,
+   "q2_MW_m2": 0.5,
+   "dT_fuel_to_wall_K": 363.0626676620048,
+   "area_m2_per_GW": 2000.0
+  },
+  {
+   "fuel": "NaCl-(U,Pu)Cl3 salt",
+   "half_gap_m": 0.01,
+   "q3_MW_m3": 300.0,
+   "h": 2064.669738960871,
+   "q2_MW_m2": 3.0,
+   "dT_fuel_to_wall_K": 1453.0168885556834,
+   "area_m2_per_GW": 333.3333333333333
+  },
+  {
+   "fuel": "NaCl-(U,Pu)Cl3 salt",
+   "half_gap_m": 0.03,
+   "q3_MW_m3": 50.0,
+   "h": 1588.5985911987163,
+   "q2_MW_m2": 1.5,
+   "dT_fuel_to_wall_K": 944.2284591654698,
+   "area_m2_per_GW": 666.6666666666666
+  },
+  {
+   "fuel": "NaCl-(U,Pu)Cl3 salt",
+   "half_gap_m": 0.03,
+   "q3_MW_m3": 300.0,
+   "h": 2381.6413156959907,
+   "q2_MW_m2": 9.0,
+   "dT_fuel_to_wall_K": 3778.906563589705,
+   "area_m2_per_GW": 111.11111111111111
+  },
+  {
+   "fuel": "NaCl-(U,Pu)Cl3 salt",
+   "half_gap_m": 0.1,
+   "q3_MW_m3": 50.0,
+   "h": 1857.7548764218825,
+   "q2_MW_m2": 5.0,
+   "dT_fuel_to_wall_K": 2691.4207377187563,
+   "area_m2_per_GW": 200.0
+  },
+  {
+   "fuel": "NaCl-(U,Pu)Cl3 salt",
+   "half_gap_m": 0.1,
+   "q3_MW_m3": 300.0,
+   "h": 2785.1628426684138,
+   "q2_MW_m2": 30.0,
+   "dT_fuel_to_wall_K": 10771.36300269522,
+   "area_m2_per_GW": 33.333333333333336
+  }
+ ]
 }
