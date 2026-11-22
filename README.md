@@ -35,7 +35,7 @@ Physics-first exploration of fast-spectrum breeder reactors that deliver heat at
 - Molten U–Pu has almost no Doppler feedback in its hard spectrum, so its prompt feedback is purely geometric: only leakage through walls that do not move as the liquid rises counts. OpenMC, 1,500→3,000 K: a tall free-surface pool −6,700 pcm, a wide shallow one −1,200, a laterally confined slab ~−150. Reflectors halve the critical mass but also the feedback (W, Pb, depleted U ≈ −3,500; BeO −2,200); end reflectors keep it (−5,350). A movable heavy reflector (worth 21,000–26,000 pcm) is the natural control for liquid fuel.
 - With turbine inlet capped at 1,500 °C, a helium Brayton cycle gives ~54% at any outlet above ~1,550 °C. Hotter outlets pay off only for direct industrial heat or better turbine materials.
 - Liquid aluminium dissolves every Al-facing wall material faster above ~1,500 °C; loop life is a dissolution-kinetics test, not a calculation. On thin walls the Al-side ceramic barrier's thermal stress caps the heat flux at ~4 MW/m².
-- Cooling a vessel hard enough to grow a frozen-fuel skull protects any wall from any fuel temperature, but the heat then leaves at the coolant's temperature (~700–800 °C), not the fuel's.
+- Cooling a vessel hard enough to grow a frozen-fuel skull protects any wall from any fuel temperature, but the heat then leaves below the fuel's melting point: ≈850–1,000 °C for U–Pu, lower at higher heat flux.
 
 ## Getting started
 

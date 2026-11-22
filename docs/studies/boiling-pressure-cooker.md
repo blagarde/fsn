@@ -8,7 +8,7 @@
 - **Boiling cannot be the main way heat leaves the core.** At the 1–3 bar these fuels boil at near 2,000 K, a cubic metre of vapour carries only 0.7–2.7 MJ. A boiling pool held below 30% void can then carry only 0.1–3 MW/m³: **300–12,000 m³ of fuel per GW**, against 1–5 m³ for a normal fast core. The one exception is a magnesium carrier, which boils at ~32 bar at 2,000 K and carries 23 MJ/m³ (4–29 MW/m³). Its pressure at that temperature is beyond any hot vessel.
 - **A single vessel cannot reach 1 GW.** Its outside wall carries only 20–110 MW at the wall's heat-flux limit (radius 1–2.5 m).
 - **The concept works as a thermostat.** Run just below boiling, with heat removed by natural convection to Al-cooled walls (a tube bundle or an array of small vessels). Boiling then **caps the temperature** at the saturation point, and the cover-gas pressure sets where that cap is. The fuel that fits is **liquid U–Pu metal under a boiling carrier (Pb or Ca)**: 250–500 m² of cooled wall per GW at 2–4 MW/m². Chloride and fluoride salts conduct heat too poorly for this.
-- **The vessel is the hardest material problem, as expected.** Hot-wall (wall at fuel temperature): only W or W-25Re hold the pressure at ~2,000 K, at 1–2 bar and small radius, with a TiB2 or AlN outer layer against the Al. Cold-wall (the user's suggestion of continuous outside cooling): a frozen-fuel skull protects any refractory wall and lets the fuel inside be far hotter, but the Al must then run at ~950–1,050 K, so the heat leaves at ~700–800 °C whatever the fuel temperature.
+- **The vessel is the hardest material problem, as expected.** Hot-wall (wall at fuel temperature): only W or W-25Re hold the pressure at ~2,000 K, at 1–2 bar and small radius, with a TiB2 or AlN outer layer against the Al. Cold-wall (the user's suggestion of continuous outside cooling): a frozen-fuel skull protects any refractory wall and lets the fuel inside be far hotter, but heat must flow downhill through the skull: the Al stays below the fuel's solidus (~1,380 K) minus the wall's temperature drop. That puts it at ~1,150–1,300 K (≈850–1,030 °C), lower at higher heat flux, whatever the fuel temperature.
 
 ## What boils, and what its vapour can carry
 
@@ -101,7 +101,16 @@ What the skull buys:
 - A pressure-cooker vessel at 30 bar becomes feasible, so the Mg carrier can be reconsidered.
 
 What it costs:
-- **The aluminium must run below the skull temperature, at ~950–1,050 K.** The heat is delivered at ~700–800 °C, below the project's 850 °C target, however hot the fuel inside. A 3,500 K boiling U–Pu core with a skull gains nothing in delivered temperature unless the hot fuel or its vapour is used directly, for example by radiation or a metal-vapour cycle.
+- **The aluminium must run below the skull temperature.** The skull's inner face sits at the fuel solidus (~1,380 K). The wall face must be below it by enough to keep a crust of useful thickness. The Al is below that again by the temperature drop through the wall, barrier and film, which is proportional to heat flux. Mo-TZM, 2 mm, plus TiB2 1 mm, h_Al = 50 kW/m²K:
+
+  | Wall heat flux | Wall inner face | Skull | Highest Al bulk temperature |
+  | --- | --- | --- | --- |
+  | 0.5 MW/m² | 1,300 K | 4.8 mm | 1,270 K (≈1,000 °C) |
+  | 1 MW/m² | 1,300 K | 2.4 mm | 1,240 K (≈970 °C) |
+  | 2 MW/m² | 1,300 K | 1.2 mm | 1,180 K (≈910 °C) |
+  | 3 MW/m² | 1,300 K | 0.8 mm | 1,120 K (≈850 °C) |
+
+  The floor is Al's melting point (933 K). The ceiling is the solidus. **The heat is delivered at ≈850–1,000 °C, set by the fuel's melting point and the heat flux, not by the fuel temperature.** Running hotter needs more wall area (1,000–2,000 m² per GW at 0.5–1 MW/m²) and a thinner skull, which is less forgiving of power swings. The 950–1,050 K settings in the table above are a conservative case. A 3,500 K boiling U–Pu core with a skull gains nothing in delivered temperature unless the hot fuel or its vapour is used directly, for example by radiation or a metal-vapour cycle.
 - The 1,000–2,000 K drop between the liquid and the skull is an entropy loss.
 - Skull thickness swings with power, which changes the fuel inventory and the heat path.
 
@@ -131,9 +140,9 @@ Chloride criticality at this size needs Pu ≈ 11–12% *(calc, by interpolation
 | Boiling carrier | Pb (cap 2,020 K at 1 bar, ~2,300 K at ~3 bar) or Ca (1,770 K at 1 bar, 2,000 K at 3 bar) | Sets the cap by cover-gas pressure; Pb absorbs little; Ca is more volatile and boils more strongly |
 | Heat removal | 250–500 m² of Al-cooled walls (tube bundle in the pool, or an array of small vessels), 2–4 MW/m² | Wall flux is limited by the Al-side ceramic barrier |
 | Vessel, hot-wall | W or W-25Re tubes or small vessels (r ≤ 25 cm), 1–2 mm, with a 1 mm TiB2 (or AlN) outer layer; Al at ≤ 1,500 K | Only W-based alloys hold pressure near 2,000 K; TiB2 has the highest Al dissolution limit |
-| Vessel, cold-wall alternative | Mo-TZM (or any refractory) with a frozen U–Pu skull; Al at 950–1,050 K | Removes liquid-U chemistry and pressure limits, but delivers heat at only 700–800 °C |
+| Vessel, cold-wall alternative | Mo-TZM (or any refractory) with a frozen U–Pu skull; Al at ~1,150–1,270 K | Removes liquid-U chemistry and pressure limits, but delivers heat at ≈850–1,000 °C, capped by the fuel's melting point |
 
-At the hot-wall settings, the core is close to [A2](../designs/A2.md) or [X1](../designs/X1.md) geometry. The new element is a **pressure-set boiling cap**, which supplies the strong prompt feedback that the core-thermal and geometry studies found missing for liquid U–Pu. The cold-wall variant is a different design point: robust chemistry, low delivery temperature.
+At the hot-wall settings, the core is close to [A2](../designs/A2.md) or [X1](../designs/X1.md) geometry. The new element is a **pressure-set boiling cap**, which supplies the strong prompt feedback that the core-thermal and geometry studies found missing for liquid U–Pu. The cold-wall variant is a different design point: robust chemistry, delivery temperature capped below the fuel's melting point.
 
 ## Open questions
 
