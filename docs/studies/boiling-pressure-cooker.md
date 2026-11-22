@@ -88,7 +88,7 @@ If the tube's inner face is kept below the fuel's solidus (~1,380 K *(approx.)*)
 - **What it buys:** liquid uranium never touches the wall ([Q-021](../open-questions.md) disappears), and pressure is no longer a constraint.
 - **What it costs:** heat is delivered at about 850–1,000 °C, capped by the fuel's melting point, against about 1,200 °C for the hot-wall reference.
 
-A higher-melting fuel would lift that ceiling. Thorium metal freezes at 2,023 K *(db)*, and UN, UO2 and MOX at about 3,000–3,100 K *(approx.)*. With those fuels, the aluminium-side barrier becomes the limit instead. Thorium is weaker as a fast breeder: in an infinite medium, Th + U-233 8% gives k∞ 1.26 at conversion 0.94 *(calc)*, against U–Pu at ~1.7. Pa-233 is now being added to the library to finish that comparison.
+A higher-melting fuel would lift that ceiling. Thorium metal freezes at 2,023 K *(db)*, and UN, UO2 and MOX at about 3,000–3,100 K *(approx.)*. With those fuels, the aluminium-side barrier becomes the limit instead. Thorium is the weaker fast breeder. In an infinite medium at 2,100 K *(calc, OpenMC)*, Th + U-233 8% with equilibrium Pa-233 (0.5% of the Th, now in the library) gives k∞ 1.25 at conversion ratio 0.93. Pa-233 takes 1.1% of absorptions. U + Pu 9% gives k∞ 1.38 at conversion ratio 1.30. At equal reactivity U–Pu converts about 40% better, so a thorium skull buys delivery temperature at the cost of breeding.
 
 ## Risks and open questions
 

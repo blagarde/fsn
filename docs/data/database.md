@@ -47,7 +47,7 @@ Element melting points from SGTE are stored in `property` (source `sgte_unary`, 
 
 ## OpenMC transport library and validation
 
-`tools/openmc_library/build.py` processes the cached ENDF/B-VIII.0 evaluations listed under `openmc_library` in `config/targets.yaml` with NJOY2016 (unresolved-resonance probability tables for actinides) at 1,200 and 2,100 K into `data/openmc/` (not committed; rebuild from the cache). `analysis/common/infinite.py` is the shared infinite-medium screening tool used by the Phase 1 family analyses.
+`tools/openmc_library/build.py` processes the cached ENDF/B-VIII.0 evaluations listed under `openmc_library` in `config/targets.yaml` with NJOY2016 (unresolved-resonance probability tables for actinides) at 1,200 and 2,100 K into `data/openmc/` (not committed; rebuild from the cache). Thorium-cycle nuclides include Th-232, U-233 and Pa-231/232/233; add an isotope to the target list and run `python tools/openmc_library/build.py --only <element>` (NJOY must be on `PATH`, e.g. `export PATH=/opt/mamba/envs/nuc/bin:$PATH`). Missing evaluations are reported with the `htfbr-data endf --only` command that fetches them. `analysis/common/infinite.py` is the shared infinite-medium screening tool used by the Phase 1 family analyses.
 
 | Validation case | Benchmark k_eff | Calculated | Difference | Script |
 | --- | --- | --- | --- | --- |
