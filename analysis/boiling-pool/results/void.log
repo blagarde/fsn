@@ -1,1 +1,24 @@
 chloride: Pu search, rho 3.006219043654425
+   k(pu 0.15) 1.1374, k(pu 0.35) 1.7430 -> pu 0.105
+   void 0.00: k 0.9260 +- 0.0006
+   void 0.10: k 0.9034 +- 0.0006
+   void 0.20: k 0.8735 +- 0.0005
+   void 0.30: k 0.8388 +- 0.0006
+metal pool
+   void 0.00: k 0.9822 +- 0.0008
+   void 0.10: k 0.9416 +- 0.0007
+   void 0.20: k 0.8948 +- 0.0006
+   void 0.30: k 0.8411 +- 0.0005
+large diluted metal core
+/opt/mamba/envs/nuc/lib/python3.12/site-packages/openmc/material.py:1884: UserWarning: Warning: sum of fractions do not add to 1, void fraction set to 0.44999999999999996
+  warnings.warn(msg)
+   void 0.00: k 1.1688 +- 0.0007
+/opt/mamba/envs/nuc/lib/python3.12/site-packages/openmc/material.py:1884: UserWarning: Warning: sum of fractions do not add to 1, void fraction set to 0.44999999999999996
+  warnings.warn(msg)
+   void 0.10: k 1.1453 +- 0.0007
+/opt/mamba/envs/nuc/lib/python3.12/site-packages/openmc/material.py:1884: UserWarning: Warning: sum of fractions do not add to 1, void fraction set to 0.44999999999999996
+  warnings.warn(msg)
+   void 0.20: k 1.1130 +- 0.0008
+/opt/mamba/envs/nuc/lib/python3.12/site-packages/openmc/material.py:1884: UserWarning: Warning: sum of fractions do not add to 1, void fraction set to 0.44999999999999996
+  warnings.warn(msg)
+   void 0.30: k 1.0760 +- 0.0007

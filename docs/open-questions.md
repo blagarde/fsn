@@ -70,3 +70,12 @@ Numbered so design and material pages can point at them. Close a question by rec
 | Q-051 | Replace Way–Wigner decay heat with ANS-5.1 or an ENDF decay/fission-yield summation | data → calc | [core-thermal study](studies/core-thermal.md), all loss-of-cooling results | open |
 | Q-052 | Control and engineered prompt feedback for liquid-metal fuel: a laterally confined U–Pu pool has only ~200 pcm of feedback before boiling (Doppler ≈ 0). Which mechanism (free-surface expansion, gas voiding, diluent) gives > 1,000 pcm, and what control authority covers burnup? | calc → decision | A2, X1–X3, R1–R3 | open |
 | Q-053 | Multigroup spectrum solve per composition instead of interpolating between reference spectra (one-group k∞ low by 2,000–7,600 pcm) | calc | [core-thermal study](studies/core-thermal.md) | open |
+
+## Boiling-fuel ("pressure cooker") concept
+
+| ID | Question | Kind | Blocks | Status |
+| --- | --- | --- | --- | --- |
+| Q-060 | Actinide vapour data (U, Pu, UCl3, PuCl3, UF4) and activity of the actinide salts in NaCl and LiF solvents; liquid salt properties at 1,800–2,200 K | data | [boiling-fuel study](studies/boiling-pressure-cooker.md), B4 | open |
+| Q-061 | Creep-rupture strength of W, W-Re, Mo-TZM, Ta alloys at 1,600–2,200 K, entered with locators | data | [boiling-fuel study](studies/boiling-pressure-cooker.md), A2, X1, R1–R3 | open |
+| Q-062 | Coupled boiling-kinetics model of the thermostat mode: onset of boiling, void distribution, chugging and density-wave stability, sharpness of the temperature cap | calc | [boiling-fuel study](studies/boiling-pressure-cooker.md), Q-052 | open |
+| Q-063 | Frozen-fuel skull on a cooled wall: thickness, Pu segregation, stability under power changes; ways to use the hot fuel directly | calc → test | [boiling-fuel study](studies/boiling-pressure-cooker.md) | open |
