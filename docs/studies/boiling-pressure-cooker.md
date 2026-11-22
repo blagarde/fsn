@@ -15,7 +15,7 @@
 | Item | Value | Basis |
 | --- | --- | --- |
 | Pins | ~1,930; fuel radius 2.5 cm, 1 m fuel column, outer radius 27.5 mm, pitch 69 mm | Sized for 3 MW/m² at the tube surface |
-| Fuel | Liquid U–Pu metal, 3.8 m³ (59 t), 264 MW/m³ in the fuel | Pu fraction from the OpenMC check below |
+| Fuel | Liquid U–Pu metal, Pu ≈ 10.5% (critical, clean), 3.8 m³ (59 t, ~6.2 t Pu), 264 MW/m³ in the fuel | OpenMC check below |
 | Core | 3.4 m diameter × 1 m, fuel fraction 0.42; 20 cm W reflector, then a depleted-U blanket | `design.py` |
 | Fuel temperature | ≤ 1,970 K in operation (146 K convective drop to the wall) | Internally heated cylinder, Nu = 0.34 Ra^0.226 *(approx.)* |
 | Temperature cap | Pb boils at 2,050 / 2,150 / 2,250 / 2,350 K at 1.2 / 1.9 / 3.0 / 4.5 bar *(db, Pb above its 1 bar boiling point by Clausius–Clapeyron)* | Reference: 2,150 K at 1.9 bar, 180 K above the hottest fuel |
@@ -42,7 +42,9 @@ Bubbles displace fuel at constant fuel mass: density × (1 − α), column heigh
 | Large core: 45% liquid U–Pu (Pu 10%) + 10% W, W reflector | R 1.5 m, H 3 m | −1,750 | −4,300 | −7,400 | −175 to −250 |
 | NaCl–(U,Pu)Cl3 30/70 (alternative fuel, Cl-37 99%), Pb reflector | R 1.5 m, H 3 m | −2,700 | −6,500 | −11,200 | −270 to −370 |
 
-<!-- DESIGN_NEUTRONICS -->
+**Reference core** (`design_neutronics.py`, homogenised pins + tube walls + Al, 20 cm W reflector, 30 cm depleted-U blanket, OpenMC):
+- **Critical Pu fraction:** about 10.5%. k = 0.974 at Pu 10% and 1.273 at Pu 16%, so about 6.2 t of Pu (4.3 t fissile) in 59 t of fuel, with no burnup margin.
+- **Void worth at Pu 10.5%:** −1,180 pcm at 5%, −2,570 at 10%, −5,450 at 20%, i.e. **about −240 to −270 pcm per % void** (σ ≈ 80 pcm). That is about 2.5 β at 5% void and 5–6 β at 10%.
 
 ## The vessel (the pin tube)
 
