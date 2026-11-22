@@ -91,6 +91,8 @@ def main():
         p = endf_path(con, el, mass)
         (tasks.append((el, mass, p, temps)) if p else missing.append(f"{el}-{mass}"))
     print(f"{len(tasks)} nuclides at {temps} K; not in cache: {missing or 'none'}", flush=True)
+    if missing:
+        print("  fetch the missing ENDF/B-VIII.0 evaluations first: htfbr-data endf --only " + " ".join(missing), flush=True)
     with mp.Pool(a.jobs) as pool:
         for el, mass, status, dt in pool.imap_unordered(work, tasks):
             print(f"  {el}-{mass}: {status} ({dt:.0f} s)", flush=True)

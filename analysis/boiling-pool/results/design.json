@@ -1,0 +1,43 @@
+{
+ "n_pins": 1929.150825356307,
+ "pin_outer_radius_mm": 27.500000000000004,
+ "fuel_m3": 3.787878787878788,
+ "fuel_t": 59.09090909090909,
+ "q3_fuel_MW_m3": 264.0,
+ "core_diameter_m": 3.4073037667660144,
+ "core_height_m": 1.0,
+ "core_m3": 9.118251947973171,
+ "fuel_fraction": 0.4154172103920387,
+ "pitch_mm": 68.75,
+ "q2_design_MW_m2": 3.0,
+ "h_fuel_side": 22628.643251103935,
+ "dT_fuel_K": 145.8328704633677,
+ "h_al": 14086.166264461755,
+ "al_velocity_m_s": 0.41975508718793736,
+ "al_m_dot_kg_s": 4249.000031495071,
+ "T_al_in_K": 1300.0,
+ "T_al_out_K": 1500.0,
+ "T_barrier_al_face_K": 1712.9749105382034,
+ "T_wall_inner_K": 1827.2606248239176,
+ "T_fuel_max_K": 1973.0934952872854,
+ "pb_cap_pressure_bar": {
+  "2050 K": 1.179073467416108,
+  "2150 K": 1.916169418200861,
+  "2250 K": 2.980725545556744,
+  "2350 K": 4.464960726703691
+ },
+ "wall_check": {
+  "dT_metal": 64.28571428571429,
+  "dT_barrier": 50.0,
+  "T_al_face": 1712.9749105382034,
+  "T_al_bulk_max": 1500.0,
+  "sigma_p_MPa": 5.500000000000001,
+  "S_allow_MPa": 62.305089413914004,
+  "sigma_th_metal_MPa": 86.64989939637829,
+  "sigma_th_barrier_MPa": 105.33707865168539,
+  "ok_primary": true,
+  "ok_thermal_metal": true,
+  "ok_barrier": true,
+  "ok_al_dissolution": true
+ }
+}
